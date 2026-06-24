@@ -1,9 +1,8 @@
-{
-  "name": "amo-personal-ip-illustrations",
-  "title": "阿墨个人 IP 配图",
-  "summary": "Multi-platform personal IP illustration workflow for Codex, Hermes, Claude Code and generic agents.",
+﻿{
+  "name": "axin-personal-ip-illustrations",
+  "title": "阿鑫个人 IP 配图",
+  "summary": "Multi-platform Axin personal IP illustration workflow for Codex, Hermes, Claude Code and generic agents.",
   "categories": ["creative", "content", "image-generation", "personal-brand"],
-  "keywords": ["codex", "hermes", "claude-code", "imagegen", "personal-ip", "geo", "llms.txt"],
-  "repo": "https://github.com/paidaxing1234/amo-personal-ip-illustrations"
+  "keywords": ["codex", "hermes", "claude-code", "imagegen", "personal-ip", "axin", "geo", "llms.txt", "bilingual-content"],
+  "repo": "https://github.com/paidaxing1234/axin-personal-ip-illustrations"
 }
-

@@ -1,9 +1,9 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$source = Join-Path $repoRoot "amo-personal-ip-illustrations"
+$source = Join-Path $repoRoot "axin-personal-ip-illustrations"
 $claudeSkillRoot = Join-Path $repoRoot ".claude-plugin\skills"
-$claudeSkillTarget = Join-Path $claudeSkillRoot "amo-personal-ip-illustrations"
+$claudeSkillTarget = Join-Path $claudeSkillRoot "axin-personal-ip-illustrations"
 
 New-Item -ItemType Directory -Force -Path $claudeSkillRoot | Out-Null
 

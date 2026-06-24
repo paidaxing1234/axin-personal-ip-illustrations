@@ -1,4 +1,4 @@
-Use amo-personal-ip-illustrations/SKILL.md as the source of truth.
+﻿Use axin-personal-ip-illustrations/SKILL.md as the source of truth.
 
 This repo packages a multi-platform personal IP illustration workflow for Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, and generic agents.
 
@@ -10,7 +10,6 @@ Default visual rules:
 - Large white space.
 - Character performs the core conceptual action.
 
-Use 阿墨 by default. Use the authorized starfish direction only when explicitly requested and rights are confirmed.
+Use 阿鑫 / Axin as the default and only recurring character.
 
 Run scripts/validate-repo.ps1 before committing.
-

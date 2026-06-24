@@ -1,0 +1,115 @@
+# Axin Personal IP Illustration Workflow
+
+> A multi-platform hand-drawn illustration skill for Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, and generic agents.
+
+[中文](README.md) · [English](README.en.md) · [LLM entry](llms.txt) · [Multi-platform guide](docs/MULTI_PLATFORM.md) · [GEO guide](docs/GEO.md) · [Repository review](docs/REPOSITORY_REVIEW.md)
+
+This is not an avatar pack or a slide template. It is an installable agent skill for turning personal-brand writing, public-build notes, project retrospectives, AI workflow content, and GitHub README material into clean, strange, white-background article illustrations.
+
+The default recurring IP is **Axin / 阿鑫**: a deadpan low-tech content-workbench operator that compresses real project evidence into reusable public assets. Axin must perform the core action in each image, such as stamping, filtering, weighing, wiring, labeling, packing, publishing, or recycling.
+
+## Example Assets
+
+### Axin Character Anchor
+
+![Axin character anchor](axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png)
+
+### Content Workbench
+
+![Axin content workbench](axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png)
+
+### Bilingual Publishing Map
+
+![Axin bilingual publishing map](axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png)
+
+### GEO Asset Pipeline
+
+![Axin GEO asset pipeline](axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png)
+
+### Repository Review Desk
+
+![Axin repository review desk](axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png)
+
+## Good Fits
+
+- Chinese articles, WeChat posts, Zhihu answers, Notion notes, GitHub README visuals, and project retrospectives.
+- Public-building stories where real work, evidence, reuse, and publishing need a memorable visual metaphor.
+- Personal IP systems for AI workflows, solo products, content compounding, product validation, and open-source packaging.
+- Agent workflows that need stable prompts, style rules, QA checks, and repeatable output paths.
+
+Not a good fit:
+
+- Commercial key visuals.
+- Dense slide-style infographics.
+- Cute mascot sticker packs.
+- Text-heavy course pages.
+- Strictly editable vector diagrams.
+
+## Quick Start
+
+Install for Codex:
+
+```powershell
+.\scripts\install-local-skill.ps1
+```
+
+Install for Hermes:
+
+```powershell
+.\scripts\install-hermes-skill.ps1
+```
+
+Sync the Claude Code plugin snapshot:
+
+```powershell
+.\scripts\sync-platform-packages.ps1
+```
+
+Use in Codex:
+
+```text
+Use $axin-personal-ip-illustrations to design and generate 4 Axin-style article illustrations for this post.
+Requirements: 16:9, pure white background, black hand-drawn line art, sparse red/orange/blue handwritten labels.
+
+<paste article>
+```
+
+Plan only:
+
+```text
+Use $axin-personal-ip-illustrations. Do not generate images yet.
+Analyze this article and produce a 5-image shot list. For each image, include theme, core idea, structure type, what Axin does, and suggested labels.
+```
+
+## Platform Support
+
+| Platform | Status | Entry |
+| --- | --- | --- |
+| Codex | Supported | `axin-personal-ip-illustrations/SKILL.md` |
+| Hermes | Supported | `scripts/install-hermes-skill.ps1` |
+| Claude Code | Supported | `CLAUDE.md` / `.claude-plugin/` |
+| Cursor | Supported | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
+| Windsurf | Supported | `.windsurfrules` |
+| Cline | Supported | `.clinerules/axin-personal-ip-illustrations.md` |
+| OpenCode / generic agents | Supported | `AGENTS.md` / `llms.txt` |
+
+## Generation Rules
+
+- Default canvas: 16:9 horizontal article image. Character anchors may be 1:1.
+- Pure white background, no paper texture, beige tint, shadow, or gradient.
+- Black hand-drawn line art, sparse orange for paths, red for warnings/results, blue for system feedback.
+- One image explains one judgement, workflow, state, or metaphor.
+- Labels should be short. Use Chinese, English, or very sparse bilingual labels depending on the publishing context.
+- Axin must participate in the core action. If the image still works after removing Axin, the image fails.
+
+## Validation
+
+```powershell
+.\scripts\validate-repo.ps1
+```
+
+The validator checks required files, example images, skill metadata, platform snapshots, bilingual README entries, and local install scripts.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).

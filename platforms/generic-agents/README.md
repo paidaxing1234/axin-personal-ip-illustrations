@@ -1,11 +1,11 @@
-# 通用 Agent 平台
+﻿# 通用 Agent 平台
 
 如果平台不支持 Codex/Hermes/Claude 的专用 skill 格式，让 agent 按顺序读取：
 
 1. `llms.txt`
-2. `amo-personal-ip-illustrations/SKILL.md`
-3. `amo-personal-ip-illustrations/references/prompt-template.md`
-4. `amo-personal-ip-illustrations/references/qa-checklist.md`
+2. `axin-personal-ip-illustrations/SKILL.md`
+3. `axin-personal-ip-illustrations/references/prompt-template.md`
+4. `axin-personal-ip-illustrations/references/qa-checklist.md`
 
 最小提示：
 

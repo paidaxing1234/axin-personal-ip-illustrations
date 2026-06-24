@@ -1,34 +1,44 @@
-# 阿墨个人 IP 配图流程
+# 阿鑫个人 IP 配图流程
 
 > Codex / Hermes / Claude Code / Cursor / Windsurf / Cline / OpenCode 通用的个人 IP 手绘配图流程。
 
-[LLM 入口](llms.txt) · [多平台支持](docs/MULTI_PLATFORM.md) · [GEO 文档](docs/GEO.md) · [授权海星方向](docs/AUTHORIZED_STARFISH_CHARACTER.md)
+[中文](README.md) · [English](README.en.md) · [LLM 入口](llms.txt) · [多平台支持](docs/MULTI_PLATFORM.md) · [GEO 文档](docs/GEO.md) · [深度自审](docs/REPOSITORY_REVIEW.md)
 
-这不是通用头像包，也不是 PPT 模板。它是一套 Codex Skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张 16:9 白底手绘正文配图。
+这不是通用头像包，也不是 PPT 模板。它是一套可安装、可复用、可校验的 agent skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张白底手绘正文配图。
 
-默认视觉 IP 叫 **阿墨**：一个黑色印章工位形象，认真、冷静、有点荒诞，像在内容工厂里负责把经验压成资产的小操作员。
-
-仓库也支持 **授权海星方向角色**：用户已说明自己拥有相关授权，因此这套流程包含一个更轻松、更外向、更适合公众号和多平台入口的海星形象分支。早期手绘脚本草稿已被移入 `assets/rejected/`，正式主视觉由 `imagegen` CLI 生成。
+默认视觉 IP 叫 **阿鑫**。阿鑫不是可爱吉祥物，而是一个有点怪、很认真、会把真实项目压成内容资产的低科技内容工坊操作员。它必须参与画面的核心动作：压印、过筛、称重、接线、贴警示、装箱、发布、回收。
 
 ## 示例资产
 
-### 阿墨角色锚点
+### 阿鑫角色锚点
 
 角色锚点图用于固定 IP 外形，因此使用 1:1 画布。
 
-![阿墨角色锚点](amo-personal-ip-illustrations/assets/examples/01-amo-character-anchor.png)
+![阿鑫角色锚点](axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png)
 
-### 个人 IP 内容工坊
+### 内容工坊
 
 正文配图样例使用默认 16:9 横版。
 
-![个人 IP 内容工坊](amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png)
+![阿鑫内容工坊](axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png)
 
-### 授权海星方向
+### 中英文发布矩阵
 
-海星方向用于更外向的 public-facing 入口图。正式生成 prompt 见 `prompts/authorized-starfish-hero.md`。
+用于展示同一套个人 IP 资产如何同时服务中文内容、英文 README 和多平台 agent 入口。
 
-![授权海星方向角色](amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png)
+![阿鑫中英文发布矩阵](axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png)
+
+### GEO 资产流水线
+
+用于展示 README、llms.txt、docs 和示例图如何被人类读者与 LLM agent 共同发现。
+
+![阿鑫 GEO 资产流水线](axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png)
+
+### 代码自审工位
+
+用于提醒每次发布前都要审查命名、路径、快照、脚本、资产和真实输出。
+
+![阿鑫代码自审工位](axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png)
 
 ## 适合什么
 
@@ -74,7 +84,7 @@
 在 Codex 里使用：
 
 ```text
-Use $amo-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿墨个人 IP 正文配图。
+Use $axin-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿鑫个人 IP 正文配图。
 要求：16:9 横版、纯白背景、黑色手绘线稿、少量红橙蓝中文手写批注。
 
 <粘贴文章>
@@ -83,21 +93,21 @@ Use $amo-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿
 只做配图策略，不生成图：
 
 ```text
-Use $amo-personal-ip-illustrations 先不要生图。
+Use $axin-personal-ip-illustrations 先不要生图。
 请分析这篇文章哪里值得配图，输出 5 张左右的 shot list。
-每张写清楚主题、核心意思、结构类型、阿墨在做什么、建议中文标注。
+每张写清楚主题、核心意思、结构类型、阿鑫在做什么、建议中文标注。
 ```
 
 ## 多平台支持
 
 | 平台 | 状态 | 入口 |
 | --- | --- | --- |
-| Codex | 已支持 | `amo-personal-ip-illustrations/SKILL.md` |
+| Codex | 已支持 | `axin-personal-ip-illustrations/SKILL.md` |
 | Hermes | 已支持 | `scripts/install-hermes-skill.ps1` |
 | Claude Code | 已支持 | `CLAUDE.md` / `.claude-plugin/` |
-| Cursor | 已支持 | `.cursor/rules/amo-personal-ip-illustrations.mdc` |
+| Cursor | 已支持 | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
 | Windsurf | 已支持 | `.windsurfrules` |
-| Cline | 已支持 | `.clinerules/amo-personal-ip-illustrations.md` |
+| Cline | 已支持 | `.clinerules/axin-personal-ip-illustrations.md` |
 | OpenCode / 通用 agents | 已支持 | `AGENTS.md` / `llms.txt` |
 
 更多细节见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
@@ -110,6 +120,7 @@ Use $amo-personal-ip-illustrations 先不要生图。
 - `llms-full.txt`：给长上下文 agent 的完整项目摘要。
 - `docs/index.html`：可用于 GitHub Pages 的文本落地页。
 - `docs/GEO.md`：GEO 策略、关键词和后续发布建议。
+- `README.en.md`：英文入口，便于 GitHub、LLM 和海外开发者理解。
 
 ## 工作流
 
@@ -117,7 +128,7 @@ Use $amo-personal-ip-illustrations 先不要生图。
 2. 提炼个人 IP 的认知锚点：判断、断点、流程、前后对比、常见坑、资产沉淀。
 3. 先输出 shot list，每张图只讲一个核心意思。
 4. 为每张图选择结构类型：内容工坊、证据质检、发布路径、复利飞轮、角色状态、方法分层、小漫画分镜。
-5. 让阿墨承担核心动作：压印、过筛、接线、称重、贴警示、装箱、出货、回收。
+5. 让阿鑫承担核心动作：压印、过筛、接线、称重、贴警示、装箱、出货、回收。
 6. 使用 `imagegen` 逐张生成 bitmap 图片。
 7. 按 QA 清单检查白底、留白、角色参与、少字、非 PPT、非可爱化。
 8. 保存到 `assets/<topic-slug>-illustrations/` 或 skill 的 `assets/examples/`。
@@ -127,6 +138,7 @@ Use $amo-personal-ip-illustrations 先不要生图。
 ```text
 .
 ├── README.md
+├── README.en.md
 ├── LICENSE
 ├── NOTICE.md
 ├── AGENTS.md
@@ -137,15 +149,15 @@ Use $amo-personal-ip-illustrations 先不要生图。
 ├── .cursor/
 ├── .clinerules/
 ├── docs/
-├── amo-personal-ip-illustrations/
+├── prompts/
+├── axin-personal-ip-illustrations/
 │   ├── SKILL.md
 │   ├── agents/
 │   │   └── openai.yaml
 │   ├── assets/
 │   │   └── examples/
 │   └── references/
-│       ├── amo-ip.md
-│       ├── pai-star-ip.md
+│       ├── axin-ip.md
 │       ├── platform-adapters.md
 │       ├── style-dna.md
 │       ├── composition-patterns.md
@@ -156,11 +168,11 @@ Use $amo-personal-ip-illustrations 先不要生图。
 │   └── prompts.md
 ├── platforms/
 └── scripts/
+    ├── generate-axin-examples-cli.ps1
     ├── install-local-skill.ps1
     ├── install-hermes-skill.ps1
     ├── install-all-platforms.ps1
     ├── sync-platform-packages.ps1
-    ├── generate-authorized-starfish-cli.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1
 ```
@@ -168,17 +180,17 @@ Use $amo-personal-ip-illustrations 先不要生图。
 真正需要安装到 Codex 的是子目录：
 
 ```text
-amo-personal-ip-illustrations/
+axin-personal-ip-illustrations/
 ```
 
 ## 生成规范
 
-- 图片默认 16:9 横版。
+- 图片默认 16:9 横版，角色锚点图可用 1:1。
 - 纯白背景，不要纸纹、米色、阴影、渐变。
 - 黑色手绘线稿为主，少量橙色表达路径，红色表达风险或结果，蓝色表达系统反馈。
 - 一张图只讲一个判断、流程或状态。
 - 中文标注最多 5-8 处，每处尽量 2-8 个字。
-- 阿墨必须参与核心动作。如果去掉阿墨，图仍然完全成立，说明这张图不合格。
+- 阿鑫必须参与核心动作。如果去掉阿鑫，图仍然完全成立，说明这张图不合格。
 
 ## 验证
 
@@ -186,7 +198,7 @@ amo-personal-ip-illustrations/
 .\scripts\validate-repo.ps1
 ```
 
-验证会检查必需文件、示例图片、skill 元数据和本地安装脚本是否存在。
+验证会检查必需文件、示例图片、skill 元数据、平台快照、README 双语入口和本地安装脚本是否存在。
 
 ## License
 

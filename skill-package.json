@@ -1,10 +1,10 @@
 {
-  "name": "amo-personal-ip-illustrations",
-  "version": "1.1.0",
-  "description": "Multi-platform personal IP hand-drawn illustration skill for Chinese content workflows.",
+  "name": "axin-personal-ip-illustrations",
+  "version": "2.0.0",
+  "description": "Multi-platform Axin personal IP hand-drawn illustration skill for Chinese and English content workflows.",
   "entrypoints": {
-    "codex": "amo-personal-ip-illustrations/SKILL.md",
-    "hermes": "amo-personal-ip-illustrations/SKILL.md",
+    "codex": "axin-personal-ip-illustrations/SKILL.md",
+    "hermes": "axin-personal-ip-illustrations/SKILL.md",
     "claude_code": ".claude-plugin/plugin.json",
     "generic_agents": "llms.txt"
   },
@@ -19,9 +19,11 @@
     "generic-agents"
   ],
   "assets": [
-    "amo-personal-ip-illustrations/assets/examples/01-amo-character-anchor.png",
-    "amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png",
-    "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png"
+    "axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png",
+    "axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png",
+    "axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png",
+    "axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png",
+    "axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png"
   ],
   "llm_entry": "llms.txt",
   "license": "MIT"

@@ -1,16 +1,15 @@
-{
-  "name": "amo-personal-ip-illustrations",
-  "display_name": "阿墨个人 IP 配图",
-  "description": "Generate Chinese personal IP hand-drawn article illustrations with Amo and an authorized starfish character branch.",
-  "version": "1.1.0",
+﻿{
+  "name": "axin-personal-ip-illustrations",
+  "display_name": "阿鑫个人 IP 配图",
+  "description": "Generate Axin-style Chinese and English personal IP hand-drawn article illustrations.",
+  "version": "2.0.0",
   "author": "paidaxing1234",
   "license": "MIT",
-  "homepage": "https://github.com/paidaxing1234/amo-personal-ip-illustrations",
+  "homepage": "https://github.com/paidaxing1234/axin-personal-ip-illustrations",
   "skills": [
-    "skills/amo-personal-ip-illustrations"
+    "skills/axin-personal-ip-illustrations"
   ],
   "commands": [
-    "commands/amo-illustrate.md"
+    "commands/axin-illustrate.md"
   ]
 }
-
