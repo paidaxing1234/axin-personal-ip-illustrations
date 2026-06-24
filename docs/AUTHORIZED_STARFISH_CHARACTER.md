@@ -25,6 +25,16 @@
 
 正式样图需要使用 `imagegen` CLI 或内置图像生成工具重新生成后再入库。
 
+正式 prompt 已放在：
+
+- `prompts/authorized-starfish-hero.md`
+
+确认使用 CLI 后执行：
+
+```powershell
+.\scripts\generate-authorized-starfish-cli.ps1 -Run
+```
+
 ## 重做方向
 
 - 更像一个可运营的个人 IP 主视觉，而不是流程图里的图标。

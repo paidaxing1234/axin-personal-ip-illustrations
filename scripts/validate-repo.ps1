@@ -38,11 +38,13 @@ $required = @(
   "platforms/claude-code/README.md",
   "platforms/generic-agents/README.md",
   "skill-package.json",
+  "prompts/authorized-starfish-hero.md",
   "examples/prompts.md",
   "scripts/install-local-skill.ps1",
   "scripts/install-hermes-skill.ps1",
   "scripts/install-all-platforms.ps1",
   "scripts/sync-platform-packages.ps1",
+  "scripts/generate-authorized-starfish-cli.ps1",
   "scripts/new-illustration-brief.ps1"
 )
 
@@ -87,6 +89,11 @@ if ($pluginSkill -notmatch "pai-star-ip.md") {
 $formalStarfish = Join-Path $repoRoot "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png"
 if (Test-Path -LiteralPath $formalStarfish) {
   throw "Rejected starfish draft must not live in formal examples. Move it to assets/rejected/ until a better image is generated."
+}
+
+$starfishPrompt = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "prompts/authorized-starfish-hero.md")
+if ($starfishPrompt -notmatch "Avoid the previous ugly hard-edged mechanical look") {
+  throw "Authorized starfish prompt must explicitly avoid the rejected visual direction."
 }
 
 $images = Get-ChildItem -LiteralPath (Join-Path $repoRoot "amo-personal-ip-illustrations/assets/examples") -Filter "*.png"

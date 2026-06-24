@@ -26,7 +26,7 @@
 
 ### 授权海星方向
 
-海星方向正在重新设计。已否掉的草稿保存在 `amo-personal-ip-illustrations/assets/rejected/`，不会作为正式样例展示。
+海星方向正在重新设计。已否掉的草稿保存在 `amo-personal-ip-illustrations/assets/rejected/`，不会作为正式样例展示。正式生成 prompt 见 `prompts/authorized-starfish-hero.md`。
 
 ## 适合什么
 
@@ -158,6 +158,7 @@ Use $amo-personal-ip-illustrations 先不要生图。
     ├── install-hermes-skill.ps1
     ├── install-all-platforms.ps1
     ├── sync-platform-packages.ps1
+    ├── generate-authorized-starfish-cli.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1
 ```
