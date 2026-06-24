@@ -104,6 +104,24 @@ Check each image before using it:
 
 ## FAQ
 
+### What If PowerShell Blocks The Scripts?
+
+If Windows blocks script execution, allow scripts for the current terminal process:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+If you downloaded the repository as a ZIP from the browser, files may be marked as downloaded from the internet. From the repository root, run:
+
+```powershell
+Get-ChildItem -Recurse -File | Unblock-File
+```
+
+### What If Git Clone Or Download ZIP Is Slow?
+
+First check whether raw files are reachable, then download the minimum files if you only want to test the scripts. The minimum set is `scripts/`, `examples/sample-article.md`, and `axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png`. Full usage still works best with the whole repository because README, docs, skill rules, and visual examples evolve together.
+
 ### Do I Have To Use Axin?
 
 No. Axin is the default character so the workflow works immediately. Pass `-CharacterImagePath` and `-CharacterName` to use your own IP character.

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google" content="notranslate">
   <title>阿鑫个人 IP 配图流程 - Article To Illustration Prompts</title>
-  <meta name="description" content="输入一篇文章和可选个人 IP 形象图，生成文章分析、配图 shot list、image-prompts.md、JSONL 生图任务和双语分发计划。">
+  <meta name="description" content="输入一篇文章和可选个人 IP 形象图，先生成 content-diagnosis.md 诊断，再生成配图 shot list、image-prompts.md、JSONL 生图任务和双语分发计划。">
   <meta property="og:title" content="阿鑫个人 IP 配图流程">
   <meta property="og:description" content="Article-to-illustration workflow: turn one post into reviewable image prompts, shot lists, and bilingual distribution assets.">
   <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
     "@type": "SoftwareSourceCode",
     "name": "Axin Personal IP Illustrations",
     "alternateName": "阿鑫个人 IP 配图流程",
-    "description": "Article-to-illustration prompt workflow for Chinese and English personal IP hand-drawn article images.",
+    "description": "Article-to-illustration workflow with content diagnosis, prompt generation, and bilingual distribution assets.",
     "programmingLanguage": "Markdown, PowerShell, Python",
     "codeRepository": "https://github.com/paidaxing1234/axin-personal-ip-illustrations",
     "license": "https://opensource.org/license/mit"
@@ -38,7 +38,7 @@
 <body>
   <main>
     <h1>阿鑫个人 IP 配图流程</h1>
-    <p class="lead">输入一篇文章和可选个人 IP 形象图，输出文章分析、配图 shot list、<code>image-prompts.md</code>、JSONL 生图任务和双语分发计划。</p>
+    <p class="lead">输入一篇文章和可选个人 IP 形象图，先输出 <code>content-diagnosis.md</code> 诊断文章是否值得资产化，再输出配图 shot list、<code>image-prompts.md</code>、JSONL 生图任务和双语分发计划。</p>
 
     <p class="links">
       <a href="../README.md">中文 README</a>
@@ -58,10 +58,10 @@
   -Slug sample-article `
   -ImageCount 4 `
   -LanguageMode zh</code></pre>
-    <p>然后打开 <code>content-packages/sample-article/image-prompts.md</code>，把其中一条 prompt 复制到你的生图工具里。</p>
+    <p>然后先打开 <code>content-packages/sample-article/content-diagnosis.md</code> 看诊断结论，再打开 <code>content-packages/sample-article/image-prompts.md</code>，把其中一条 prompt 复制到你的生图工具里。</p>
 
     <h2>核心能力</h2>
-    <p>仓库提供 <code>new-content-package.ps1</code>、示例文章、阿鑫角色设定、风格 DNA、prompt 模板、QA 清单、内容包脚本、案例库、GEO 文档和示例图片。LLM 可以先读取 <a href="../llms.txt">llms.txt</a>。</p>
+    <p>仓库提供 <code>analyze-article.ps1</code>、<code>new-content-package.ps1</code>、示例文章、阿鑫角色设定、风格 DNA、prompt 模板、QA 清单、内容包脚本、案例库、GEO 文档和示例图片。LLM 可以先读取 <a href="../llms.txt">llms.txt</a>。</p>
 
     <h2>可选 agent 入口</h2>
     <p>跑通脚本后，可以再把它安装成 <code translate="no" class="notranslate">Codex</code>、<code translate="no" class="notranslate">Hermes</code>、<code translate="no" class="notranslate">Claude Code</code> 或通用 agent 使用的 skill。完整入口见 <a href="MULTI_PLATFORM.md">平台支持</a>。</p>

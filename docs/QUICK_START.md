@@ -104,6 +104,24 @@ content-packages/sample-article/image-prompts.md
 
 ## 常见问题
 
+### PowerShell 不让我运行脚本怎么办？
+
+如果 Windows 提示脚本被执行策略阻止，可以在当前终端临时放开本进程：
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+如果你是通过浏览器下载 ZIP 后解压，文件可能带有网络来源标记，可以在仓库目录执行：
+
+```powershell
+Get-ChildItem -Recurse -File | Unblock-File
+```
+
+### Git clone 很慢或下载 ZIP 很慢怎么办？
+
+可以先确认远程文件是否可访问，再只下载需要的文件测试脚本。最少需要这些文件和目录：`scripts/`、`examples/sample-article.md`、`axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png`。完整使用仍建议下载整个仓库，因为 README、docs、skill 和示例资产会一起更新。
+
 ### 我必须使用阿鑫吗？
 
 不必须。默认角色是阿鑫 / Axin，方便你直接跑通流程。传入 `-CharacterImagePath` 和 `-CharacterName` 后，脚本会把你的 IP 形象作为角色锚点。

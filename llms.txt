@@ -20,6 +20,7 @@ This repository contains a reusable illustration workflow for turning personal-b
 - [GEO guide](docs/GEO.md): search and generative engine optimization strategy.
 - [Repository review](docs/REPOSITORY_REVIEW.md): deep self-review and cleanup rationale.
 - [Content OS](docs/AXIN_CONTENT_OS.md): project-to-content package workflow.
+- [Five-pass audit](docs/FIVE_PASS_AUDIT.md): usability audit with findings, fixes, and remaining risks.
 - [Character library](docs/CHARACTER_LIBRARY.md): Axin IP asset board and visual consistency rules.
 
 ## Optional

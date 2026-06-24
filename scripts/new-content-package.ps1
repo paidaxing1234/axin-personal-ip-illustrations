@@ -466,7 +466,7 @@ New-Item -ItemType Directory -Force -Path (Join-Path $packageDir "images") | Out
 
 $sourceDisplay = if ([string]::IsNullOrWhiteSpace($resolvedArticlePath)) { "inline / not attached" } else { $resolvedArticlePath }
 $paragraphs = Split-ArticleParagraphs -Text $ArticleText
-$anchors = Get-ArticleAnchors -Paragraphs $paragraphs
+$anchors = @(Get-ArticleAnchors -Paragraphs $paragraphs)
 $headings = Get-Headings -Text $ArticleText
 $effectiveLanguageMode = Get-EffectiveLanguageMode -Mode $LanguageMode -Text $ArticleText
 $diagnosis = Get-AxinArticleDiagnosis -ArticleText $ArticleText -Topic $Topic -SourcePath $sourceDisplay -ImageCount $ImageCount
@@ -498,7 +498,7 @@ if (-not [string]::IsNullOrWhiteSpace($packagedCharacterPath)) {
   $characterReferenceAsset = $packagedCharacterPath
 }
 
-$templates = Get-SceneTemplates
+$templates = @(Get-SceneTemplates)
 $scenes = for ($i = 0; $i -lt $ImageCount; $i++) {
   $template = $templates[$i % $templates.Count]
   $anchor = $anchors[$i % $anchors.Count]

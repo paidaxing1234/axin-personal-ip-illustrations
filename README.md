@@ -2,7 +2,7 @@
 
 > 输入一篇文章，先诊断它是否值得资产化，再输出配图策略、图片提示词和双语分发计划。
 
-[中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
+[中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [五轮审查](docs/FIVE_PASS_AUDIT.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
 这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先诊断一篇文章有没有清楚判断、证据、流程、读者和风险，再生成可复制到生图工具的 `image-prompts.md`。
 
@@ -57,6 +57,8 @@ content-packages/sample-article/image-prompts.md
 ```powershell
 .\scripts\new-content-package.ps1 -Help
 ```
+
+如果 PowerShell 阻止脚本运行，见 [Quick Start 常见问题](docs/QUICK_START.md#powershell-不让我运行脚本怎么办)。
 
 ## 输出文件怎么看
 

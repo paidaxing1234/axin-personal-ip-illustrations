@@ -2,7 +2,7 @@
 
 > Feed in an article. Diagnose whether it is worth turning into assets, then get illustration prompts and bilingual distribution notes.
 
-[中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
+[中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [Five-Pass Audit](docs/FIVE_PASS_AUDIT.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
 This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: diagnose judgement, evidence, workflow, audience, risk, and visual readiness before producing a copyable `image-prompts.md` file.
 
@@ -57,6 +57,8 @@ Show help:
 ```powershell
 .\scripts\new-content-package.ps1 -Help
 ```
+
+If PowerShell blocks script execution, see the [Quick Start FAQ](docs/QUICK_START.en.md#what-if-powershell-blocks-the-scripts).
 
 ## Output Files
 

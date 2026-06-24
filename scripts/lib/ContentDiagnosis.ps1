@@ -227,6 +227,9 @@ function Get-AxinArticleDiagnosis {
   if ($signals.audience -lt 2) { $score -= 6 }
   if ($charCount -lt 600) { $score -= 8 }
   if ($paragraphs.Count -lt 4) { $score -= 8 }
+  if ($signals.evidence -ge 3 -and $signals.workflow -ge 3 -and $charCount -ge 120 -and $score -lt 38) {
+    $score = 38
+  }
   if ($score -lt 0) { $score = 0 }
   if ($score -gt 100) { $score = 100 }
 

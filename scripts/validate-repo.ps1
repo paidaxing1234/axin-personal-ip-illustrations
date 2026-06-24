@@ -34,6 +34,7 @@ $required = @(
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
   "docs/REPOSITORY_REVIEW.md",
+  "docs/FIVE_PASS_AUDIT.md",
   "docs/QUICK_START.md",
   "docs/QUICK_START.en.md",
   "docs/index.html",
@@ -174,7 +175,7 @@ if ($skill -notmatch "references/axin-ip.md") {
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "docs/FIVE_PASS_AUDIT\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing first-run guide, bilingual link, sample article path, prompt output, or Axin example assets."
 }
 if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -or $readme -match "\|\s*`Claude Code`\s*\|") {
@@ -182,7 +183,7 @@ if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -
 }
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
-if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
+if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "docs/FIVE_PASS_AUDIT\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
   throw "README.en.md is missing core English overview, Chinese link, first-run guide, sample article path, or prompt output."
 }
 if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\|" -or $readmeEn -match "\|\s*`Claude Code`\s*\|") {
@@ -190,7 +191,7 @@ if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Five-pass audit" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
 }
 
@@ -202,14 +203,14 @@ foreach ($needle in @("Help", "ArticlePath", "CharacterImagePath", "ImageCount",
 }
 
 $quickStart = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStart -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.md is missing public onboarding content: $needle"
   }
 }
 
 $quickStartEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.en.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStartEn -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.en.md is missing public onboarding content: $needle"
   }
@@ -237,7 +238,7 @@ foreach ($needle in @("Get-AxinArticleDiagnosis", "Format-AxinDiagnosisMarkdown"
 }
 
 $indexHtml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/index.html")
-if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch 'class="notranslate"' -or $indexHtml -notmatch '<meta name="google" content="notranslate">' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png" -or $indexHtml -notmatch "examples\\sample-article\.md" -or $indexHtml -notmatch "image-prompts\.md") {
+if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch 'class="notranslate"' -or $indexHtml -notmatch '<meta name="google" content="notranslate">' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png" -or $indexHtml -notmatch "examples\\sample-article\.md" -or $indexHtml -notmatch "analyze-article\.ps1" -or $indexHtml -notmatch "content-diagnosis\.md" -or $indexHtml -notmatch "image-prompts\.md") {
   throw "docs/index.html must prevent product-name auto-translation and show the sample article workflow plus Axin IP asset board."
 }
 
