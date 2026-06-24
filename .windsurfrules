@@ -10,6 +10,6 @@ Default visual rules:
 - Large white space.
 - Character performs the core conceptual action.
 
-Use 阿鑫 / Axin as the default and only recurring character.
+Use 阿鑫 / Axin as the default and only recurring character: a hand-drawn human with black hair, round glasses, and a hoodie.
 
 Run scripts/validate-repo.ps1 before committing.

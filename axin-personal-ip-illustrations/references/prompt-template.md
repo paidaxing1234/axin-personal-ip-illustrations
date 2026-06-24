@@ -11,7 +11,7 @@ Visual DNA:
 Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten annotations. Clean absurd content-workbench sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
 
 Recurring IP character required:
-阿鑫 / Axin, a small matte black ink-stamp and toolbox hybrid workflow technician with two tiny off-white screw-dot eyes, thin stick legs, short practical tool arms, an orange cable loop belt, and a small red warning tag. 阿鑫 must perform the core conceptual action, not decorate the scene. Make 阿鑫 serious, deadpan, practical, slightly bizarre, and not cute.
+阿鑫 / Axin, a hand-drawn human content operator with messy black hair, round glasses, and a light hoodie. Keep the face simple, quiet, focused, slightly deadpan, and not cute. 阿鑫 must perform the core conceptual action, not decorate the scene. Preserve the human identity: black hair, glasses, hoodie, clean sketch lines, practical posture.
 
 Theme:
 {正文配图主题}
@@ -35,10 +35,10 @@ Language mode:
 {Chinese labels / English labels / very sparse bilingual labels}
 
 Color use:
-Black for main line art and 阿鑫. Orange for main flow/path/cables/arrows. Red only for key warnings, unverified items, problems, or results. Blue only for secondary notes, AI assistance, or system state.
+Black for main line art, hair, objects, and labels. Orange for main flow/path/cables/arrows. Red only for key warnings, unverified items, problems, or results. Blue only for secondary notes, AI assistance, or system state.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. It should be clear but not instructional, interesting but not childish, strange but clean. No watermark, no logo, no extra characters.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not turn Axin into a non-human mascot, robot, stamp, toolbox, animal, monster, anime character, or abstract icon. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. It should be clear but not instructional, interesting but not childish, strange but clean. No watermark, no logo, no extra characters.
 ```
 
 ## 图像编辑提示

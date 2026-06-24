@@ -20,11 +20,11 @@ $required = @(
   "axin-personal-ip-illustrations/references/prompt-template.md",
   "axin-personal-ip-illustrations/references/qa-checklist.md",
   "axin-personal-ip-illustrations/references/workflow.md",
-  "axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png",
-  "axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png",
-  "axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png",
-  "axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png",
-  "axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png",
+  "axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png",
+  "axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png",
+  "axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png",
+  "axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png",
+  "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png",
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
   "docs/REPOSITORY_REVIEW.md",
@@ -91,6 +91,9 @@ $textFiles = Get-ChildItem -LiteralPath $repoRoot -Recurse -File |
 $oldAmoName = -join @([char]38463, [char]22696)
 $oldAuthorizedStarfish = -join @([char]25480, [char]26435, [char]28023, [char]26143)
 $oldPatrickDirection = -join @([char]27966, [char]22823, [char]26143)
+$oldToolboxHybrid = -join @([char]24037, [char]20855, [char]31665, [char]30340, [char]28151, [char]21512, [char]20307)
+$oldBlackStamp = -join @([char]40657, [char]33394, [char]21360, [char]31456)
+$oldNonHumanToolbox = -join @([char]38750, [char]20154, [char]31867, [char]24037, [char]20855, [char]31665)
 $forbiddenText = @(
   $oldAmoName,
   "Amo",
@@ -102,7 +105,24 @@ $forbiddenText = @(
   "authorized-starfish",
   "03-authorized-starfish-operator",
   "01-amo-character-anchor",
-  "02-personal-ip-factory"
+  "02-personal-ip-factory",
+  "01-axin-character-anchor",
+  "02-axin-content-workbench",
+  "03-axin-bilingual-publishing-map",
+  "04-axin-geo-asset-pipeline",
+  "05-axin-repo-review-desk",
+  "Preserve the non-human character identity",
+  "same non-human Axin",
+  "black ink-stamp/toolbox body",
+  "small matte black ink-stamp and toolbox hybrid",
+  "matte black ink-stamp and toolbox hybrid workflow operator",
+  "No human body",
+  "no hoodie",
+  "no hair",
+  "screw-dot eyes",
+  $oldToolboxHybrid,
+  $oldBlackStamp,
+  $oldNonHumanToolbox
 )
 
 foreach ($file in $textFiles) {
@@ -129,7 +149,7 @@ if ($skill -notmatch "references/axin-ip.md") {
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-character-anchor\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png") {
   throw "README.md is missing bilingual link or Axin example assets."
 }
 
@@ -153,14 +173,26 @@ foreach ($entry in @("codex", "hermes", "claude_code", "generic_agents")) {
   }
 }
 
+foreach ($asset in @(
+  "axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png",
+  "axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png",
+  "axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png",
+  "axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png",
+  "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png"
+)) {
+  if ($package.assets -notcontains $asset) {
+    throw "skill-package.json missing asset: $asset"
+  }
+}
+
 $pluginSkill = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot ".claude-plugin/skills/axin-personal-ip-illustrations/SKILL.md")
 if ($pluginSkill -notmatch "references/axin-ip.md" -or $pluginSkill -notmatch "name:\s*axin-personal-ip-illustrations") {
   throw "Claude plugin skill snapshot is stale. Run scripts/sync-platform-packages.ps1."
 }
 
 $images = Get-ChildItem -LiteralPath (Join-Path $repoRoot "axin-personal-ip-illustrations/assets/examples") -Filter "*.png"
-if ($images.Count -lt 5) {
-  throw "Expected at least 5 Axin example images, found $($images.Count)."
+if ($images.Count -ne 5) {
+  throw "Expected exactly 5 Axin example images, found $($images.Count)."
 }
 
 Add-Type -AssemblyName System.Drawing
@@ -171,7 +203,7 @@ foreach ($image in $images) {
 
   $img = [System.Drawing.Image]::FromFile($image.FullName)
   try {
-    if ($image.Name -eq "01-axin-character-anchor.png") {
+    if ($image.Name -eq "02-axin-human-character-anchor.png") {
       if ($img.Width -lt 1024 -or $img.Height -lt 1024) {
         throw "Character anchor image is too small: $($img.Width)x$($img.Height)"
       }

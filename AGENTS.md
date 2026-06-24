@@ -11,7 +11,7 @@ Use `axin-personal-ip-illustrations/SKILL.md` as the source of truth. The skill 
 1. Read the user content or topic.
 2. Extract cognitive anchors: judgement, workflow, contrast, evidence, reuse, publishing path, or common pitfall.
 3. Produce a short shot list before generating more than one image.
-4. Use 阿鑫 / Axin as the default and only recurring character.
+4. Use 阿鑫 / Axin as the default and only recurring character: a hand-drawn human with black hair, round glasses, and a hoodie.
 5. Generate one image per concept. Do not collage multiple illustrations into one canvas.
 6. Save workspace-bound final assets under `assets/<topic-slug>-illustrations/`.
 7. Run `scripts/validate-repo.ps1` before committing repository changes.
@@ -23,7 +23,7 @@ Use `axin-personal-ip-illustrations/SKILL.md` as the source of truth. The skill 
 - Lots of white space.
 - Sparse red, orange, and blue handwritten Chinese notes.
 - No PPT look, no commercial vector poster, no dense explainer page.
-- The character must perform the core action.
+- The character must remain human with black hair, glasses, and hoodie, and must perform the core action.
 
 ## Platform Files
 

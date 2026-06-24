@@ -6,39 +6,21 @@
 
 这不是通用头像包，也不是 PPT 模板。它是一套可安装、可复用、可校验的 agent skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张白底手绘正文配图。
 
-默认视觉 IP 叫 **阿鑫**。阿鑫不是可爱吉祥物，而是一个有点怪、很认真、会把真实项目压成内容资产的低科技内容工坊操作员。它必须参与画面的核心动作：压印、过筛、称重、接线、贴警示、装箱、发布、回收。
+默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。他必须参与画面的核心动作：接线、分流、核验、贴警示、整理文件、把真实项目转换成中英文内容资产。
 
 ## 示例资产
 
-### 阿鑫角色锚点
-
-角色锚点图用于固定 IP 外形，因此使用 1:1 画布。
-
-![阿鑫角色锚点](axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png)
-
-### 内容工坊
-
-正文配图样例使用默认 16:9 横版。
-
-![阿鑫内容工坊](axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png)
-
-### 中英文发布矩阵
+### 阿鑫主视觉
 
 用于展示同一套个人 IP 资产如何同时服务中文内容、英文 README 和多平台 agent 入口。
 
-![阿鑫中英文发布矩阵](axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png)
+![阿鑫中英文内容分流主视觉](axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png)
 
-### GEO 资产流水线
+### 阿鑫角色锚点
 
-用于展示 README、llms.txt、docs 和示例图如何被人类读者与 LLM agent 共同发现。
+角色锚点图用于固定 IP 外形：黑发、眼镜、hoodie、真人手绘、白底线稿。
 
-![阿鑫 GEO 资产流水线](axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png)
-
-### 代码自审工位
-
-用于提醒每次发布前都要审查命名、路径、快照、脚本、资产和真实输出。
-
-![阿鑫代码自审工位](axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png)
+![阿鑫真人角色锚点](axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png)
 
 ## 适合什么
 
@@ -128,7 +110,7 @@ Use $axin-personal-ip-illustrations 先不要生图。
 2. 提炼个人 IP 的认知锚点：判断、断点、流程、前后对比、常见坑、资产沉淀。
 3. 先输出 shot list，每张图只讲一个核心意思。
 4. 为每张图选择结构类型：内容工坊、证据质检、发布路径、复利飞轮、角色状态、方法分层、小漫画分镜。
-5. 让阿鑫承担核心动作：压印、过筛、接线、称重、贴警示、装箱、出货、回收。
+5. 让阿鑫承担核心动作：接线、分流、核验、贴警示、整理文件、打包、发布、回收。
 6. 使用 `imagegen` 逐张生成 bitmap 图片。
 7. 按 QA 清单检查白底、留白、角色参与、少字、非 PPT、非可爱化。
 8. 保存到 `assets/<topic-slug>-illustrations/` 或 skill 的 `assets/examples/`。
@@ -190,7 +172,7 @@ axin-personal-ip-illustrations/
 - 黑色手绘线稿为主，少量橙色表达路径，红色表达风险或结果，蓝色表达系统反馈。
 - 一张图只讲一个判断、流程或状态。
 - 中文标注最多 5-8 处，每处尽量 2-8 个字。
-- 阿鑫必须参与核心动作。如果去掉阿鑫，图仍然完全成立，说明这张图不合格。
+- 阿鑫必须是黑发、眼镜、hoodie 的真人手绘角色，并参与核心动作。如果去掉阿鑫，图仍然完全成立，说明这张图不合格。
 
 ## 验证
 

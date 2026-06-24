@@ -6,29 +6,17 @@
 
 This is not an avatar pack or a slide template. It is an installable agent skill for turning personal-brand writing, public-build notes, project retrospectives, AI workflow content, and GitHub README material into clean, strange, white-background article illustrations.
 
-The default recurring IP is **Axin / 阿鑫**: a deadpan low-tech content-workbench operator that compresses real project evidence into reusable public assets. Axin must perform the core action in each image, such as stamping, filtering, weighing, wiring, labeling, packing, publishing, or recycling.
+The default recurring IP is **Axin / 阿鑫**: a hand-drawn human content operator with black hair, round glasses, and a hoodie. Axin is quiet, practical, and slightly deadpan. He is not a mascot, monster, stamp, or toolbox character. Axin must perform the core action in each image, such as wiring, routing, checking, labeling, organizing files, publishing, or recycling.
 
 ## Example Assets
 
+### Axin Main Visual
+
+![Axin bilingual workflow main visual](axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png)
+
 ### Axin Character Anchor
 
-![Axin character anchor](axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png)
-
-### Content Workbench
-
-![Axin content workbench](axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png)
-
-### Bilingual Publishing Map
-
-![Axin bilingual publishing map](axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png)
-
-### GEO Asset Pipeline
-
-![Axin GEO asset pipeline](axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png)
-
-### Repository Review Desk
-
-![Axin repository review desk](axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png)
+![Axin human character anchor](axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png)
 
 ## Good Fits
 
@@ -100,7 +88,7 @@ Analyze this article and produce a 5-image shot list. For each image, include th
 - Black hand-drawn line art, sparse orange for paths, red for warnings/results, blue for system feedback.
 - One image explains one judgement, workflow, state, or metaphor.
 - Labels should be short. Use Chinese, English, or very sparse bilingual labels depending on the publishing context.
-- Axin must participate in the core action. If the image still works after removing Axin, the image fails.
+- Axin must remain the human hand-drawn character with black hair, glasses, and a hoodie, and must participate in the core action. If the image still works after removing Axin, the image fails.
 
 ## Validation
 

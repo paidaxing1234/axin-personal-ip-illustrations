@@ -8,7 +8,7 @@ For illustration tasks:
 - Create a shot list for multi-image requests.
 - Generate one concept per image.
 - Keep the white hand-drawn style.
-- Use 阿鑫 / Axin as the default and only recurring character.
+- Use 阿鑫 / Axin as the default and only recurring character: a hand-drawn human with black hair, round glasses, and a hoodie.
 - Save final assets under `assets/<topic-slug>-illustrations/`.
 
 For repository tasks, validate with:

@@ -21,12 +21,12 @@ The output style is a clean, strange, white-background hand-drawn image. Each im
 
 阿鑫 / Axin is the default recurring IP:
 
-- Matte black ink-stamp and toolbox hybrid workflow operator.
-- White screw-dot eyes.
-- Thin legs and short practical tool arms.
-- Orange cable belt.
-- Red warning tag.
-- Serious, deadpan, practical, slightly absurd.
+- Hand-drawn human content operator.
+- Messy black hair, round glasses, and a light hoodie.
+- Quiet, serious, practical, slightly deadpan.
+- Uses orange cables, files, labels, checklists, and small workbench tools.
+- Red warning labels and blue agent signals are optional supporting elements.
+- Not a mascot, stamp, toolbox, robot, monster, or abstract icon.
 
 Axin must perform the core action. If the image still works after removing Axin, the prompt is wrong.
 
@@ -59,11 +59,11 @@ Axin must perform the core action. If the image still works after removing Axin,
 
 ## Example Assets
 
-- `axin-personal-ip-illustrations/assets/examples/01-axin-character-anchor.png`
-- `axin-personal-ip-illustrations/assets/examples/02-axin-content-workbench.png`
-- `axin-personal-ip-illustrations/assets/examples/03-axin-bilingual-publishing-map.png`
-- `axin-personal-ip-illustrations/assets/examples/04-axin-geo-asset-pipeline.png`
-- `axin-personal-ip-illustrations/assets/examples/05-axin-repo-review-desk.png`
+- `axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png`
+- `axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png`
+- `axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png`
+- `axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png`
+- `axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png`
 
 ## GEO Strategy
 

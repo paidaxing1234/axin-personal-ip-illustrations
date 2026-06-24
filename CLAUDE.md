@@ -12,6 +12,6 @@ Use this repository as a reusable illustration skill package.
 
 ## Default Behavior
 
-When asked to create personal IP illustrations, produce a shot list first unless the user requests exactly one image. Use 阿鑫 / Axin as the default and only recurring character.
+When asked to create personal IP illustrations, produce a shot list first unless the user requests exactly one image. Use 阿鑫 / Axin as the default and only recurring character: a hand-drawn human with black hair, round glasses, and a hoodie.
 
 Save finished images under `assets/<topic-slug>-illustrations/` and keep prompts beside the assets when possible.
