@@ -23,7 +23,8 @@
     "axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png",
     "axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png",
     "axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png",
-    "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png"
+    "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png",
+    "axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png"
   ],
   "llm_entry": "llms.txt",
   "license": "MIT"

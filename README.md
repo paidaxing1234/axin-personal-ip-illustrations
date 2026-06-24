@@ -1,14 +1,14 @@
 # 阿鑫个人 IP 配图流程
 
-> Codex / Hermes / Claude Code / Cursor / Windsurf / Cline / OpenCode 通用的个人 IP 手绘配图流程。
+> `Codex` / `Hermes` / `Claude Code` / `Cursor` / `Windsurf` / `Cline` / `OpenCode` 通用的个人 IP 手绘配图流程。
 
-[中文](README.md) · [English](README.en.md) · [LLM 入口](llms.txt) · [多平台支持](docs/MULTI_PLATFORM.md) · [GEO 文档](docs/GEO.md) · [深度自审](docs/REPOSITORY_REVIEW.md)
+[中文](README.md) · [English](README.en.md) · [LLM 入口](llms.txt) · [平台支持](docs/MULTI_PLATFORM.md) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
 这不是通用头像包，也不是 PPT 模板。它是一套可安装、可复用、可校验的 agent skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张白底手绘正文配图。
 
 默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。他必须参与画面的核心动作：接线、分流、核验、贴警示、整理文件、把真实项目转换成中英文内容资产。
 
-## 示例资产
+## 阿鑫 IP 资产
 
 ### 阿鑫主视觉
 
@@ -16,11 +16,31 @@
 
 ![阿鑫中英文内容分流主视觉](axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png)
 
+### 阿鑫 IP 资产板
+
+用于固定阿鑫的专属 IP 识别：正面、侧面接线、背影工位、审稿、警示、agent 协作。
+
+![阿鑫 IP 资产板](axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png)
+
 ### 阿鑫角色锚点
 
 角色锚点图用于固定 IP 外形：黑发、眼镜、hoodie、真人手绘、白底线稿。
 
 ![阿鑫真人角色锚点](axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png)
+
+## 工作流示例图
+
+### 仓库自审
+
+![阿鑫仓库自审](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
+
+### Agent 可发现
+
+![阿鑫 agent 可发现流程](axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png)
+
+### 内容复用工位
+
+![阿鑫内容复用工位](axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png)
 
 ## 适合什么
 
@@ -39,19 +59,19 @@
 
 ## 快速使用
 
-安装到 Codex：
+安装到 `Codex`：
 
 ```powershell
 .\scripts\install-local-skill.ps1
 ```
 
-安装到 Hermes：
+安装到 `Hermes`：
 
 ```powershell
 .\scripts\install-hermes-skill.ps1
 ```
 
-同步 Claude Code 插件快照：
+同步 `Claude Code` 插件快照：
 
 ```powershell
 .\scripts\sync-platform-packages.ps1
@@ -63,7 +83,7 @@
 .\scripts\install-all-platforms.ps1
 ```
 
-在 Codex 里使用：
+在 `Codex` 里使用：
 
 ```text
 Use $axin-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿鑫个人 IP 正文配图。
@@ -84,13 +104,13 @@ Use $axin-personal-ip-illustrations 先不要生图。
 
 | 平台 | 状态 | 入口 |
 | --- | --- | --- |
-| Codex | 已支持 | `axin-personal-ip-illustrations/SKILL.md` |
-| Hermes | 已支持 | `scripts/install-hermes-skill.ps1` |
-| Claude Code | 已支持 | `CLAUDE.md` / `.claude-plugin/` |
-| Cursor | 已支持 | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
-| Windsurf | 已支持 | `.windsurfrules` |
-| Cline | 已支持 | `.clinerules/axin-personal-ip-illustrations.md` |
-| OpenCode / 通用 agents | 已支持 | `AGENTS.md` / `llms.txt` |
+| `Codex` | 已支持 | `axin-personal-ip-illustrations/SKILL.md` |
+| `Hermes` | 已支持 | `scripts/install-hermes-skill.ps1` |
+| `Claude Code` | 已支持 | `CLAUDE.md` / `.claude-plugin/` |
+| `Cursor` | 已支持 | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
+| `Windsurf` | 已支持 | `.windsurfrules` |
+| `Cline` | 已支持 | `.clinerules/axin-personal-ip-illustrations.md` |
+| `OpenCode` / 通用 agents | 已支持 | `AGENTS.md` / `llms.txt` |
 
 更多细节见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
 
@@ -130,6 +150,10 @@ Use $axin-personal-ip-illustrations 先不要生图。
 ├── .claude-plugin/
 ├── .cursor/
 ├── .clinerules/
+├── assets/
+│   └── character-library/
+├── cases/
+├── content-packages/
 ├── docs/
 ├── prompts/
 ├── axin-personal-ip-illustrations/
@@ -154,6 +178,7 @@ Use $axin-personal-ip-illustrations 先不要生图。
     ├── install-local-skill.ps1
     ├── install-hermes-skill.ps1
     ├── install-all-platforms.ps1
+    ├── new-content-package.ps1
     ├── sync-platform-packages.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1

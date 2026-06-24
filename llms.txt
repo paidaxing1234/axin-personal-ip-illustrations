@@ -11,9 +11,11 @@ This repository contains a reusable illustration workflow for turning personal-b
 - [Style DNA](axin-personal-ip-illustrations/references/style-dna.md): white background, black hand-drawn line art, sparse red/orange/blue notes.
 - [Prompt template](axin-personal-ip-illustrations/references/prompt-template.md): reusable image generation prompt with Chinese, English, and sparse bilingual modes.
 - [QA checklist](axin-personal-ip-illustrations/references/qa-checklist.md): validation rules.
-- [Multi-platform guide](docs/MULTI_PLATFORM.md): Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, generic agents.
+- [Platform guide](docs/MULTI_PLATFORM.md): keep platform product names untranslated; supports `Codex`, `Hermes`, `Claude Code`, `Cursor`, `Windsurf`, `Cline`, `OpenCode`, generic agents.
 - [GEO guide](docs/GEO.md): search and generative engine optimization strategy.
 - [Repository review](docs/REPOSITORY_REVIEW.md): deep self-review and cleanup rationale.
+- [Content OS](docs/AXIN_CONTENT_OS.md): project-to-content package workflow.
+- [Character library](docs/CHARACTER_LIBRARY.md): Axin IP asset board and visual consistency rules.
 
 ## Optional
 

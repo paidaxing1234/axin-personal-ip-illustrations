@@ -1,22 +1,40 @@
 # Axin Personal IP Illustration Workflow
 
-> A multi-platform hand-drawn illustration skill for Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, and generic agents.
+> A multi-platform hand-drawn illustration skill for `Codex`, `Hermes`, `Claude Code`, `Cursor`, `Windsurf`, `Cline`, `OpenCode`, and generic agents.
 
-[中文](README.md) · [English](README.en.md) · [LLM entry](llms.txt) · [Multi-platform guide](docs/MULTI_PLATFORM.md) · [GEO guide](docs/GEO.md) · [Repository review](docs/REPOSITORY_REVIEW.md)
+[中文](README.md) · [English](README.en.md) · [LLM entry](llms.txt) · [Platform guide](docs/MULTI_PLATFORM.md) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
 This is not an avatar pack or a slide template. It is an installable agent skill for turning personal-brand writing, public-build notes, project retrospectives, AI workflow content, and GitHub README material into clean, strange, white-background article illustrations.
 
 The default recurring IP is **Axin / 阿鑫**: a hand-drawn human content operator with black hair, round glasses, and a hoodie. Axin is quiet, practical, and slightly deadpan. He is not a mascot, monster, stamp, or toolbox character. Axin must perform the core action in each image, such as wiring, routing, checking, labeling, organizing files, publishing, or recycling.
 
-## Example Assets
+## Axin IP Assets
 
 ### Axin Main Visual
 
 ![Axin bilingual workflow main visual](axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png)
 
+### Axin IP Asset Board
+
+![Axin IP asset board](axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png)
+
 ### Axin Character Anchor
 
 ![Axin human character anchor](axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png)
+
+## Workflow Examples
+
+### Repository Review
+
+![Axin repository review desk](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
+
+### Agent Discovery
+
+![Axin agent discovery flow](axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png)
+
+### Content Reuse Workbench
+
+![Axin content reuse workbench](axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png)
 
 ## Good Fits
 
@@ -35,25 +53,25 @@ Not a good fit:
 
 ## Quick Start
 
-Install for Codex:
+Install for `Codex`:
 
 ```powershell
 .\scripts\install-local-skill.ps1
 ```
 
-Install for Hermes:
+Install for `Hermes`:
 
 ```powershell
 .\scripts\install-hermes-skill.ps1
 ```
 
-Sync the Claude Code plugin snapshot:
+Sync the `Claude Code` plugin snapshot:
 
 ```powershell
 .\scripts\sync-platform-packages.ps1
 ```
 
-Use in Codex:
+Use in `Codex`:
 
 ```text
 Use $axin-personal-ip-illustrations to design and generate 4 Axin-style article illustrations for this post.
@@ -73,13 +91,13 @@ Analyze this article and produce a 5-image shot list. For each image, include th
 
 | Platform | Status | Entry |
 | --- | --- | --- |
-| Codex | Supported | `axin-personal-ip-illustrations/SKILL.md` |
-| Hermes | Supported | `scripts/install-hermes-skill.ps1` |
-| Claude Code | Supported | `CLAUDE.md` / `.claude-plugin/` |
-| Cursor | Supported | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
-| Windsurf | Supported | `.windsurfrules` |
-| Cline | Supported | `.clinerules/axin-personal-ip-illustrations.md` |
-| OpenCode / generic agents | Supported | `AGENTS.md` / `llms.txt` |
+| `Codex` | Supported | `axin-personal-ip-illustrations/SKILL.md` |
+| `Hermes` | Supported | `scripts/install-hermes-skill.ps1` |
+| `Claude Code` | Supported | `CLAUDE.md` / `.claude-plugin/` |
+| `Cursor` | Supported | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
+| `Windsurf` | Supported | `.windsurfrules` |
+| `Cline` | Supported | `.clinerules/axin-personal-ip-illustrations.md` |
+| `OpenCode` / generic agents | Supported | `AGENTS.md` / `llms.txt` |
 
 ## Generation Rules
 

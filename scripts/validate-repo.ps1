@@ -25,6 +25,12 @@ $required = @(
   "axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png",
   "axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png",
   "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png",
+  "axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png",
+  "assets/character-library/README.md",
+  "cases/README.md",
+  "cases/first-public-build/README.md",
+  "docs/AXIN_CONTENT_OS.md",
+  "docs/CHARACTER_LIBRARY.md",
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
   "docs/REPOSITORY_REVIEW.md",
@@ -48,6 +54,7 @@ $required = @(
   "scripts/install-all-platforms.ps1",
   "scripts/sync-platform-packages.ps1",
   "scripts/generate-axin-examples-cli.ps1",
+  "scripts/new-content-package.ps1",
   "scripts/new-illustration-brief.ps1"
 )
 
@@ -149,7 +156,7 @@ if ($skill -notmatch "references/axin-ip.md") {
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing bilingual link or Axin example assets."
 }
 
@@ -159,8 +166,13 @@ if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md")
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Skill source" -or $llms -notmatch "Multi-platform" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
+}
+
+$indexHtml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/index.html")
+if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png") {
+  throw "docs/index.html must prevent product-name auto-translation and show the Axin IP asset board."
 }
 
 $package = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "skill-package.json") | ConvertFrom-Json
@@ -178,7 +190,8 @@ foreach ($asset in @(
   "axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png",
   "axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png",
   "axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png",
-  "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png"
+  "axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png",
+  "axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png"
 )) {
   if ($package.assets -notcontains $asset) {
     throw "skill-package.json missing asset: $asset"
@@ -191,8 +204,8 @@ if ($pluginSkill -notmatch "references/axin-ip.md" -or $pluginSkill -notmatch "n
 }
 
 $images = Get-ChildItem -LiteralPath (Join-Path $repoRoot "axin-personal-ip-illustrations/assets/examples") -Filter "*.png"
-if ($images.Count -ne 5) {
-  throw "Expected exactly 5 Axin example images, found $($images.Count)."
+if ($images.Count -ne 6) {
+  throw "Expected exactly 6 Axin example images, found $($images.Count)."
 }
 
 Add-Type -AssemblyName System.Drawing
