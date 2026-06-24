@@ -24,12 +24,21 @@ param(
 
   [string]$OutRoot = "content-packages",
 
+  [switch]$Semantic,
+
+  [string]$SemanticModel = "gpt-5.5",
+
+  [string]$ApiBase = "https://api.openai.com/v1",
+
+  [string]$ApiKeyEnv = "OPENAI_API_KEY",
+
   [switch]$Help
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 . (Join-Path $PSScriptRoot "lib\ContentDiagnosis.ps1")
+. (Join-Path $PSScriptRoot "lib\SemanticReview.ps1")
 
 function Show-Help {
 @'
@@ -59,6 +68,8 @@ Important parameters:
   -LanguageMode         auto, zh, en, or bilingual.
   -Slug                 Output folder name under content-packages.
   -OutRoot              Output root, relative to the repo or absolute.
+  -Semantic             Optional OpenAI-powered semantic review. Requires OPENAI_API_KEY by default.
+  -SemanticModel        OpenAI model used by semantic review. Default: gpt-5.5.
 
 This script diagnoses readiness and generates reviewable prompts. It does not generate PNG files.
 '@ | Write-Host
@@ -461,8 +472,6 @@ if ([string]::IsNullOrWhiteSpace($Slug)) {
 
 $outRootPath = Resolve-OutRoot -Value $OutRoot
 $packageDir = Join-Path $outRootPath $Slug
-New-Item -ItemType Directory -Force -Path $packageDir | Out-Null
-New-Item -ItemType Directory -Force -Path (Join-Path $packageDir "images") | Out-Null
 
 $sourceDisplay = if ([string]::IsNullOrWhiteSpace($resolvedArticlePath)) { "inline / not attached" } else { $resolvedArticlePath }
 $paragraphs = Split-ArticleParagraphs -Text $ArticleText
@@ -470,6 +479,20 @@ $anchors = @(Get-ArticleAnchors -Paragraphs $paragraphs)
 $headings = Get-Headings -Text $ArticleText
 $effectiveLanguageMode = Get-EffectiveLanguageMode -Mode $LanguageMode -Text $ArticleText
 $diagnosis = Get-AxinArticleDiagnosis -ArticleText $ArticleText -Topic $Topic -SourcePath $sourceDisplay -ImageCount $ImageCount
+$semanticReview = $null
+if ($Semantic) {
+  $semanticReview = Invoke-AxinSemanticReview `
+    -ArticleText $ArticleText `
+    -Topic $Topic `
+    -SourcePath $sourceDisplay `
+    -ImageCount $ImageCount `
+    -Model $SemanticModel `
+    -ApiBase $ApiBase `
+    -ApiKeyEnv $ApiKeyEnv
+}
+
+New-Item -ItemType Directory -Force -Path $packageDir | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $packageDir "images") | Out-Null
 
 if ([string]::IsNullOrWhiteSpace($CharacterDescription)) {
   $CharacterDescription = "$CharacterName / $CharacterNameEn, a hand-drawn human content operator with black hair, round glasses, a light hoodie, quiet focused expression, and practical posture."
@@ -545,7 +568,12 @@ Write-PackageFile $packageDir "article.md" @(
   '```'
 )
 
-Write-PackageFile $packageDir "content-diagnosis.md" (Format-AxinDiagnosisMarkdown -Diagnosis $diagnosis)
+$diagnosisLines = Format-AxinDiagnosisMarkdown -Diagnosis $diagnosis
+if ($Semantic) {
+  $diagnosisLines += ""
+  $diagnosisLines += Format-AxinSemanticReviewMarkdown -Review $semanticReview
+}
+Write-PackageFile $packageDir "content-diagnosis.md" $diagnosisLines
 
 $analysisLines = @(
   "# Article Analysis",
@@ -562,6 +590,7 @@ $analysisLines = @(
   "- Diagnosis score: $($diagnosis.Score) / 100",
   "- Diagnosis verdict: $($diagnosis.Verdict)",
   "- Recommended image count: $($diagnosis.RecommendedImageCount)",
+  "- Semantic review: $(if ($Semantic) { $semanticReview.Status } else { 'not requested' })",
   "",
   "## Headings",
   ""
@@ -593,6 +622,7 @@ Write-PackageFile $packageDir "brief.md" @(
   "- Target audience: readers who need reusable personal IP content, not decorative images.",
   "- Current status: generated from local article analysis; review before publishing.",
   "- Main diagnosis: see content-diagnosis.md before generating images.",
+  "- Optional semantic review: rerun with -Semantic when you want LLM semantic judgement.",
   "- Main evidence: see analysis.md and evidence.md.",
   "- Main risk: prompts are only as good as the article anchors and character reference.",
   "- Reusable assets: image-prompts.md, image-prompts.jsonl, distribution-plan.md, readme-snippet.md.",
@@ -799,6 +829,16 @@ $metadata = [pscustomobject]@{
   character_reference = $characterReferenceDisplay
   image_count = $ImageCount
   language_mode = $effectiveLanguageMode
+  semantic_review = if ($Semantic) {
+    [pscustomobject]@{
+      status = $semanticReview.Status
+      model = $semanticReview.Model
+      verdict = $semanticReview.Verdict
+      score = $semanticReview.Score
+    }
+  } else {
+    $null
+  }
   generated_files = @(
     "article.md",
     "content-diagnosis.md",

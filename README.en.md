@@ -2,7 +2,7 @@
 
 > Feed in an article. Diagnose whether it is worth turning into assets, then get illustration prompts and bilingual distribution notes.
 
-[中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [Five-Pass Audit](docs/FIVE_PASS_AUDIT.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
+[中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
 This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: diagnose judgement, evidence, workflow, audience, risk, and visual readiness before producing a copyable `image-prompts.md` file.
 
@@ -39,6 +39,27 @@ If you only want to check whether an article is ready for visual assets:
 
 It reports `Score`, `Verdict`, `Gaps`, `Rewrite Actions`, and `Recommended image count`. Vague inputs can return `not_ready`, so the workflow does not turn slogans into polished-looking assets.
 
+## Optional LLM Semantic Review
+
+The default diagnosis runs offline. When you want stricter semantic judgement, enable the OpenAI-backed review:
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+.\scripts\analyze-article.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Semantic
+```
+
+The semantic review checks whether the article is slogan-only, whether it separates `done / partial / stub`, whether evidence is strong enough, and whether the article deserves illustration prompts. You can also enable it while creating a full package:
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\path\to\your-article.md `
+  -ImageCount 5 `
+  -LanguageMode auto `
+  -Semantic
+```
+
 ## Use Your Own Article And IP
 
 ```powershell
@@ -62,7 +83,7 @@ If PowerShell blocks script execution, see the [Quick Start FAQ](docs/QUICK_STAR
 
 ## Output Files
 
-- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count.
+- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count. With `-Semantic`, it also includes the LLM semantic review.
 - `analysis.md`: title, paragraph count, language signal, and cognitive anchors.
 - `illustration-shot-list.md`: theme, structure, character action, and suggested elements for each image.
 - `image-prompts.md`: full prompts you can copy into an image generation tool.
@@ -80,7 +101,7 @@ If PowerShell blocks script execution, see the [Quick Start FAQ](docs/QUICK_STAR
 
 ## Workflow Examples
 
-![Axin repository review desk](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
+![Axin project QA desk](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
 
 ![Axin agent discovery flow](axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png)
 

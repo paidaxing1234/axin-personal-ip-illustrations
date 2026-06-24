@@ -9,6 +9,14 @@ param(
 
   [string]$OutFile = "",
 
+  [switch]$Semantic,
+
+  [string]$SemanticModel = "gpt-5.5",
+
+  [string]$ApiBase = "https://api.openai.com/v1",
+
+  [string]$ApiKeyEnv = "OPENAI_API_KEY",
+
   [switch]$Json,
 
   [switch]$Help
@@ -17,6 +25,7 @@ param(
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 . (Join-Path $PSScriptRoot "lib\ContentDiagnosis.ps1")
+. (Join-Path $PSScriptRoot "lib\SemanticReview.ps1")
 
 function Show-Help {
 @'
@@ -30,6 +39,10 @@ Write a markdown report:
 
 Return JSON for automation:
   .\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md -Json
+
+Optional LLM semantic review:
+  $env:OPENAI_API_KEY = "<your key>"
+  .\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md -Semantic
 
 This script does not generate image prompts. It checks judgement, evidence, workflow, audience, risk, and visual readiness first.
 '@ | Write-Host
@@ -69,13 +82,31 @@ if ([string]::IsNullOrWhiteSpace($Topic)) {
 }
 
 $diagnosis = Get-AxinArticleDiagnosis -ArticleText $ArticleText -Topic $Topic -SourcePath $sourceDisplay -ImageCount $ImageCount
+$semanticReview = $null
+if ($Semantic) {
+  $semanticReview = Invoke-AxinSemanticReview `
+    -ArticleText $ArticleText `
+    -Topic $Topic `
+    -SourcePath $sourceDisplay `
+    -ImageCount $ImageCount `
+    -Model $SemanticModel `
+    -ApiBase $ApiBase `
+    -ApiKeyEnv $ApiKeyEnv
+}
 
 if ($Json) {
-  $diagnosis | ConvertTo-Json -Depth 6
+  [pscustomobject]@{
+    HeuristicDiagnosis = $diagnosis
+    SemanticReview = $semanticReview
+  } | ConvertTo-Json -Depth 12
   return
 }
 
 $lines = Format-AxinDiagnosisMarkdown -Diagnosis $diagnosis
+if ($Semantic) {
+  $lines += ""
+  $lines += Format-AxinSemanticReviewMarkdown -Review $semanticReview
+}
 if (-not [string]::IsNullOrWhiteSpace($OutFile)) {
   $outPath = Get-AxinResolvedPath -Value $OutFile -BasePath $repoRoot
   $outDir = Split-Path -Parent $outPath

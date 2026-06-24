@@ -26,7 +26,7 @@
 
 - 主视觉：`axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png`
 - 角色锚点：`axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png`
-- 仓库自审图：`axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png`
+- 项目质检图：`axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png`
 - agent 可发现图：`axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png`
 - 内容复用图：`axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png`
 

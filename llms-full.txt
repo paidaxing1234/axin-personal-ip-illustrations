@@ -37,6 +37,15 @@ Use `scripts/analyze-article.ps1` before prompt generation when the user asks wh
 
 It scores judgement, evidence, workflow, audience, risk, and visual readiness. Verdicts are `ready`, `usable_with_edits`, `diagnose_before_prompts`, and `not_ready`. Weak slogan-like inputs should return `not_ready` with `RecommendedImageCount = 0`.
 
+Optional semantic review is available when the user wants LLM judgement instead of heuristic-only checks:
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md -Semantic
+```
+
+The semantic review uses the OpenAI Responses API with structured JSON output. It checks whether the article is slogan-only, whether done / partial / stub are separated, whether evidence supports the claims, and whether the article deserves illustration prompts. `new-content-package.ps1` also accepts `-Semantic` so `content-diagnosis.md` can include both heuristic diagnosis and semantic review.
+
 ## Default Character
 
 阿鑫 / Axin is the default recurring IP:

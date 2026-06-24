@@ -1,9 +1,9 @@
 Use case: illustration-story
-Asset type: repository review illustration
+Asset type: project quality check illustration
 
 Input image role: Use the provided image as the exact Axin character and style reference. Preserve Axin as a hand-drawn human with messy black hair, round glasses, light hoodie, quiet focused expression, and sparse red/orange/blue accents.
 
-Primary request: Create one standalone 16:9 white-background hand-drawn article illustration about deep repository self-review before publishing.
+Primary request: Create one standalone 16:9 white-background hand-drawn article illustration about checking a public project package before publishing.
 
 Scene/backdrop: pure white background, no texture.
 

@@ -53,6 +53,15 @@ Diagnose only, without generating prompts:
 .\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
 ```
 
+Optional: use LLM semantic review for stricter judgement:
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+.\scripts\analyze-article.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Semantic
+```
+
 ## 2. Use Your Own Article
 
 Save your article as Markdown or TXT, then run:
@@ -65,6 +74,16 @@ Save your article as Markdown or TXT, then run:
 ```
 
 If you do not pass `-Slug`, the script derives the output folder from the article title.
+
+If you want `content-diagnosis.md` to include the LLM semantic review, add `-Semantic`:
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\path\to\your-article.md `
+  -ImageCount 5 `
+  -LanguageMode auto `
+  -Semantic
+```
 
 ## 3. Use Your Own IP Character
 
@@ -83,7 +102,7 @@ The script copies the character reference into `character-reference/` and tells 
 
 ## 4. Read The Output
 
-- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count.
+- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count. With `-Semantic`, it also includes the LLM semantic review.
 - `analysis.md`: title, paragraphs, language signal, and cognitive anchors.
 - `illustration-shot-list.md`: what each image should express, what objects appear, and what the character does.
 - `image-prompts.md`: full prompts you can copy into an image generation tool.
@@ -144,6 +163,18 @@ Improve the article input first. The script extracts anchors from the article. I
 - `usable_with_edits`: prompts are usable, but revise the article before publishing.
 - `diagnose_before_prompts`: improve the article before generating many images.
 - `not_ready`: do not generate images yet; add judgement, evidence, workflow, and audience.
+
+### How Is Semantic Review Different From The Default Diagnosis?
+
+The default diagnosis is an offline heuristic check. It does not need an API key and is useful for quickly checking judgement, evidence, workflow, reader value, and visual anchors. `-Semantic` calls the OpenAI Responses API and returns structured JSON that checks whether the article is slogan-only, whether it mixes finished work with plans, and whether it deserves illustration prompts.
+
+### What If Semantic Review Says `OPENAI_API_KEY is not set`?
+
+You enabled `-Semantic`, but the current environment does not have an OpenAI API key. Remove `-Semantic` to use offline diagnosis, or set the key in the current PowerShell session:
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+```
 
 ### How Do I Install It As A Skill?
 

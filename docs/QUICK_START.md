@@ -53,6 +53,15 @@ content-packages/sample-article/image-prompts.md
 .\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
 ```
 
+可选：用 LLM 做更严格的语义审稿：
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+.\scripts\analyze-article.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Semantic
+```
+
 ## 2. 换成自己的文章
 
 把你的文章保存成 Markdown 或 TXT，然后执行：
@@ -65,6 +74,16 @@ content-packages/sample-article/image-prompts.md
 ```
 
 如果没有指定 `-Slug`，脚本会从文章标题生成目录名。
+
+如果你希望内容包里的 `content-diagnosis.md` 同时包含 LLM 语义审稿，可以加 `-Semantic`：
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\path\to\your-article.md `
+  -ImageCount 5 `
+  -LanguageMode auto `
+  -Semantic
+```
 
 ## 3. 传入自己的 IP 形象
 
@@ -83,7 +102,7 @@ content-packages/sample-article/image-prompts.md
 
 ## 4. 读输出文件
 
-- `content-diagnosis.md`：文章资产化诊断，包含分数、结论、缺口、改写建议和推荐配图数量。
+- `content-diagnosis.md`：文章资产化诊断，包含分数、结论、缺口、改写建议和推荐配图数量；使用 `-Semantic` 时会追加 LLM 语义审稿。
 - `analysis.md`：文章标题、段落、语言判断、认知锚点。
 - `illustration-shot-list.md`：每张图应该表达什么、放什么元素、角色做什么动作。
 - `image-prompts.md`：适合复制到生图工具的完整 prompt。
@@ -144,6 +163,18 @@ Get-ChildItem -Recurse -File | Unblock-File
 - `usable_with_edits`：可以生成 prompt，但发布前要补文章。
 - `diagnose_before_prompts`：先改文章，不建议生成太多图。
 - `not_ready`：不要生成图，先补判断、证据、流程和读者。
+
+### LLM 语义审稿和默认诊断有什么区别？
+
+默认诊断是离线启发式检查，不需要 API key，适合快速判断文章有没有判断、证据、流程、读者和视觉锚点。`-Semantic` 会调用 OpenAI Responses API，用结构化 JSON 输出进一步判断文章是否只有口号、是否混淆完成和计划、是否值得生成配图。
+
+### 语义审稿提示 `OPENAI_API_KEY is not set` 怎么办？
+
+这表示你启用了 `-Semantic`，但当前环境没有 OpenAI API key。可以先去掉 `-Semantic` 使用离线诊断，也可以在当前 PowerShell 会话设置：
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+```
 
 ### 我想把它安装成 skill 怎么办？
 

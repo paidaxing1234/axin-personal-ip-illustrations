@@ -33,8 +33,6 @@ $required = @(
   "docs/CHARACTER_LIBRARY.md",
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
-  "docs/REPOSITORY_REVIEW.md",
-  "docs/FIVE_PASS_AUDIT.md",
   "docs/QUICK_START.md",
   "docs/QUICK_START.en.md",
   "docs/index.html",
@@ -60,6 +58,7 @@ $required = @(
   "scripts/sync-platform-packages.ps1",
   "scripts/generate-axin-examples-cli.ps1",
   "scripts/lib/ContentDiagnosis.ps1",
+  "scripts/lib/SemanticReview.ps1",
   "scripts/analyze-article.ps1",
   "scripts/new-content-package.ps1",
   "scripts/new-illustration-brief.ps1"
@@ -97,7 +96,6 @@ $textFiles = Get-ChildItem -LiteralPath $repoRoot -Recurse -File |
   Where-Object {
     $_.FullName -notmatch "\\.git\\" -and
     $_.FullName -notmatch "\\assets\\examples\\" -and
-    $_.FullName -notmatch "\\docs\\REPOSITORY_REVIEW\.md$" -and
     $_.FullName -notmatch "\\scripts\\validate-repo\.ps1$" -and
     $_.Extension -in @(".md", ".txt", ".json", ".yaml", ".yml", ".ps1", ".html", ".mdc", ".jsonl")
   }
@@ -175,24 +173,33 @@ if ($skill -notmatch "references/axin-ip.md") {
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "docs/FIVE_PASS_AUDIT\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "Semantic" -or $readme -notmatch "OPENAI_API_KEY" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing first-run guide, bilingual link, sample article path, prompt output, or Axin example assets."
+}
+if ($readme -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|五轮审查|深度自审") {
+  throw "README.md exposes internal audit/review content."
 }
 if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -or $readme -match "\|\s*`Claude Code`\s*\|") {
   throw "README.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
 }
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
-if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "docs/FIVE_PASS_AUDIT\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
+if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "Semantic" -or $readmeEn -notmatch "OPENAI_API_KEY" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
   throw "README.en.md is missing core English overview, Chinese link, first-run guide, sample article path, or prompt output."
+}
+if ($readmeEn -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|Five-Pass Audit|deep self-review") {
+  throw "README.en.md exposes internal audit/review content."
 }
 if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\|" -or $readmeEn -match "\|\s*`Claude Code`\s*\|") {
   throw "README.en.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Five-pass audit" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Optional semantic review" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
+}
+if ($llms -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|Five-pass audit|Repository review") {
+  throw "llms.txt exposes internal audit/review content."
 }
 
 $contentPackageScript = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "scripts/new-content-package.ps1")
@@ -203,14 +210,14 @@ foreach ($needle in @("Help", "ArticlePath", "CharacterImagePath", "ImageCount",
 }
 
 $quickStart = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStart -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.md is missing public onboarding content: $needle"
   }
 }
 
 $quickStartEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.en.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStartEn -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.en.md is missing public onboarding content: $needle"
   }
@@ -224,7 +231,7 @@ foreach ($needle in @("image-prompts.md", "analysis.md", "illustration-shot-list
 }
 
 $diagnosisScript = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "scripts/analyze-article.ps1")
-foreach ($needle in @("ArticlePath", "ArticleText", "Json", "Get-AxinArticleDiagnosis", "Format-AxinDiagnosisMarkdown")) {
+foreach ($needle in @("ArticlePath", "ArticleText", "Json", "Semantic", "SemanticModel", "OPENAI_API_KEY", "Invoke-AxinSemanticReview", "Get-AxinArticleDiagnosis", "Format-AxinDiagnosisMarkdown")) {
   if ($diagnosisScript -notmatch [Regex]::Escape($needle)) {
     throw "scripts/analyze-article.ps1 is missing diagnosis feature: $needle"
   }
@@ -234,6 +241,13 @@ $diagnosisLib = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoo
 foreach ($needle in @("Get-AxinArticleDiagnosis", "Format-AxinDiagnosisMarkdown", "RecommendedImageCount", "ready", "usable_with_edits", "diagnose_before_prompts", "not_ready")) {
   if ($diagnosisLib -notmatch [Regex]::Escape($needle)) {
     throw "scripts/lib/ContentDiagnosis.ps1 is missing diagnosis concept: $needle"
+  }
+}
+
+$semanticLib = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "scripts/lib/SemanticReview.ps1")
+foreach ($needle in @("Invoke-AxinSemanticReview", "OPENAI_API_KEY", "/responses", "text", "json_schema", "store", "false", "Format-AxinSemanticReviewMarkdown")) {
+  if ($semanticLib -notmatch [Regex]::Escape($needle)) {
+    throw "scripts/lib/SemanticReview.ps1 is missing semantic review concept: $needle"
   }
 }
 

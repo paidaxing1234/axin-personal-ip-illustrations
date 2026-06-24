@@ -2,7 +2,7 @@
 
 > 输入一篇文章，先诊断它是否值得资产化，再输出配图策略、图片提示词和双语分发计划。
 
-[中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [五轮审查](docs/FIVE_PASS_AUDIT.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
+[中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
 这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先诊断一篇文章有没有清楚判断、证据、流程、读者和风险，再生成可复制到生图工具的 `image-prompts.md`。
 
@@ -39,6 +39,27 @@ content-packages/sample-article/image-prompts.md
 
 它会输出 `Score`、`Verdict`、`Gaps`、`Rewrite Actions` 和 `Recommended image count`。空泛文章会被判成 `not_ready`，避免把口号包装成视觉资产。
 
+## 可选：LLM 语义审稿
+
+默认诊断完全离线，适合快速筛文章。需要更严格的语义判断时，可以打开 OpenAI 语义审稿：
+
+```powershell
+$env:OPENAI_API_KEY = "<your key>"
+.\scripts\analyze-article.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Semantic
+```
+
+语义审稿会检查文章是否只有口号、是否区分 `done / partial / stub`、证据是否足够、是否真的值得生成配图，并把结果写进同一份诊断报告。生成完整内容包时也可以加 `-Semantic`：
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\path\to\your-article.md `
+  -ImageCount 5 `
+  -LanguageMode auto `
+  -Semantic
+```
+
 ## 换成自己的文章和 IP
 
 ```powershell
@@ -62,7 +83,7 @@ content-packages/sample-article/image-prompts.md
 
 ## 输出文件怎么看
 
-- `content-diagnosis.md`：文章资产化诊断，包括分数、结论、缺口、改写动作和建议配图数量。
+- `content-diagnosis.md`：文章资产化诊断，包括分数、结论、缺口、改写动作和建议配图数量；使用 `-Semantic` 时会追加 LLM 语义审稿。
 - `analysis.md`：文章标题、段落、语言判断和认知锚点。
 - `illustration-shot-list.md`：每张图的主题、结构、角色动作和建议元素。
 - `image-prompts.md`：适合复制到生图工具的完整 prompt。
@@ -86,7 +107,7 @@ content-packages/sample-article/image-prompts.md
 
 ## 工作流示例图
 
-![阿鑫仓库自审](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
+![阿鑫项目质检工位](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
 
 ![阿鑫 agent 可发现流程](axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png)
 
@@ -184,7 +205,8 @@ content-packages/sample-article/image-prompts.md
     ├── analyze-article.ps1
     ├── new-content-package.ps1
     ├── lib/
-    │   └── ContentDiagnosis.ps1
+    │   ├── ContentDiagnosis.ps1
+    │   └── SemanticReview.ps1
     ├── sync-platform-packages.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1
