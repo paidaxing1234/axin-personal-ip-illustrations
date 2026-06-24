@@ -15,10 +15,19 @@
 生成后打开：
 
 ```text
+content-packages/sample-article/content-diagnosis.md
 content-packages/sample-article/image-prompts.md
 ```
 
 完整说明见 `docs/QUICK_START.md`。
+
+## CLI：只做内容诊断
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
+```
+
+诊断会先判断文章是否适合资产化，输出 `Score`、`Verdict`、`Gaps`、`Rewrite Actions` 和 `Recommended image count`。
 
 ## 只做配图规划
 

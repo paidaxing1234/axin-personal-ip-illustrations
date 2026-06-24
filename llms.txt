@@ -9,12 +9,13 @@ This repository contains a reusable illustration workflow for turning personal-b
 - [Quick start](docs/QUICK_START.md): first-run guide for open-source users; run the sample article before installing anything.
 - [English quick start](docs/QUICK_START.en.md): English first-run guide for GitHub users.
 - [Sample article](examples/sample-article.md): ready-to-run article for testing the article-to-prompt pipeline.
+- [Article diagnosis CLI](scripts/analyze-article.ps1): score whether an article is ready for IP asset generation before creating prompts.
 - [Skill source](axin-personal-ip-illustrations/SKILL.md): main cross-platform skill instructions.
 - [Axin character](axin-personal-ip-illustrations/references/axin-ip.md): default recurring IP and action rules.
 - [Style DNA](axin-personal-ip-illustrations/references/style-dna.md): white background, black hand-drawn line art, sparse red/orange/blue notes.
 - [Prompt template](axin-personal-ip-illustrations/references/prompt-template.md): reusable image generation prompt with Chinese, English, and sparse bilingual modes.
 - [QA checklist](axin-personal-ip-illustrations/references/qa-checklist.md): validation rules.
-- [Article package CLI](scripts/new-content-package.ps1): read an article and optional IP character image, then produce analysis, shot list, image prompts, JSONL prompt jobs, and bilingual distribution notes.
+- [Article package CLI](scripts/new-content-package.ps1): read an article and optional IP character image, then produce content diagnosis, analysis, shot list, image prompts, JSONL prompt jobs, and bilingual distribution notes.
 - [Platform guide](docs/MULTI_PLATFORM.md): keep platform product names untranslated; supports `Codex`, `Hermes`, `Claude Code`, `Cursor`, `Windsurf`, `Cline`, `OpenCode`, generic agents.
 - [GEO guide](docs/GEO.md): search and generative engine optimization strategy.
 - [Repository review](docs/REPOSITORY_REVIEW.md): deep self-review and cleanup rationale.

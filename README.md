@@ -1,10 +1,10 @@
 # 阿鑫个人 IP 配图流程
 
-> 输入一篇文章，输出可审核的配图策略、图片提示词和双语分发计划。
+> 输入一篇文章，先诊断它是否值得资产化，再输出配图策略、图片提示词和双语分发计划。
 
 [中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
-这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先理解一篇文章里的判断、证据、流程和常见坑，再生成可复制到生图工具的 `image-prompts.md`。
+这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先诊断一篇文章有没有清楚判断、证据、流程、读者和风险，再生成可复制到生图工具的 `image-prompts.md`。
 
 默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。你也可以传入自己的 IP 形象图，让自己的角色参与画面的核心动作。
 
@@ -23,10 +23,21 @@
 然后打开：
 
 ```text
+content-packages/sample-article/content-diagnosis.md
 content-packages/sample-article/image-prompts.md
 ```
 
-你会看到 4 条完整配图 prompt，以及对应的 `analysis.md`、`illustration-shot-list.md`、`distribution-plan.md` 和 `publish-checklist.md`。更完整的首次使用说明见 [docs/QUICK_START.md](docs/QUICK_START.md)。
+你会先看到内容诊断，再看到 4 条完整配图 prompt，以及对应的 `analysis.md`、`illustration-shot-list.md`、`distribution-plan.md` 和 `publish-checklist.md`。更完整的首次使用说明见 [docs/QUICK_START.md](docs/QUICK_START.md)。
+
+## 先诊断，不生成 prompt
+
+如果你只想判断一篇文章值不值得配图，可以先跑：
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
+```
+
+它会输出 `Score`、`Verdict`、`Gaps`、`Rewrite Actions` 和 `Recommended image count`。空泛文章会被判成 `not_ready`，避免把口号包装成视觉资产。
 
 ## 换成自己的文章和 IP
 
@@ -49,6 +60,7 @@ content-packages/sample-article/image-prompts.md
 
 ## 输出文件怎么看
 
+- `content-diagnosis.md`：文章资产化诊断，包括分数、结论、缺口、改写动作和建议配图数量。
 - `analysis.md`：文章标题、段落、语言判断和认知锚点。
 - `illustration-shot-list.md`：每张图的主题、结构、角色动作和建议元素。
 - `image-prompts.md`：适合复制到生图工具的完整 prompt。
@@ -167,7 +179,10 @@ content-packages/sample-article/image-prompts.md
     ├── install-local-skill.ps1
     ├── install-hermes-skill.ps1
     ├── install-all-platforms.ps1
+    ├── analyze-article.ps1
     ├── new-content-package.ps1
+    ├── lib/
+    │   └── ContentDiagnosis.ps1
     ├── sync-platform-packages.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1
@@ -194,7 +209,7 @@ axin-personal-ip-illustrations/
 .\scripts\validate-repo.ps1
 ```
 
-验证会检查必需文件、示例图片、skill 元数据、平台快照、README 双语入口、快速上手文档和示例文章是否存在。
+验证会检查必需文件、示例图片、skill 元数据、平台快照、README 双语入口、快速上手文档、诊断脚本和示例文章是否存在。
 
 ## License
 

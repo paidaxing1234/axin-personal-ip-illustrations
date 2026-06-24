@@ -29,6 +29,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot "lib\ContentDiagnosis.ps1")
 
 function Show-Help {
 @'
@@ -41,6 +42,7 @@ With a custom IP character reference:
   .\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -CharacterImagePath .\assets\my-ip.png -CharacterName "Your IP" -ImageCount 4
 
 Key outputs:
+  content-packages\<slug>\content-diagnosis.md
   content-packages\<slug>\analysis.md
   content-packages\<slug>\illustration-shot-list.md
   content-packages\<slug>\image-prompts.md
@@ -58,7 +60,7 @@ Important parameters:
   -Slug                 Output folder name under content-packages.
   -OutRoot              Output root, relative to the repo or absolute.
 
-This script generates reviewable prompts. It does not generate PNG files.
+This script diagnoses readiness and generates reviewable prompts. It does not generate PNG files.
 '@ | Write-Host
 }
 
@@ -467,6 +469,7 @@ $paragraphs = Split-ArticleParagraphs -Text $ArticleText
 $anchors = Get-ArticleAnchors -Paragraphs $paragraphs
 $headings = Get-Headings -Text $ArticleText
 $effectiveLanguageMode = Get-EffectiveLanguageMode -Mode $LanguageMode -Text $ArticleText
+$diagnosis = Get-AxinArticleDiagnosis -ArticleText $ArticleText -Topic $Topic -SourcePath $sourceDisplay -ImageCount $ImageCount
 
 if ([string]::IsNullOrWhiteSpace($CharacterDescription)) {
   $CharacterDescription = "$CharacterName / $CharacterNameEn, a hand-drawn human content operator with black hair, round glasses, a light hoodie, quiet focused expression, and practical posture."
@@ -542,6 +545,8 @@ Write-PackageFile $packageDir "article.md" @(
   '```'
 )
 
+Write-PackageFile $packageDir "content-diagnosis.md" (Format-AxinDiagnosisMarkdown -Diagnosis $diagnosis)
+
 $analysisLines = @(
   "# Article Analysis",
   "",
@@ -554,6 +559,9 @@ $analysisLines = @(
   "- English word-like tokens: $enWordCount",
   "- Label language mode: $effectiveLanguageMode",
   "- Target image prompts: $ImageCount",
+  "- Diagnosis score: $($diagnosis.Score) / 100",
+  "- Diagnosis verdict: $($diagnosis.Verdict)",
+  "- Recommended image count: $($diagnosis.RecommendedImageCount)",
   "",
   "## Headings",
   ""
@@ -584,6 +592,7 @@ Write-PackageFile $packageDir "brief.md" @(
   "- Core promise: turn one article into reusable IP illustration prompts and bilingual distribution assets.",
   "- Target audience: readers who need reusable personal IP content, not decorative images.",
   "- Current status: generated from local article analysis; review before publishing.",
+  "- Main diagnosis: see content-diagnosis.md before generating images.",
   "- Main evidence: see analysis.md and evidence.md.",
   "- Main risk: prompts are only as good as the article anchors and character reference.",
   "- Reusable assets: image-prompts.md, image-prompts.jsonl, distribution-plan.md, readme-snippet.md.",
@@ -759,6 +768,7 @@ Write-PackageFile $packageDir "publish-checklist.md" @(
   "## Before Image Generation",
   "",
   "- [ ] Article source is attached in article.md.",
+  "- [ ] content-diagnosis.md verdict is ready or usable_with_edits.",
   "- [ ] Character reference image is attached or default Axin is acceptable.",
   "- [ ] image-prompts.md contains one prompt per image.",
   "- [ ] Each prompt makes the IP character perform the core action.",
@@ -791,6 +801,7 @@ $metadata = [pscustomobject]@{
   language_mode = $effectiveLanguageMode
   generated_files = @(
     "article.md",
+    "content-diagnosis.md",
     "analysis.md",
     "brief.md",
     "evidence.md",
@@ -807,4 +818,5 @@ $metadata = [pscustomobject]@{
 Set-Content -LiteralPath (Join-Path $packageDir "metadata.json") -Value ($metadata | ConvertTo-Json -Depth 5) -Encoding UTF8
 
 Write-Host "Created content package at $packageDir"
+Write-Host "Review content diagnosis at $(Join-Path $packageDir 'content-diagnosis.md')"
 Write-Host "Review image prompts at $(Join-Path $packageDir 'image-prompts.md')"

@@ -13,10 +13,11 @@
 1. 真实项目：项目目录、README、脚本、截图、运行结果、提交记录。
 2. 证据提取：哪些东西真的跑过，哪些只是计划，哪些仍是缺口。
 3. 判断沉淀：这次项目说明了什么，踩了什么坑，做对了什么取舍。
-4. 内容包生成：文章分析、认知锚点、shot list、生图 prompt、双语分发计划、发布 checklist。
-5. 视觉表达：用真人阿鑫或用户传入的 IP 形象，把一个关键流程、状态或判断画成白底手绘图。
-6. 双语发布：中文内容讲过程和复盘，英文入口讲工具、仓库、使用方式和 LLM 可发现性。
-7. 回收复用：把这次内容包放进 `cases/`，以后作为案例、prompt 样本和资产库。
+4. 内容诊断：先判断文章有没有清楚判断、证据、流程、读者、风险和视觉可转译性。
+5. 内容包生成：文章分析、认知锚点、shot list、生图 prompt、双语分发计划、发布 checklist。
+6. 视觉表达：用真人阿鑫或用户传入的 IP 形象，把一个关键流程、状态或判断画成白底手绘图。
+7. 双语发布：中文内容讲过程和复盘，英文入口讲工具、仓库、使用方式和 LLM 可发现性。
+8. 回收复用：把这次内容包放进 `cases/`，以后作为案例、prompt 样本和资产库。
 
 ## 标准内容包
 
@@ -25,6 +26,7 @@
 ```text
 content-packages/<project-slug>/
 ├── article.md
+├── content-diagnosis.md
 ├── analysis.md
 ├── brief.md
 ├── evidence.md
@@ -41,7 +43,13 @@ content-packages/<project-slug>/
 └── publish-checklist.md
 ```
 
-使用命令：
+先做内容诊断：
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
+```
+
+完整生成内容包：
 
 ```powershell
 .\scripts\new-content-package.ps1 `
@@ -58,7 +66,7 @@ content-packages/<project-slug>/
 .\scripts\new-content-package.ps1 -Topic "项目名或主题" -Slug "project-slug"
 ```
 
-新的核心输入是文章和 IP 形象。脚本会本地读取文章，提取标题、段落、认知锚点、分发语境，再生成几张正文配图的 prompt。它不负责直接把所有图生完，而是先给出可审核、可复制、可迭代的提示词包。
+新的核心输入是文章和 IP 形象。脚本会本地读取文章，先诊断判断、证据、流程、读者、风险和视觉可转译性，再提取标题、段落、认知锚点、分发语境，生成几张正文配图的 prompt。它不负责直接把所有图生完，而是先给出可审核、可复制、可迭代的提示词包。
 
 ## 中英文分发
 
@@ -72,6 +80,7 @@ content-packages/<project-slug>/
 
 - 不把计划写成完成。
 - 不把 mock 写成实测。
+- 不跳过 `content-diagnosis.md`；如果结论是 `not_ready`，先改文章再生图。
 - 不把图片当装饰；每张图必须表达一个判断或流程。
 - 不让阿鑫或自定义 IP 变成吉祥物；角色必须参与核心动作。
 - 不把中文和英文入口割裂；它们应该来自同一套真实项目资产。

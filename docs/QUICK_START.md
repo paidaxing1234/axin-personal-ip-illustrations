@@ -9,6 +9,7 @@
 ```text
 content-packages/<slug>/
 ├── article.md
+├── content-diagnosis.md
 ├── analysis.md
 ├── illustration-shot-list.md
 ├── image-prompts.md
@@ -19,7 +20,7 @@ content-packages/<slug>/
 └── images/
 ```
 
-这个仓库的核心不是直接替你发布内容，而是把文章分析成可审核、可复制、可批量生成图片的 prompt 包。
+这个仓库的核心不是直接替你发布内容，而是先判断文章是否值得资产化，再把文章分析成可审核、可复制、可批量生成图片的 prompt 包。
 
 ## 1. 跑通示例
 
@@ -36,6 +37,7 @@ content-packages/<slug>/
 生成后打开：
 
 ```text
+content-packages/sample-article/content-diagnosis.md
 content-packages/sample-article/image-prompts.md
 ```
 
@@ -43,6 +45,12 @@ content-packages/sample-article/image-prompts.md
 
 ```powershell
 .\scripts\new-content-package.ps1 -Help
+```
+
+只做内容诊断，不生成 prompt：
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
 ```
 
 ## 2. 换成自己的文章
@@ -75,6 +83,7 @@ content-packages/sample-article/image-prompts.md
 
 ## 4. 读输出文件
 
+- `content-diagnosis.md`：文章资产化诊断，包含分数、结论、缺口、改写建议和推荐配图数量。
 - `analysis.md`：文章标题、段落、语言判断、认知锚点。
 - `illustration-shot-list.md`：每张图应该表达什么、放什么元素、角色做什么动作。
 - `image-prompts.md`：适合复制到生图工具的完整 prompt。
@@ -101,7 +110,7 @@ content-packages/sample-article/image-prompts.md
 
 ### 这个工具会直接生成 PNG 吗？
 
-不会。`new-content-package.ps1` 负责文章分析和 prompt 包生成。图片生成留给你自己的生图工具或 agent，这样你可以先审查 shot list 和 prompt，再花生成成本。
+不会。`new-content-package.ps1` 负责文章诊断、文章分析和 prompt 包生成。图片生成留给你自己的生图工具或 agent，这样你可以先审查诊断、shot list 和 prompt，再花生成成本。
 
 ### 中文和英文是不是互相翻译？
 
@@ -110,6 +119,13 @@ content-packages/sample-article/image-prompts.md
 ### 生成的 prompt 太泛怎么办？
 
 先改文章。这个脚本从文章里抓取认知锚点，如果原文只有口号，没有证据、取舍、流程或具体动作，prompt 也会变空。更好的输入是：真实项目、运行结果、错误修正、发布过程、设计取舍和复盘判断。
+
+### 诊断结论是什么意思？
+
+- `ready`：可以进入 shot list 和图片 prompt。
+- `usable_with_edits`：可以生成 prompt，但发布前要补文章。
+- `diagnose_before_prompts`：先改文章，不建议生成太多图。
+- `not_ready`：不要生成图，先补判断、证据、流程和读者。
 
 ### 我想把它安装成 skill 怎么办？
 

@@ -9,6 +9,7 @@ The script reads a Markdown or TXT article and creates a content package:
 ```text
 content-packages/<slug>/
 ├── article.md
+├── content-diagnosis.md
 ├── analysis.md
 ├── illustration-shot-list.md
 ├── image-prompts.md
@@ -19,7 +20,7 @@ content-packages/<slug>/
 └── images/
 ```
 
-The repository does not try to hide everything behind a magic button. It produces reviewable prompts, shot lists, and publishing notes before you spend image generation credits.
+The repository does not try to hide everything behind a magic button. It diagnoses whether the article is ready to become assets, then produces reviewable prompts, shot lists, and publishing notes before you spend image generation credits.
 
 ## 1. Run The Sample
 
@@ -36,6 +37,7 @@ From the repository root:
 Then open:
 
 ```text
+content-packages/sample-article/content-diagnosis.md
 content-packages/sample-article/image-prompts.md
 ```
 
@@ -43,6 +45,12 @@ You can also print the script help:
 
 ```powershell
 .\scripts\new-content-package.ps1 -Help
+```
+
+Diagnose only, without generating prompts:
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
 ```
 
 ## 2. Use Your Own Article
@@ -75,6 +83,7 @@ The script copies the character reference into `character-reference/` and tells 
 
 ## 4. Read The Output
 
+- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count.
 - `analysis.md`: title, paragraphs, language signal, and cognitive anchors.
 - `illustration-shot-list.md`: what each image should express, what objects appear, and what the character does.
 - `image-prompts.md`: full prompts you can copy into an image generation tool.
@@ -101,7 +110,7 @@ No. Axin is the default character so the workflow works immediately. Pass `-Char
 
 ### Does The Script Generate PNG Files?
 
-No. `new-content-package.ps1` creates article analysis and prompt packages. Use your own image generation tool after reviewing the shot list and prompts.
+No. `new-content-package.ps1` creates article diagnosis, analysis, and prompt packages. Use your own image generation tool after reviewing the diagnosis, shot list, and prompts.
 
 ### Is The English Output Just Translation?
 
@@ -110,6 +119,13 @@ No. Chinese publishing often focuses on process, retrospectives, mistakes, and j
 ### What If The Prompts Feel Generic?
 
 Improve the article input first. The script extracts anchors from the article. If the article only has slogans and no evidence, tradeoffs, workflow, or concrete actions, the prompts will feel empty too.
+
+### What Do The Diagnosis Verdicts Mean?
+
+- `ready`: move into shot lists and image prompts.
+- `usable_with_edits`: prompts are usable, but revise the article before publishing.
+- `diagnose_before_prompts`: improve the article before generating many images.
+- `not_ready`: do not generate images yet; add judgement, evidence, workflow, and audience.
 
 ### How Do I Install It As A Skill?
 

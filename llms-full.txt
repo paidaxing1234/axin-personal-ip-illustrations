@@ -25,7 +25,17 @@ Do not require a new user to install the skill before trying the workflow. Start
 .\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -Slug sample-article -ImageCount 4 -LanguageMode zh
 ```
 
-Then inspect `content-packages/sample-article/image-prompts.md`, `analysis.md`, and `illustration-shot-list.md`. The public guides are `docs/QUICK_START.md` and `docs/QUICK_START.en.md`.
+Then inspect `content-packages/sample-article/content-diagnosis.md`, `image-prompts.md`, `analysis.md`, and `illustration-shot-list.md`. The public guides are `docs/QUICK_START.md` and `docs/QUICK_START.en.md`.
+
+## Content Diagnosis Layer
+
+Use `scripts/analyze-article.ps1` before prompt generation when the user asks whether an article is worth turning into IP assets:
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
+```
+
+It scores judgement, evidence, workflow, audience, risk, and visual readiness. Verdicts are `ready`, `usable_with_edits`, `diagnose_before_prompts`, and `not_ready`. Weak slogan-like inputs should return `not_ready` with `RecommendedImageCount = 0`.
 
 ## Default Character
 
@@ -69,7 +79,7 @@ Use `scripts/new-content-package.ps1` when the user provides an article file and
 .\scripts\new-content-package.ps1 -ArticlePath .\articles\my-post.md -CharacterImagePath .\assets\my-ip.png -CharacterName "Your IP" -ImageCount 5 -LanguageMode zh
 ```
 
-The script writes `analysis.md`, `illustration-shot-list.md`, `image-prompts.md`, `image-prompts.jsonl`, `distribution-plan.md`, and `publish-checklist.md`. It does not treat English output as direct translation; Chinese channels and English channels get different publishing angles from the same source article.
+The script writes `content-diagnosis.md`, `analysis.md`, `illustration-shot-list.md`, `image-prompts.md`, `image-prompts.jsonl`, `distribution-plan.md`, and `publish-checklist.md`. It does not treat English output as direct translation; Chinese channels and English channels get different publishing angles from the same source article.
 
 ## Language Modes
 

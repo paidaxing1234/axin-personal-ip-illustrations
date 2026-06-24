@@ -1,10 +1,10 @@
 # Axin Personal IP Illustration Workflow
 
-> Feed in an article. Get a reviewable illustration strategy, image prompts, and bilingual distribution notes.
+> Feed in an article. Diagnose whether it is worth turning into assets, then get illustration prompts and bilingual distribution notes.
 
 [中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
-This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: analyze the judgement, evidence, workflow, and pitfalls inside a post, then produce a copyable `image-prompts.md` file.
+This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: diagnose judgement, evidence, workflow, audience, risk, and visual readiness before producing a copyable `image-prompts.md` file.
 
 The default recurring IP is **Axin / 阿鑫**: a hand-drawn human content operator with black hair, round glasses, and a hoodie. You can also pass your own IP character reference image and use this workflow with your own visual identity.
 
@@ -23,10 +23,21 @@ You do not need to install the skill first. From the repository root, run:
 Then open:
 
 ```text
+content-packages/sample-article/content-diagnosis.md
 content-packages/sample-article/image-prompts.md
 ```
 
-You will get four complete illustration prompts plus `analysis.md`, `illustration-shot-list.md`, `distribution-plan.md`, and `publish-checklist.md`. See [docs/QUICK_START.en.md](docs/QUICK_START.en.md) for the full first-run guide.
+You will get a content diagnosis first, then four complete illustration prompts plus `analysis.md`, `illustration-shot-list.md`, `distribution-plan.md`, and `publish-checklist.md`. See [docs/QUICK_START.en.md](docs/QUICK_START.en.md) for the full first-run guide.
+
+## Diagnose Before Prompting
+
+If you only want to check whether an article is ready for visual assets:
+
+```powershell
+.\scripts\analyze-article.ps1 -ArticlePath .\examples\sample-article.md
+```
+
+It reports `Score`, `Verdict`, `Gaps`, `Rewrite Actions`, and `Recommended image count`. Vague inputs can return `not_ready`, so the workflow does not turn slogans into polished-looking assets.
 
 ## Use Your Own Article And IP
 
@@ -49,6 +60,7 @@ Show help:
 
 ## Output Files
 
+- `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count.
 - `analysis.md`: title, paragraph count, language signal, and cognitive anchors.
 - `illustration-shot-list.md`: theme, structure, character action, and suggested elements for each image.
 - `image-prompts.md`: full prompts you can copy into an image generation tool.
@@ -118,7 +130,7 @@ See [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md) for the protected platform 
 .\scripts\validate-repo.ps1
 ```
 
-The validator checks required files, example images, skill metadata, platform snapshots, bilingual README entries, quick-start docs, and the sample article.
+The validator checks required files, example images, skill metadata, platform snapshots, bilingual README entries, quick-start docs, diagnosis scripts, and the sample article.
 
 ## License
 
