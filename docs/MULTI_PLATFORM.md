@@ -1,20 +1,65 @@
-﻿# 多平台支持
+# 多平台支持
+
+> 本页的平台产品名必须保留英文原名。为避免浏览器自动翻译改写产品名，平台名区域使用 `translate="no"` 和 `notranslate` 标记。
 
 ## 平台矩阵
 
-| 平台 | 入口文件 | 安装方式 | 状态 |
-| --- | --- | --- | --- |
-| `Codex` | `axin-personal-ip-illustrations/SKILL.md` | `scripts/install-local-skill.ps1` | 已支持 |
-| `Hermes` | 同一份 `SKILL.md` | `scripts/install-hermes-skill.ps1` | 已支持 |
-| `Claude Code` | `CLAUDE.md` / `.claude-plugin/` | 作为 repo 上下文或插件包 | 已支持 |
-| `Cursor` | `.cursor/rules/axin-personal-ip-illustrations.mdc` | 自动读取 rules | 已支持 |
-| `Windsurf` | `.windsurfrules` | 自动读取 rules | 已支持 |
-| `Cline` | `.clinerules/axin-personal-ip-illustrations.md` | 自动读取 rules | 已支持 |
-| `OpenCode` / 通用 agents | `AGENTS.md` / `llms.txt` | 读取仓库说明 | 已支持 |
+<table translate="no" class="notranslate">
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Entry</th>
+      <th>Install / Load</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no">Codex</code></td>
+      <td><code translate="no">axin-personal-ip-illustrations/SKILL.md</code></td>
+      <td><code translate="no">scripts/install-local-skill.ps1</code></td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">Hermes</code></td>
+      <td><code translate="no">SKILL.md</code></td>
+      <td><code translate="no">scripts/install-hermes-skill.ps1</code></td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">Claude Code</code></td>
+      <td><code translate="no">CLAUDE.md</code> / <code translate="no">.claude-plugin/</code></td>
+      <td>repo context or plugin package</td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">Cursor</code></td>
+      <td><code translate="no">.cursor/rules/axin-personal-ip-illustrations.mdc</code></td>
+      <td>rules auto-load</td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">Windsurf</code></td>
+      <td><code translate="no">.windsurfrules</code></td>
+      <td>rules auto-load</td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">Cline</code></td>
+      <td><code translate="no">.clinerules/axin-personal-ip-illustrations.md</code></td>
+      <td>rules auto-load</td>
+      <td>supported</td>
+    </tr>
+    <tr>
+      <td><code translate="no">OpenCode</code> / generic agents</td>
+      <td><code translate="no">AGENTS.md</code> / <code translate="no">llms.txt</code></td>
+      <td>read repository guide</td>
+      <td>supported</td>
+    </tr>
+  </tbody>
+</table>
 
-说明：平台产品名一律保留英文原名，不做中文音译或意译。
-
-## `Codex`
+## 安装：<code translate="no">Codex</code>
 
 ```powershell
 .\scripts\install-local-skill.ps1
@@ -26,7 +71,7 @@
 C:\Users\<you>\.codex\skills\axin-personal-ip-illustrations
 ```
 
-## `Hermes`
+## 安装：<code translate="no">Hermes</code>
 
 ```powershell
 .\scripts\install-hermes-skill.ps1
@@ -44,15 +89,21 @@ $HERMES_HOME\skills\creative\axin-personal-ip-illustrations
 hermes -s axin-personal-ip-illustrations
 ```
 
-## `Claude Code`
+或在 <code translate="no">Hermes</code> 会话中：
 
-`Claude Code` 可以直接读取：
+```text
+/reload-skills
+```
+
+## 使用：<code translate="no">Claude Code</code>
+
+<code translate="no">Claude Code</code> 可以直接读取：
 
 - `CLAUDE.md`
 - `.claude-plugin/plugin.json`
 - `.claude-plugin/commands/axin-illustrate.md`
 
-插件目录里保留一个 skill snapshot，方便迁移到 Claude Code plugin 工作流。
+插件目录里保留一个 skill snapshot，方便迁移到 plugin 工作流。
 
 ## 通用 Agent
 

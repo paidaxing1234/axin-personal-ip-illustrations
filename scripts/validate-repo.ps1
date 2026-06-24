@@ -101,6 +101,12 @@ $oldPatrickDirection = -join @([char]27966, [char]22823, [char]26143)
 $oldToolboxHybrid = -join @([char]24037, [char]20855, [char]31665, [char]30340, [char]28151, [char]21512, [char]20307)
 $oldBlackStamp = -join @([char]40657, [char]33394, [char]21360, [char]31456)
 $oldNonHumanToolbox = -join @([char]38750, [char]20154, [char]31867, [char]24037, [char]20855, [char]31665)
+$badCodexTranslation = -join @([char]27861, [char]20856)
+$badHermesTranslation = -join @([char]29233, [char]39532, [char]20181)
+$badClaudeTranslation = -join @([char]20811, [char]21171, [char]24503)
+$badCursorTranslation = -join @([char]20809, [char]26631)
+$badWindsurfTranslation = -join @([char]24070, [char]26495, [char]36816, [char]21160)
+$badClineTranslation = -join @([char]20811, [char]33713, [char]24681)
 $forbiddenText = @(
   $oldAmoName,
   "Amo",
@@ -129,7 +135,13 @@ $forbiddenText = @(
   "screw-dot eyes",
   $oldToolboxHybrid,
   $oldBlackStamp,
-  $oldNonHumanToolbox
+  $oldNonHumanToolbox,
+  $badCodexTranslation,
+  $badHermesTranslation,
+  $badClaudeTranslation,
+  $badCursorTranslation,
+  $badWindsurfTranslation,
+  $badClineTranslation
 )
 
 foreach ($file in $textFiles) {
@@ -159,10 +171,16 @@ $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "REA
 if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing bilingual link or Axin example assets."
 }
+if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -or $readme -match "\|\s*`Claude Code`\s*\|") {
+  throw "README.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
+}
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
 if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md") {
   throw "README.en.md is missing core English overview or Chinese link."
+}
+if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\|" -or $readmeEn -match "\|\s*`Claude Code`\s*\|") {
+  throw "README.en.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
@@ -171,8 +189,19 @@ if ($llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llm
 }
 
 $indexHtml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/index.html")
-if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png") {
+if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch 'class="notranslate"' -or $indexHtml -notmatch '<meta name="google" content="notranslate">' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png") {
   throw "docs/index.html must prevent product-name auto-translation and show the Axin IP asset board."
+}
+
+$multiPlatform = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/MULTI_PLATFORM.md")
+if ($multiPlatform -notmatch 'class="notranslate"' -or $multiPlatform -notmatch 'translate="no"' -or $multiPlatform -notmatch '<table translate="no" class="notranslate">') {
+  throw "docs/MULTI_PLATFORM.md must protect product names from browser auto-translation."
+}
+foreach ($platformName in @("Codex", "Hermes", "Claude Code", "Cursor", "Windsurf", "Cline", "OpenCode")) {
+  $escaped = [Regex]::Escape($platformName)
+  if ($multiPlatform -notmatch "<code translate=`"no`">$escaped</code>") {
+    throw "docs/MULTI_PLATFORM.md must wrap platform name with translate=no: $platformName"
+  }
 }
 
 $package = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "skill-package.json") | ConvertFrom-Json

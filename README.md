@@ -1,6 +1,6 @@
 # 阿鑫个人 IP 配图流程
 
-> `Codex` / `Hermes` / `Claude Code` / `Cursor` / `Windsurf` / `Cline` / `OpenCode` 通用的个人 IP 手绘配图流程。
+> 面向主流 agent 工具的个人 IP 手绘配图流程：把真实经验、项目复盘和内容资产化动作变成统一风格的阿鑫配图。
 
 [中文](README.md) · [English](README.en.md) · [LLM 入口](llms.txt) · [平台支持](docs/MULTI_PLATFORM.md) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
@@ -59,19 +59,19 @@
 
 ## 快速使用
 
-安装到 `Codex`：
+安装本机 skill：
 
 ```powershell
 .\scripts\install-local-skill.ps1
 ```
 
-安装到 `Hermes`：
+安装外部 skill 目录：
 
 ```powershell
 .\scripts\install-hermes-skill.ps1
 ```
 
-同步 `Claude Code` 插件快照：
+同步插件快照：
 
 ```powershell
 .\scripts\sync-platform-packages.ps1
@@ -83,7 +83,7 @@
 .\scripts\install-all-platforms.ps1
 ```
 
-在 `Codex` 里使用：
+在 agent 会话里使用：
 
 ```text
 Use $axin-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿鑫个人 IP 正文配图。
@@ -100,19 +100,9 @@ Use $axin-personal-ip-illustrations 先不要生图。
 每张写清楚主题、核心意思、结构类型、阿鑫在做什么、建议中文标注。
 ```
 
-## 多平台支持
+## 工具入口
 
-| 平台 | 状态 | 入口 |
-| --- | --- | --- |
-| `Codex` | 已支持 | `axin-personal-ip-illustrations/SKILL.md` |
-| `Hermes` | 已支持 | `scripts/install-hermes-skill.ps1` |
-| `Claude Code` | 已支持 | `CLAUDE.md` / `.claude-plugin/` |
-| `Cursor` | 已支持 | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
-| `Windsurf` | 已支持 | `.windsurfrules` |
-| `Cline` | 已支持 | `.clinerules/axin-personal-ip-illustrations.md` |
-| `OpenCode` / 通用 agents | 已支持 | `AGENTS.md` / `llms.txt` |
-
-更多细节见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
+仓库已经保留主流 agent 工具入口、安装脚本、规则文件和插件快照。首页不再铺平台名矩阵，避免浏览器自动翻译把产品名改成奇怪的中文词；完整入口见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
 
 ## GEO / LLM 可发现
 

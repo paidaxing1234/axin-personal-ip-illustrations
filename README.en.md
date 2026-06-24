@@ -1,6 +1,6 @@
 # Axin Personal IP Illustration Workflow
 
-> A multi-platform hand-drawn illustration skill for `Codex`, `Hermes`, `Claude Code`, `Cursor`, `Windsurf`, `Cline`, `OpenCode`, and generic agents.
+> A hand-drawn personal IP illustration workflow for mainstream agent tools, turning real project work, retrospectives, and content systems into reusable Axin-style visual assets.
 
 [中文](README.md) · [English](README.en.md) · [LLM entry](llms.txt) · [Platform guide](docs/MULTI_PLATFORM.md) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
@@ -53,25 +53,25 @@ Not a good fit:
 
 ## Quick Start
 
-Install for `Codex`:
+Install the local skill:
 
 ```powershell
 .\scripts\install-local-skill.ps1
 ```
 
-Install for `Hermes`:
+Install into an external skill directory:
 
 ```powershell
 .\scripts\install-hermes-skill.ps1
 ```
 
-Sync the `Claude Code` plugin snapshot:
+Sync the plugin snapshot:
 
 ```powershell
 .\scripts\sync-platform-packages.ps1
 ```
 
-Use in `Codex`:
+Use in an agent session:
 
 ```text
 Use $axin-personal-ip-illustrations to design and generate 4 Axin-style article illustrations for this post.
@@ -87,17 +87,9 @@ Use $axin-personal-ip-illustrations. Do not generate images yet.
 Analyze this article and produce a 5-image shot list. For each image, include theme, core idea, structure type, what Axin does, and suggested labels.
 ```
 
-## Platform Support
+## Tool Entrypoints
 
-| Platform | Status | Entry |
-| --- | --- | --- |
-| `Codex` | Supported | `axin-personal-ip-illustrations/SKILL.md` |
-| `Hermes` | Supported | `scripts/install-hermes-skill.ps1` |
-| `Claude Code` | Supported | `CLAUDE.md` / `.claude-plugin/` |
-| `Cursor` | Supported | `.cursor/rules/axin-personal-ip-illustrations.mdc` |
-| `Windsurf` | Supported | `.windsurfrules` |
-| `Cline` | Supported | `.clinerules/axin-personal-ip-illustrations.md` |
-| `OpenCode` / generic agents | Supported | `AGENTS.md` / `llms.txt` |
+This repository keeps installer scripts, rules files, plugin snapshots, and generic agent entrypoints. The front-page README no longer exposes a platform-name matrix, because browser translation can rewrite product names. See [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md) for the protected platform guide.
 
 ## Generation Rules
 
