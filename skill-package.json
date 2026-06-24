@@ -1,0 +1,27 @@
+{
+  "name": "amo-personal-ip-illustrations",
+  "version": "1.1.0",
+  "description": "Multi-platform personal IP hand-drawn illustration skill for Chinese content workflows.",
+  "entrypoints": {
+    "codex": "amo-personal-ip-illustrations/SKILL.md",
+    "hermes": "amo-personal-ip-illustrations/SKILL.md",
+    "claude_code": ".claude-plugin/plugin.json",
+    "generic_agents": "llms.txt"
+  },
+  "platforms": [
+    "codex",
+    "hermes",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "cline",
+    "opencode",
+    "generic-agents"
+  ],
+  "assets": [
+    "amo-personal-ip-illustrations/assets/examples/01-amo-character-anchor.png",
+    "amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png"
+  ],
+  "llm_entry": "llms.txt",
+  "license": "MIT"
+}

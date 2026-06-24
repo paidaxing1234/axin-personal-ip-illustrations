@@ -1,10 +1,14 @@
 # 阿墨个人 IP 配图流程
 
-> 把真实经验、判断、项目进展和内容方法论，变成一套可复用的个人 IP 手绘配图资产。
+> Codex / Hermes / Claude Code / Cursor / Windsurf / Cline / OpenCode 通用的个人 IP 手绘配图流程。
+
+[LLM 入口](llms.txt) · [多平台支持](docs/MULTI_PLATFORM.md) · [GEO 文档](docs/GEO.md) · [授权海星方向](docs/AUTHORIZED_STARFISH_CHARACTER.md)
 
 这不是通用头像包，也不是 PPT 模板。它是一套 Codex Skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张 16:9 白底手绘正文配图。
 
 默认视觉 IP 叫 **阿墨**：一个黑色印章工位形象，认真、冷静、有点荒诞，像在内容工厂里负责把经验压成资产的小操作员。
+
+仓库也预留了 **授权海星方向角色**：用户已说明自己拥有相关授权，因此这套流程支持一个更轻松、更外向、更适合公众号和多平台入口的海星形象分支。当前手绘脚本草稿已被移入 `assets/rejected/`，正式主视觉等待使用 `imagegen` CLI 重新生成后再入库。
 
 ## 示例资产
 
@@ -19,6 +23,10 @@
 正文配图样例使用默认 16:9 横版。
 
 ![个人 IP 内容工坊](amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png)
+
+### 授权海星方向
+
+海星方向正在重新设计。已否掉的草稿保存在 `amo-personal-ip-illustrations/assets/rejected/`，不会作为正式样例展示。
 
 ## 适合什么
 
@@ -37,13 +45,31 @@
 
 ## 快速使用
 
-把 skill 复制到 Codex skills 目录：
+安装到 Codex：
 
 ```powershell
 .\scripts\install-local-skill.ps1
 ```
 
-安装后在 Codex 里使用：
+安装到 Hermes：
+
+```powershell
+.\scripts\install-hermes-skill.ps1
+```
+
+同步 Claude Code 插件快照：
+
+```powershell
+.\scripts\sync-platform-packages.ps1
+```
+
+一键安装/同步本机可用平台：
+
+```powershell
+.\scripts\install-all-platforms.ps1
+```
+
+在 Codex 里使用：
 
 ```text
 Use $amo-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿墨个人 IP 正文配图。
@@ -59,6 +85,29 @@ Use $amo-personal-ip-illustrations 先不要生图。
 请分析这篇文章哪里值得配图，输出 5 张左右的 shot list。
 每张写清楚主题、核心意思、结构类型、阿墨在做什么、建议中文标注。
 ```
+
+## 多平台支持
+
+| 平台 | 状态 | 入口 |
+| --- | --- | --- |
+| Codex | 已支持 | `amo-personal-ip-illustrations/SKILL.md` |
+| Hermes | 已支持 | `scripts/install-hermes-skill.ps1` |
+| Claude Code | 已支持 | `CLAUDE.md` / `.claude-plugin/` |
+| Cursor | 已支持 | `.cursor/rules/amo-personal-ip-illustrations.mdc` |
+| Windsurf | 已支持 | `.windsurfrules` |
+| Cline | 已支持 | `.clinerules/amo-personal-ip-illustrations.md` |
+| OpenCode / 通用 agents | 已支持 | `AGENTS.md` / `llms.txt` |
+
+更多细节见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
+
+## GEO / LLM 可发现
+
+仓库提供：
+
+- `llms.txt`：给 LLM/agent 的短入口。
+- `llms-full.txt`：给长上下文 agent 的完整项目摘要。
+- `docs/index.html`：可用于 GitHub Pages 的文本落地页。
+- `docs/GEO.md`：GEO 策略、关键词和后续发布建议。
 
 ## 工作流
 
@@ -78,6 +127,14 @@ Use $amo-personal-ip-illustrations 先不要生图。
 ├── README.md
 ├── LICENSE
 ├── NOTICE.md
+├── AGENTS.md
+├── CLAUDE.md
+├── llms.txt
+├── llms-full.txt
+├── .claude-plugin/
+├── .cursor/
+├── .clinerules/
+├── docs/
 ├── amo-personal-ip-illustrations/
 │   ├── SKILL.md
 │   ├── agents/
@@ -86,6 +143,8 @@ Use $amo-personal-ip-illustrations 先不要生图。
 │   │   └── examples/
 │   └── references/
 │       ├── amo-ip.md
+│       ├── pai-star-ip.md
+│       ├── platform-adapters.md
 │       ├── style-dna.md
 │       ├── composition-patterns.md
 │       ├── prompt-template.md
@@ -93,8 +152,12 @@ Use $amo-personal-ip-illustrations 先不要生图。
 │       └── workflow.md
 ├── examples/
 │   └── prompts.md
+├── platforms/
 └── scripts/
     ├── install-local-skill.ps1
+    ├── install-hermes-skill.ps1
+    ├── install-all-platforms.ps1
+    ├── sync-platform-packages.ps1
     ├── new-illustration-brief.ps1
     └── validate-repo.ps1
 ```

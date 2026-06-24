@@ -1,0 +1,7 @@
+interface:
+  display_name: "阿墨个人 IP 配图"
+  short_description: "为中文个人品牌内容生成阿墨风格的怪诞清爽正文配图资产"
+  default_prompt: "Use $amo-personal-ip-illustrations 为这篇中文内容设计并生成几张阿墨个人 IP 正文配图。"
+policy:
+  allow_implicit_invocation: true
+

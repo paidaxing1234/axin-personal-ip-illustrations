@@ -1,0 +1,15 @@
+---
+description: Use the Amo personal IP illustration workflow in this repository
+globs:
+  - "**/*.md"
+alwaysApply: false
+---
+
+When working on this repository, treat `amo-personal-ip-illustrations/SKILL.md` as the source of truth.
+
+Generate or document illustrations as 16:9 Chinese article images with pure white background, minimalist hand-drawn black line art, sparse red/orange/blue handwritten notes, and a character performing the core action.
+
+Use 阿墨 by default. Use the authorized starfish direction only when the user explicitly requests it and has rights.
+
+For repository edits, run `scripts/validate-repo.ps1` before finalizing.
+

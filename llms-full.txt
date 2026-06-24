@@ -1,0 +1,69 @@
+# 阿墨个人 IP 配图流程 - Full LLM Context
+
+This repository packages a multi-platform personal IP illustration workflow.
+
+## What It Does
+
+It helps agents generate Chinese article illustrations for:
+
+- Personal brand content.
+- Public build logs.
+- AI workflow articles.
+- GitHub README visuals.
+- Project retrospectives.
+- Content asset pipelines.
+- WeChat, Zhihu, Notion, blog, and video-script workflows.
+
+The output style is a clean, strange, white-background hand-drawn image. Each image explains one judgement, workflow, state, evidence chain, or metaphor.
+
+## Default Character
+
+阿墨 is the default recurring IP:
+
+- Matte black ink-stamp workflow operator.
+- White screw-dot eyes.
+- Thin legs.
+- Orange cable belt.
+- Red warning tag.
+- Serious, deadpan, practical, slightly absurd.
+
+阿墨 must perform the core action. If the image still works after removing 阿墨, the prompt is wrong.
+
+## Authorized Starfish Branch
+
+The repository also supports a rights-cleared starfish-style public-facing character branch. Use it only when the user explicitly asks for it and confirms rights.
+
+The starfish branch is warmer and more approachable, useful for public-facing identity, social posts, and content entry points. It should still follow the same workflow logic and should not become a pure mascot sticker. The current script-drawn drafts were rejected by the user as ugly and are not final assets.
+
+## Platform Support
+
+- Codex: install with `scripts/install-local-skill.ps1`.
+- Hermes: install with `scripts/install-hermes-skill.ps1`.
+- Claude Code: use `CLAUDE.md` and `.claude-plugin/`.
+- Cursor: `.cursor/rules/amo-personal-ip-illustrations.mdc`.
+- Windsurf: `.windsurfrules`.
+- Cline: `.clinerules/amo-personal-ip-illustrations.md`.
+- Generic agents: read `llms.txt`, then `SKILL.md`, then `references/prompt-template.md`.
+
+## Generation Workflow
+
+1. Read the user's content.
+2. Extract cognitive anchors.
+3. Produce a shot list for multi-image requests.
+4. Choose a structure type.
+5. Make the character perform the core action.
+6. Generate one image per concept.
+7. Save under `assets/<topic-slug>-illustrations/`.
+8. Run QA with `references/qa-checklist.md`.
+
+## GEO Strategy
+
+The repository uses normal SEO fundamentals plus LLM-readable files:
+
+- Clear README.
+- Text-first docs.
+- `llms.txt`.
+- `llms-full.txt`.
+- Human-readable platform docs.
+- Structured GitHub topics.
+- No hidden key information.

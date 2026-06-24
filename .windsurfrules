@@ -1,0 +1,16 @@
+Use amo-personal-ip-illustrations/SKILL.md as the source of truth.
+
+This repo packages a multi-platform personal IP illustration workflow for Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, and generic agents.
+
+Default visual rules:
+- 16:9 Chinese article illustration.
+- Pure white background.
+- Minimal black hand-drawn line art.
+- Sparse red/orange/blue handwritten notes.
+- Large white space.
+- Character performs the core conceptual action.
+
+Use 阿墨 by default. Use the authorized starfish direction only when explicitly requested and rights are confirmed.
+
+Run scripts/validate-repo.ps1 before committing.
+

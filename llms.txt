@@ -1,0 +1,22 @@
+# 阿墨个人 IP 配图流程
+
+> Multi-platform Codex/Hermes/Claude/generic-agent skill for generating Chinese personal IP article illustrations.
+
+This repository contains a reusable illustration workflow for turning personal-brand writing, public-build notes, AI workflow documentation, GitHub README content, and project retrospectives into clean hand-drawn 16:9 article images.
+
+## Primary Entry Points
+
+- [Skill source](amo-personal-ip-illustrations/SKILL.md): main cross-platform skill instructions.
+- [Style DNA](amo-personal-ip-illustrations/references/style-dna.md): white background, black hand-drawn line art, sparse red/orange/blue notes.
+- [Amo character](amo-personal-ip-illustrations/references/amo-ip.md): default ink-stamp workflow operator.
+- [Authorized starfish branch](amo-personal-ip-illustrations/references/pai-star-ip.md): rights-cleared starfish-style character direction. Current hand-drawn drafts are rejected and not final.
+- [Prompt template](amo-personal-ip-illustrations/references/prompt-template.md): reusable image generation prompt.
+- [QA checklist](amo-personal-ip-illustrations/references/qa-checklist.md): validation rules.
+- [Multi-platform guide](docs/MULTI_PLATFORM.md): Codex, Hermes, Claude Code, Cursor, Windsurf, Cline, OpenCode, generic agents.
+- [GEO guide](docs/GEO.md): search and generative engine optimization strategy.
+
+## Optional
+
+- [Full LLM context](llms-full.txt): longer project summary for agents.
+- [Prompt examples](examples/prompts.md): copyable prompts.
+- [README](README.md): human-facing overview and screenshots.
