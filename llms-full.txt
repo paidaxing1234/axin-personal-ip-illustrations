@@ -33,7 +33,7 @@ The output style is a clean, strange, white-background hand-drawn image. Each im
 
 The repository also supports a rights-cleared starfish-style public-facing character branch. Use it only when the user explicitly asks for it and confirms rights.
 
-The starfish branch is warmer and more approachable, useful for public-facing identity, social posts, and content entry points. It should still follow the same workflow logic and should not become a pure mascot sticker. The current script-drawn drafts were rejected by the user as ugly and are not final assets.
+The starfish branch is warmer and more approachable, useful for public-facing identity, social posts, and content entry points. It should still follow the same workflow logic and should not become a pure mascot sticker. Early script-drawn drafts were rejected by the user as ugly; the formal hero image was generated with the imagegen CLI and saved as `amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png`.
 
 ## Platform Support
 

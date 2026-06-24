@@ -22,6 +22,7 @@ $required = @(
   "amo-personal-ip-illustrations/references/workflow.md",
   "amo-personal-ip-illustrations/assets/examples/01-amo-character-anchor.png",
   "amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png",
+  "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png",
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
   "docs/AUTHORIZED_STARFISH_CHARACTER.md",
@@ -86,11 +87,6 @@ if ($pluginSkill -notmatch "pai-star-ip.md") {
   throw "Claude plugin skill snapshot is stale. Run scripts/sync-platform-packages.ps1."
 }
 
-$formalStarfish = Join-Path $repoRoot "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png"
-if (Test-Path -LiteralPath $formalStarfish) {
-  throw "Rejected starfish draft must not live in formal examples. Move it to assets/rejected/ until a better image is generated."
-}
-
 $starfishPrompt = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "prompts/authorized-starfish-hero.md")
 if ($starfishPrompt -notmatch "Avoid the previous ugly hard-edged mechanical look") {
   throw "Authorized starfish prompt must explicitly avoid the rejected visual direction."
@@ -101,6 +97,22 @@ foreach ($image in $images) {
   if ($image.Length -lt 50000) {
     throw "Image looks too small or invalid: $($image.FullName)"
   }
+}
+
+Add-Type -AssemblyName System.Drawing
+$starfishImagePath = Join-Path $repoRoot "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png"
+$starfishImage = [System.Drawing.Image]::FromFile($starfishImagePath)
+try {
+  if ($starfishImage.Width -lt 1600 -or $starfishImage.Height -lt 900) {
+    throw "Authorized starfish image is too small: $($starfishImage.Width)x$($starfishImage.Height)"
+  }
+  $ratio = [Math]::Round($starfishImage.Width / $starfishImage.Height, 3)
+  if ([Math]::Abs($ratio - 1.778) -gt 0.01) {
+    throw "Authorized starfish image is not 16:9: $($starfishImage.Width)x$($starfishImage.Height)"
+  }
+}
+finally {
+  $starfishImage.Dispose()
 }
 
 Write-Host "Validation passed."

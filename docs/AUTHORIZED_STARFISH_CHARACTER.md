@@ -15,21 +15,21 @@
 - 使用阿墨作为默认角色。
 - 保留“热心、憨直、帮忙搬内容”的性格，但重新设计外形。
 
-## 当前状态
+## 正式样例
 
-当前脚本绘制的两版海星草稿都不够好看，已按用户反馈判定为不合格，并从正式 `assets/examples/` 移出。
+正式样图已使用 `imagegen` CLI 生成：
 
-被否掉的草稿保存在：
+- `amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png`
+
+被否掉的脚本草稿保存在：
 
 - `amo-personal-ip-illustrations/assets/rejected/03-authorized-starfish-operator-v2-rejected.png`
 
-正式样图需要使用 `imagegen` CLI 或内置图像生成工具重新生成后再入库。
-
-正式 prompt 已放在：
+正式 prompt：
 
 - `prompts/authorized-starfish-hero.md`
 
-确认使用 CLI 后执行：
+重新生成时执行：
 
 ```powershell
 .\scripts\generate-authorized-starfish-cli.ps1 -Run

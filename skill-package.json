@@ -20,7 +20,8 @@
   ],
   "assets": [
     "amo-personal-ip-illustrations/assets/examples/01-amo-character-anchor.png",
-    "amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png"
+    "amo-personal-ip-illustrations/assets/examples/02-personal-ip-factory.png",
+    "amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png"
   ],
   "llm_entry": "llms.txt",
   "license": "MIT"

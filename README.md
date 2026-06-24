@@ -8,7 +8,7 @@
 
 默认视觉 IP 叫 **阿墨**：一个黑色印章工位形象，认真、冷静、有点荒诞，像在内容工厂里负责把经验压成资产的小操作员。
 
-仓库也预留了 **授权海星方向角色**：用户已说明自己拥有相关授权，因此这套流程支持一个更轻松、更外向、更适合公众号和多平台入口的海星形象分支。当前手绘脚本草稿已被移入 `assets/rejected/`，正式主视觉等待使用 `imagegen` CLI 重新生成后再入库。
+仓库也支持 **授权海星方向角色**：用户已说明自己拥有相关授权，因此这套流程包含一个更轻松、更外向、更适合公众号和多平台入口的海星形象分支。早期手绘脚本草稿已被移入 `assets/rejected/`，正式主视觉由 `imagegen` CLI 生成。
 
 ## 示例资产
 
@@ -26,7 +26,9 @@
 
 ### 授权海星方向
 
-海星方向正在重新设计。已否掉的草稿保存在 `amo-personal-ip-illustrations/assets/rejected/`，不会作为正式样例展示。正式生成 prompt 见 `prompts/authorized-starfish-hero.md`。
+海星方向用于更外向的 public-facing 入口图。正式生成 prompt 见 `prompts/authorized-starfish-hero.md`。
+
+![授权海星方向角色](amo-personal-ip-illustrations/assets/examples/03-authorized-starfish-operator.png)
 
 ## 适合什么
 
