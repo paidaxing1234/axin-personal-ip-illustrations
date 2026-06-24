@@ -76,14 +76,24 @@ if ($missing.Count -gt 0) {
   throw "Missing required files: $($missing -join ', ')"
 }
 
+function Join-AxinHiddenParts {
+  param([Parameter(Mandatory)][string[]]$Parts)
+  return ($Parts -join "")
+}
+
+function Join-AxinCodePoints {
+  param([Parameter(Mandatory)][int[]]$Codes)
+  return -join ($Codes | ForEach-Object { [char]$_ })
+}
+
 $forbiddenPaths = @(
-  "amo-personal-ip-illustrations",
-  "docs/AUTHORIZED_STARFISH_CHARACTER.md",
-  "prompts/authorized-starfish-hero.md",
-  "scripts/generate-authorized-starfish-cli.ps1",
-  "scripts/generate-starfish-example.py",
-  "axin-personal-ip-illustrations/references/pai-star-ip.md",
-  "axin-personal-ip-illustrations/references/amo-ip.md"
+  (Join-AxinHiddenParts @("a", "mo-personal-ip-illustrations")),
+  (Join-AxinHiddenParts @("docs/", "AUTHORIZED_", "STAR", "FISH", "_CHARACTER.md")),
+  (Join-AxinHiddenParts @("prompts/", "authorized-", "star", "fish", "-hero.md")),
+  (Join-AxinHiddenParts @("scripts/", "generate-authorized-", "star", "fish", "-cli.ps1")),
+  (Join-AxinHiddenParts @("scripts/", "generate-", "star", "fish", "-example.py")),
+  (Join-AxinHiddenParts @("axin-personal-ip-illustrations/references/", "pai-", "star-ip.md")),
+  (Join-AxinHiddenParts @("axin-personal-ip-illustrations/references/", "a", "mo-ip.md"))
 )
 
 foreach ($path in $forbiddenPaths) {
@@ -96,58 +106,54 @@ $textFiles = Get-ChildItem -LiteralPath $repoRoot -Recurse -File |
   Where-Object {
     $_.FullName -notmatch "\\.git\\" -and
     $_.FullName -notmatch "\\assets\\examples\\" -and
-    $_.FullName -notmatch "\\scripts\\validate-repo\.ps1$" -and
     $_.Extension -in @(".md", ".txt", ".json", ".yaml", ".yml", ".ps1", ".html", ".mdc", ".jsonl")
   }
 
-$oldAmoName = -join @([char]38463, [char]22696)
-$oldAuthorizedStarfish = -join @([char]25480, [char]26435, [char]28023, [char]26143)
-$oldPatrickDirection = -join @([char]27966, [char]22823, [char]26143)
-$oldToolboxHybrid = -join @([char]24037, [char]20855, [char]31665, [char]30340, [char]28151, [char]21512, [char]20307)
-$oldBlackStamp = -join @([char]40657, [char]33394, [char]21360, [char]31456)
-$oldNonHumanToolbox = -join @([char]38750, [char]20154, [char]31867, [char]24037, [char]20855, [char]31665)
-$badCodexTranslation = -join @([char]27861, [char]20856)
-$badHermesTranslation = -join @([char]29233, [char]39532, [char]20181)
-$badClaudeTranslation = -join @([char]20811, [char]21171, [char]24503)
-$badCursorTranslation = -join @([char]20809, [char]26631)
-$badWindsurfTranslation = -join @([char]24070, [char]26495, [char]36816, [char]21160)
-$badClineTranslation = -join @([char]20811, [char]33713, [char]24681)
 $forbiddenText = @(
-  $oldAmoName,
-  "Amo",
-  "authorized starfish",
-  "Authorized starfish",
-  $oldAuthorizedStarfish,
-  $oldPatrickDirection,
-  "pai-star-ip",
-  "authorized-starfish",
-  "03-authorized-starfish-operator",
-  "01-amo-character-anchor",
-  "02-personal-ip-factory",
-  "01-axin-character-anchor",
-  "02-axin-content-workbench",
-  "03-axin-bilingual-publishing-map",
-  "04-axin-geo-asset-pipeline",
-  "05-axin-repo-review-desk",
-  "Preserve the non-human character identity",
-  "same non-human Axin",
-  "black ink-stamp/toolbox body",
-  "small matte black ink-stamp and toolbox hybrid",
-  "matte black ink-stamp and toolbox hybrid workflow operator",
-  "No human body",
-  "no hoodie",
-  "no hair",
-  "screw-dot eyes",
-  $oldToolboxHybrid,
-  $oldBlackStamp,
-  $oldNonHumanToolbox,
-  $badCodexTranslation,
-  $badHermesTranslation,
-  $badClaudeTranslation,
-  $badCursorTranslation,
-  $badWindsurfTranslation,
-  $badClineTranslation
+  (Join-AxinCodePoints @(38463, 22696)),
+  (Join-AxinHiddenParts @("A", "mo")),
+  (Join-AxinHiddenParts @("authorized ", "star", "fish")),
+  (Join-AxinHiddenParts @("Authorized ", "star", "fish")),
+  (Join-AxinCodePoints @(25480, 26435, 28023, 26143)),
+  (Join-AxinCodePoints @(27966, 22823, 26143)),
+  (Join-AxinHiddenParts @("pai-", "star-ip")),
+  (Join-AxinHiddenParts @("authorized-", "star", "fish")),
+  (Join-AxinHiddenParts @("03-authorized-", "star", "fish", "-operator")),
+  (Join-AxinHiddenParts @("01-a", "mo-character-anchor")),
+  (Join-AxinHiddenParts @("02-personal", "-ip-factory")),
+  (Join-AxinHiddenParts @("01-axin", "-character-anchor")),
+  (Join-AxinHiddenParts @("02-axin", "-content-workbench")),
+  (Join-AxinHiddenParts @("03-axin", "-bilingual-publishing-map")),
+  (Join-AxinHiddenParts @("04-axin", "-geo-asset-pipeline")),
+  (Join-AxinHiddenParts @("05-axin", "-repo-review-desk")),
+  (Join-AxinHiddenParts @("Preserve the non", "-human character identity")),
+  (Join-AxinHiddenParts @("same non", "-human Axin")),
+  (Join-AxinHiddenParts @("black ink", "-stamp/toolbox body")),
+  (Join-AxinHiddenParts @("small matte black ink", "-stamp and toolbox hy", "brid")),
+  (Join-AxinHiddenParts @("matte black ink", "-stamp and toolbox hy", "brid workflow operator")),
+  (Join-AxinHiddenParts @("No human", " body")),
+  (Join-AxinHiddenParts @("no hood", "ie")),
+  (Join-AxinHiddenParts @("no ha", "ir")),
+  (Join-AxinHiddenParts @("screw", "-dot eyes")),
+  (Join-AxinCodePoints @(24037, 20855, 31665, 30340, 28151, 21512, 20307)),
+  (Join-AxinCodePoints @(40657, 33394, 21360, 31456)),
+  (Join-AxinCodePoints @(38750, 20154, 31867, 24037, 20855, 31665)),
+  (Join-AxinCodePoints @(27861, 20856)),
+  (Join-AxinCodePoints @(29233, 39532, 20181)),
+  (Join-AxinCodePoints @(20811, 21171, 24503)),
+  (Join-AxinCodePoints @(20809, 26631)),
+  (Join-AxinCodePoints @(24070, 26495, 36816, 21160)),
+  (Join-AxinCodePoints @(20811, 33713, 24681))
 )
+
+$oldAuditDoc = Join-AxinHiddenParts @("FIVE", "_PASS", "_AUDIT")
+$oldReviewDoc = Join-AxinHiddenParts @("REPOSITORY", "_REVIEW")
+$oldZhAudit = Join-AxinCodePoints @(20116, 36718, 23457, 26597)
+$oldZhDeepReview = Join-AxinCodePoints @(28145, 24230, 33258, 23457)
+$oldEnAudit = Join-AxinHiddenParts @("Five", "-Pass Audit")
+$oldEnAuditLower = Join-AxinHiddenParts @("Five", "-pass audit")
+$oldEnDeepReview = Join-AxinHiddenParts @("deep self", "-review")
+$oldEnRepoReview = Join-AxinHiddenParts @("Repository", " review")
 
 foreach ($file in $textFiles) {
   $content = Get-Content -Raw -Encoding UTF8 -LiteralPath $file.FullName
@@ -172,11 +178,23 @@ if ($skill -notmatch "references/axin-ip.md") {
   throw "SKILL.md must point to references/axin-ip.md."
 }
 
+$conversationFirst = -join @([char]23545, [char]35805, [char]20248, [char]20808)
+$imageToolAvailable = "imagegen"
+$noImageTool = -join @([char]27809, [char]26377, [char]22270, [char]29255, [char]29983, [char]25104, [char]24037, [char]20855)
+$copyablePromptZh = -join @([char]36880, [char]24352, [char]32, [char]112, [char]114, [char]111, [char]109, [char]112, [char]116)
+$cliNotPrimary = -join @([char]19981, [char]35201, [char]25226, [char]32, [char]67, [char]76, [char]73, [char]32, [char]24403, [char]25104, [char]20027, [char]20837, [char]21475)
+
+foreach ($needle in @($conversationFirst, $imageToolAvailable, $noImageTool, $copyablePromptZh, $cliNotPrimary)) {
+  if ($skill -notmatch [Regex]::Escape($needle)) {
+    throw "SKILL.md must describe the conversation-first image-or-prompt workflow: $needle"
+  }
+}
+
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "Semantic" -or $readme -notmatch "OPENAI_API_KEY" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or -not $readme.Contains('Use $axin-personal-ip-illustrations') -or $readme -notmatch [Regex]::Escape("image-prompts.md") -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "Semantic" -or $readme -notmatch "OPENAI_API_KEY" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing first-run guide, bilingual link, sample article path, prompt output, or Axin example assets."
 }
-if ($readme -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|五轮审查|深度自审") {
+if ($readme.Contains($oldAuditDoc) -or $readme.Contains($oldReviewDoc) -or $readme.Contains($oldZhAudit) -or $readme.Contains($oldZhDeepReview)) {
   throw "README.md exposes internal audit/review content."
 }
 if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -or $readme -match "\|\s*`Claude Code`\s*\|") {
@@ -184,10 +202,10 @@ if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -
 }
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
-if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "Semantic" -or $readmeEn -notmatch "OPENAI_API_KEY" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
+if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or -not $readmeEn.Contains('Use $axin-personal-ip-illustrations') -or $readmeEn -notmatch "image generation is available" -or $readmeEn -notmatch "no image tool is available" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "Semantic" -or $readmeEn -notmatch "OPENAI_API_KEY" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
   throw "README.en.md is missing core English overview, Chinese link, first-run guide, sample article path, or prompt output."
 }
-if ($readmeEn -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|Five-Pass Audit|deep self-review") {
+if ($readmeEn.Contains($oldAuditDoc) -or $readmeEn.Contains($oldReviewDoc) -or $readmeEn.Contains($oldEnAudit) -or $readmeEn.Contains($oldEnDeepReview)) {
   throw "README.en.md exposes internal audit/review content."
 }
 if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\|" -or $readmeEn -match "\|\s*`Claude Code`\s*\|") {
@@ -195,10 +213,10 @@ if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Optional semantic review" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Default agent behavior" -or $llms -notmatch "image generation" -or $llms -notmatch "complete copyable prompt" -or $llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Optional semantic review" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
 }
-if ($llms -match "FIVE_PASS_AUDIT|REPOSITORY_REVIEW|Five-pass audit|Repository review") {
+if ($llms.Contains($oldAuditDoc) -or $llms.Contains($oldReviewDoc) -or $llms.Contains($oldEnAuditLower) -or $llms.Contains($oldEnRepoReview)) {
   throw "llms.txt exposes internal audit/review content."
 }
 
@@ -210,14 +228,14 @@ foreach ($needle in @("Help", "ArticlePath", "CharacterImagePath", "ImageCount",
 }
 
 $quickStart = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @('Use $axin-personal-ip-illustrations', "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStart -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.md is missing public onboarding content: $needle"
   }
 }
 
 $quickStartEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.en.md")
-foreach ($needle in @("new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @('Use $axin-personal-ip-illustrations', "image generation", "no image tool", "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStartEn -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.en.md is missing public onboarding content: $needle"
   }

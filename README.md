@@ -1,16 +1,46 @@
 # 阿鑫个人 IP 配图流程
 
-> 输入一篇文章，先诊断它是否值得资产化，再输出配图策略、图片提示词和双语分发计划。
+> 在 agent 对话里贴一篇文章：有生图能力就直接生成配图，没有生图能力就输出可复制的逐张提示词。
 
 [中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
-这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先诊断一篇文章有没有清楚判断、证据、流程、读者和风险，再生成可复制到生图工具的 `image-prompts.md`。
+这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：你在对话里引用 skill 并贴文章，agent 先判断文章适合配几张图；如果当前环境有图片生成工具，就逐张生图；如果没有，就输出可复制到生图工具的完整 prompts。
 
 默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。你也可以传入自己的 IP 形象图，让自己的角色参与画面的核心动作。
 
-## 3 分钟跑通
+## 对话里怎么用
 
-不需要先安装 skill。克隆仓库后，在仓库根目录执行：
+在支持 skills 的 agent 里直接这样说：
+
+```text
+Use $axin-personal-ip-illustrations
+下面是我的文章。请先判断适合配几张图。
+如果你有生图能力，就直接生成；如果没有，就给我逐张完整 prompt。
+
+<粘贴文章>
+```
+
+如果你有自己的 IP 形象图，把图片一起传给 agent，再说：
+
+```text
+Use $axin-personal-ip-illustrations
+用我传入的 IP 形象做角色参考，不要默认用阿鑫。
+请分析下面文章，配 4 张正文图；有生图能力就生成，没有就输出 prompts。
+
+<粘贴文章>
+```
+
+默认输出应该是：
+
+- 建议配图数量。
+- 每张图放在文章哪个位置。
+- 每张图表达什么判断、流程、证据或坑。
+- 有生图能力时直接给图片文件。
+- 没有生图能力时给逐张可复制 prompt。
+
+## 可选：CLI 跑通
+
+CLI 适合批量生产、保存内容包和接自动化流水线。克隆仓库后，在仓库根目录执行：
 
 ```powershell
 .\scripts\new-content-package.ps1 `

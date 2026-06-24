@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google" content="notranslate">
   <title>阿鑫个人 IP 配图流程 - Article To Illustration Prompts</title>
-  <meta name="description" content="输入一篇文章和可选个人 IP 形象图，先生成 content-diagnosis.md 诊断，可选 LLM 语义审稿，再生成配图 shot list、image-prompts.md、JSONL 生图任务和双语分发计划。">
+  <meta name="description" content="在 agent 对话里贴一篇文章：有生图能力就直接生成阿鑫个人 IP 配图，没有生图能力就输出逐张提示词；CLI 可选生成内容包。">
   <meta property="og:title" content="阿鑫个人 IP 配图流程">
   <meta property="og:description" content="Article-to-illustration workflow: turn one post into reviewable image prompts, shot lists, and bilingual distribution assets.">
   <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
     "@type": "SoftwareSourceCode",
     "name": "Axin Personal IP Illustrations",
     "alternateName": "阿鑫个人 IP 配图流程",
-    "description": "Article-to-illustration workflow with content diagnosis, optional semantic review, prompt generation, and bilingual distribution assets.",
+    "description": "Conversation-first article-to-illustration workflow. Generate images when an image tool is available, or return copyable prompts when it is not.",
     "programmingLanguage": "Markdown, PowerShell, Python",
     "codeRepository": "https://github.com/paidaxing1234/axin-personal-ip-illustrations",
     "license": "https://opensource.org/license/mit"
@@ -38,7 +38,7 @@
 <body>
   <main>
     <h1>阿鑫个人 IP 配图流程</h1>
-    <p class="lead">输入一篇文章和可选个人 IP 形象图，先输出 <code>content-diagnosis.md</code> 诊断文章是否值得资产化，可选打开 LLM 语义审稿，再输出配图 shot list、<code>image-prompts.md</code>、JSONL 生图任务和双语分发计划。</p>
+    <p class="lead">在 agent 对话里贴一篇文章和可选个人 IP 形象图：有生图能力就直接生成正文配图，没有生图能力就输出逐张完整 prompt。CLI 只作为批量生成内容包的可选路径。</p>
 
     <p class="links">
       <a href="../README.md">中文 README</a>
@@ -51,8 +51,16 @@
       <a href="CHARACTER_LIBRARY.md">角色资产库</a>
     </p>
 
-    <h2>3 分钟跑通</h2>
-    <p>第一次使用不需要先安装 skill。克隆仓库后，在根目录执行：</p>
+    <h2>对话里使用</h2>
+    <p>第一次使用不需要先跑脚本。引用 skill，粘贴文章，让 agent 先判断适合配几张图：</p>
+    <pre><code>Use $axin-personal-ip-illustrations
+下面是我的文章。请先判断适合配几张图。
+如果你有生图能力，就直接生成；如果没有，就给我逐张完整 prompt。
+
+&lt;粘贴文章&gt;</code></pre>
+
+    <h2>可选 CLI</h2>
+    <p>需要保存内容包或接入批处理时，在仓库根目录执行：</p>
     <pre><code>.\scripts\new-content-package.ps1 `
   -ArticlePath .\examples\sample-article.md `
   -Slug sample-article `

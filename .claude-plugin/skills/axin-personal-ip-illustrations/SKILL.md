@@ -36,6 +36,20 @@ metadata:
 
 ## 工作流
 
+### 0. 对话优先原则
+
+这个 skill 的默认使用方式是在对话里完成，而不是要求用户先保存文章、运行脚本或理解仓库结构。
+
+当用户在对话中引用本 skill，并粘贴文章、主题、草稿、README、复盘或截图说明时：
+
+1. 先阅读内容，判断是否值得配图，以及适合配几张。
+2. 先给出简短的配图策略和 shot list。
+3. 如果当前 agent 环境提供图片生成工具，例如 `imagegen`、内置生图能力或其他可调用的图像生成工具，就直接逐张生成图片。
+4. 如果当前 agent 环境没有图片生成工具，就输出可复制到生图工具里的逐张 prompt。
+5. 如果用户传入自己的 IP 形象图，把它作为角色参考；没有传图时才默认使用阿鑫。
+
+不要把 CLI 当成主入口。CLI 是给批量生产、仓库自动化和可复现内容包使用的辅助路径。
+
 ### 1. 消化内容
 
 先读用户给的文章、项目复盘、README、Notion、截图或主题。提炼：
@@ -49,7 +63,7 @@ metadata:
 
 不要平均配图。优先选择“认知锚点”：核心判断、输入输出闭环、前后对比、常见坑、资产沉淀、发布承接、复利飞轮、证据质检。
 
-### 2. 先出 shot list 或内容包
+### 2. 先出 shot list，再决定生成或输出 prompt
 
 如果用户只是要求“分析怎么配图 / 做配图策略 / 规划”，先给 shot list。每张图写清楚：
 
@@ -63,17 +77,11 @@ metadata:
 
 默认 4-8 张。短文 1-3 张，长文也不要轻易超过 9 张。
 
-如果用户在本仓库内工作，并要求“输入文章 / 自动分析文章 / 生成提示词 / 传入自己的 IP 形象”，优先使用：
+如果用户明确说“先不要生图 / 只要提示词 / 没有生图工具 / 给我 prompt”，停在 shot list 和 prompts，不要假装已经生成图片。
 
-```powershell
-.\scripts\new-content-package.ps1 -ArticlePath <article.md> -CharacterImagePath <ip.png> -CharacterName "<IP名>" -ImageCount 4
-```
+### 3. 有生图能力时直接生成
 
-它会生成 `analysis.md`、`illustration-shot-list.md`、`image-prompts.md`、`image-prompts.jsonl`、`distribution-plan.md` 和 `publish-checklist.md`。
-
-### 3. 单张生成
-
-如果用户明确要求“生成 / 输出 / 做图 / 帮我生成”，不要停下来等确认；使用 `imagegen` 每张单独生成，不要把多张图拼在一张里。
+如果用户明确要求“生成 / 输出 / 做图 / 帮我生成”，且当前环境提供图片生成工具，不要停下来等确认；使用可用的生图工具每张单独生成，不要把多张图拼在一张里。
 
 每张图只讲一个核心结构。提示词必须包含：
 
@@ -85,7 +93,31 @@ metadata:
 - 阿鑫作为核心动作主体，保持黑发、眼镜、hoodie、真人手绘外形。
 - 禁止 PPT、商业插画、幼稚可爱、复杂架构、左上角类型标题。
 
-### 4. 中英文切换
+生成后把图片保存到工作区合适目录，并告诉用户每张图的用途和路径。
+
+### 4. 没有生图能力时输出提示词
+
+如果当前 agent 环境没有图片生成工具，或者用户明确只要 prompt，输出：
+
+- 建议配图数量。
+- 每张图放在文章的哪个位置。
+- 每张图的核心意思。
+- 每张图的完整生图 prompt。
+- 使用自定义 IP 形象时，提醒用户把角色图作为 reference image 一起传入生图工具。
+
+不要只输出抽象建议。每张图都必须给到可复制的完整 prompt。
+
+### 5. CLI 自动化路径
+
+只有当用户在仓库内工作，并明确要求“生成内容包 / 自动化流水线 / 保存到文件 / 批量生成提示词 / 传入自己的 IP 形象并落盘”时，才优先使用：
+
+```powershell
+.\scripts\new-content-package.ps1 -ArticlePath <article.md> -CharacterImagePath <ip.png> -CharacterName "<IP名>" -ImageCount 4
+```
+
+它会生成 `analysis.md`、`illustration-shot-list.md`、`image-prompts.md`、`image-prompts.jsonl`、`distribution-plan.md` 和 `publish-checklist.md`。
+
+### 6. 中英文切换
 
 默认按用户输入语言输出。如果用户要求英文、GitHub 国际化或双语发布：
 
@@ -95,7 +127,7 @@ metadata:
 - 角色名中文使用“阿鑫”，英文使用“Axin”。
 - 中文分发面向公众号、知乎、即刻、小红书；英文分发面向 GitHub、README、Hacker News、X、Medium。价值不是翻译，而是同一份经验被两个语境分别消费。
 
-### 5. 检查与迭代
+### 7. 检查与迭代
 
 生成后检查 `references/qa-checklist.md`。如果出现这些问题，优先重生成或局部编辑：
 
@@ -108,7 +140,7 @@ metadata:
 - 背景不是干净白底。
 - 新图和旧示例构图重复。
 
-### 6. 保存交付
+### 8. 保存交付
 
 如果用户在 workspace 内工作，把最终图复制到：
 

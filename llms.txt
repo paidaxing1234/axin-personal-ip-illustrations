@@ -4,10 +4,18 @@
 
 This repository contains a reusable illustration workflow for turning personal-brand writing, public-build notes, AI workflow documentation, GitHub README content, and project retrospectives into clean hand-drawn article images.
 
+Default agent behavior:
+
+1. When a user references this skill and pastes an article, read the article first and decide how many images are useful.
+2. If the current agent environment has image generation, generate one image per selected scene.
+3. If no image generation tool is available, return one complete copyable prompt per selected scene.
+4. If the user attaches a custom IP character image, use it as the character reference instead of default Axin.
+5. Use the CLI only when the user asks for saved files, batch prompts, or an article package.
+
 ## Primary Entry Points
 
-- [Quick start](docs/QUICK_START.md): first-run guide for open-source users; run the sample article before installing anything.
-- [English quick start](docs/QUICK_START.en.md): English first-run guide for GitHub users.
+- [Quick start](docs/QUICK_START.md): first-run guide for conversational use first, then optional CLI.
+- [English quick start](docs/QUICK_START.en.md): English first-run guide for conversational use first, then optional CLI.
 - [Sample article](examples/sample-article.md): ready-to-run article for testing the article-to-prompt pipeline.
 - [Article diagnosis CLI](scripts/analyze-article.ps1): score whether an article is ready for IP asset generation before creating prompts.
 - [Optional semantic review](scripts/lib/SemanticReview.ps1): OpenAI Responses API review for stricter article judgement; enable with `-Semantic`.

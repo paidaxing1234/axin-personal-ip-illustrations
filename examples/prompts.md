@@ -1,6 +1,35 @@
 ﻿# Prompt Examples
 
-下面这些 prompt 可以直接复制到 agent 里使用。第一次使用建议先跑脚本示例，不要一上来就安装 skill。
+下面这些 prompt 可以直接复制到 agent 里使用。推荐先用对话模式：贴文章、让 agent 判断配几张图；有生图能力就直接生成，没有就输出逐张 prompt。
+
+## 对话：文章转配图
+
+```text
+Use $axin-personal-ip-illustrations
+下面是我的文章。请先判断适合配几张图。
+如果你有生图能力，就直接生成；如果没有，就给我逐张完整 prompt。
+
+<粘贴文章>
+```
+
+## 对话：传入自己的 IP 形象
+
+```text
+Use $axin-personal-ip-illustrations
+用我传入的 IP 形象做角色参考，不要默认用阿鑫。
+请分析下面文章，配 4 张正文图；有生图能力就生成，没有就输出 prompts。
+
+<粘贴文章>
+```
+
+## 对话：只要提示词，不生图
+
+```text
+Use $axin-personal-ip-illustrations
+先不要生图。请分析下面这篇文章，判断适合配几张图，并输出每张图的完整生图 prompt。
+
+<粘贴文章>
+```
 
 ## CLI：三分钟跑通
 
@@ -10,13 +39,6 @@
   -Slug sample-article `
   -ImageCount 4 `
   -LanguageMode zh
-```
-
-生成后打开：
-
-```text
-content-packages/sample-article/content-diagnosis.md
-content-packages/sample-article/image-prompts.md
 ```
 
 完整说明见 `docs/QUICK_START.md`。

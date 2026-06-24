@@ -17,9 +17,22 @@ It helps open-source users and agents turn one article into reviewable illustrat
 
 The output style is a clean, strange, white-background hand-drawn image. Each image explains one judgement, workflow, state, evidence chain, or metaphor.
 
+## Default Conversation Flow
+
+The default use case is not CLI-first. When a user references `$axin-personal-ip-illustrations` in an agent conversation and pastes an article:
+
+1. Read the article.
+2. Decide how many images are actually useful.
+3. Build a short shot list.
+4. If the agent has image generation, generate images directly, one scene per image.
+5. If the agent does not have image generation, return complete prompts for each image.
+6. If the user attaches a custom IP character image, use that image as the character reference instead of default Axin.
+
+Do not force the user to run scripts unless they ask for saved files, batch prompt jobs, or a content package.
+
 ## First-Run Path
 
-Do not require a new user to install the skill before trying the workflow. Start with:
+For saved files and automation, use the CLI:
 
 ```powershell
 .\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -Slug sample-article -ImageCount 4 -LanguageMode zh

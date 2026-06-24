@@ -1,16 +1,48 @@
 # Axin Personal IP Illustration Workflow
 
-> Feed in an article. Diagnose whether it is worth turning into assets, then get illustration prompts and bilingual distribution notes.
+> Paste an article into an agent conversation. If image generation is available, generate the images. If not, return copyable prompts.
 
 [中文](README.md) · [English](README.en.md) · [Quick Start](docs/QUICK_START.en.md) · [LLM entry](llms.txt) · [Content OS](docs/AXIN_CONTENT_OS.md) · [Character library](docs/CHARACTER_LIBRARY.md) · [Cases](cases/README.md)
 
-This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: diagnose judgement, evidence, workflow, audience, risk, and visual readiness before producing a copyable `image-prompts.md` file.
+This is not an avatar pack or a slide template. It is an article-to-illustration workflow for open-source builders and content creators: reference the skill in a conversation, paste an article, let the agent decide how many images are useful, then either generate images directly or return copyable prompts when no image tool is available.
 
 The default recurring IP is **Axin / 阿鑫**: a hand-drawn human content operator with black hair, round glasses, and a hoodie. You can also pass your own IP character reference image and use this workflow with your own visual identity.
 
-## 3-Minute Trial
+## Use It In A Conversation
 
-You do not need to install the skill first. From the repository root, run:
+In any agent that supports skills, start with:
+
+```text
+Use $axin-personal-ip-illustrations
+Here is my article. First decide how many illustrations it deserves.
+If you have image generation, generate the images directly.
+If not, return complete prompts for each image.
+
+<paste article>
+```
+
+If you have your own IP character image, attach it and say:
+
+```text
+Use $axin-personal-ip-illustrations
+Use my attached IP character as the reference instead of default Axin.
+Analyze the article and create 4 article illustrations.
+If image generation is available, generate them. Otherwise return prompts.
+
+<paste article>
+```
+
+Expected output:
+
+- Recommended image count.
+- Where each image belongs in the article.
+- What each image expresses.
+- Generated image files when an image tool is available.
+- Copyable prompts when no image tool is available.
+
+## Optional CLI Trial
+
+The CLI is for batch production, saved content packages, and automation. From the repository root, run:
 
 ```powershell
 .\scripts\new-content-package.ps1 `

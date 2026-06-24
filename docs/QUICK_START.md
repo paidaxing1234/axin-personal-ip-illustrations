@@ -1,10 +1,18 @@
 # Quick Start
 
-这份文档面向第一次打开仓库的开源用户。你不需要先安装 agent skill，也不需要先准备自己的 IP 形象；先用示例文章跑通一次，再替换成自己的文章。
+这份文档面向第一次打开仓库的开源用户。最推荐的用法是在 agent 对话里引用 skill 并粘贴文章；如果当前 agent 有生图能力，就直接生成图片；如果没有，就输出可复制的逐张提示词。CLI 只是可选的批量和落盘路径。
 
 ## 你会得到什么
 
-输入一篇 Markdown 或 TXT 文章，脚本会生成一个内容包：
+在对话里输入文章后，你会得到：
+
+- 文章适合配几张图。
+- 每张图放在哪个段落附近。
+- 每张图要表达的判断、流程、证据或坑。
+- 有生图能力时直接得到图片。
+- 没有生图能力时得到逐张完整 prompt。
+
+如果你使用 CLI，脚本会生成一个内容包：
 
 ```text
 content-packages/<slug>/
@@ -20,11 +28,33 @@ content-packages/<slug>/
 └── images/
 ```
 
-这个仓库的核心不是直接替你发布内容，而是先判断文章是否值得资产化，再把文章分析成可审核、可复制、可批量生成图片的 prompt 包。
+这个仓库的核心不是直接替你发布内容，而是先判断文章是否值得资产化，再把文章分析成可审核、可生成、可复用的配图方案。
 
-## 1. 跑通示例
+## 1. 在对话里使用
 
-在仓库根目录执行：
+在支持 skills 的 agent 里输入：
+
+```text
+Use $axin-personal-ip-illustrations
+下面是我的文章。请先判断适合配几张图。
+如果你有生图能力，就直接生成；如果没有，就给我逐张完整 prompt。
+
+<粘贴文章>
+```
+
+如果你有自己的 IP 形象图，把图片和文章一起发给 agent：
+
+```text
+Use $axin-personal-ip-illustrations
+用我传入的 IP 形象做角色参考，不要默认用阿鑫。
+请分析下面文章，配 4 张正文图；有生图能力就生成，没有就输出 prompts。
+
+<粘贴文章>
+```
+
+## 2. 可选：CLI 跑通示例
+
+如果你想保存完整内容包，或把流程接进批处理，在仓库根目录执行：
 
 ```powershell
 .\scripts\new-content-package.ps1 `
@@ -62,7 +92,7 @@ $env:OPENAI_API_KEY = "<your key>"
   -Semantic
 ```
 
-## 2. 换成自己的文章
+## 3. CLI 换成自己的文章
 
 把你的文章保存成 Markdown 或 TXT，然后执行：
 
@@ -85,7 +115,7 @@ $env:OPENAI_API_KEY = "<your key>"
   -Semantic
 ```
 
-## 3. 传入自己的 IP 形象
+## 4. CLI 传入自己的 IP 形象
 
 如果你已经有个人 IP 角色图、头像、设定图或参考图，把它作为角色锚点传入：
 
@@ -100,7 +130,7 @@ $env:OPENAI_API_KEY = "<your key>"
 
 脚本会把角色参考图复制到内容包的 `character-reference/` 目录，并在每条图片 prompt 里要求保留这个 IP 的身份、发型、脸型、衣服、气质和线稿风格。
 
-## 4. 读输出文件
+## 5. 读 CLI 输出文件
 
 - `content-diagnosis.md`：文章资产化诊断，包含分数、结论、缺口、改写建议和推荐配图数量；使用 `-Semantic` 时会追加 LLM 语义审稿。
 - `analysis.md`：文章标题、段落、语言判断、认知锚点。
@@ -110,9 +140,9 @@ $env:OPENAI_API_KEY = "<your key>"
 - `distribution-plan.md`：中文和英文渠道如何消费同一个项目经验。
 - `publish-checklist.md`：发布前检查，避免把计划、mock 或占位写成完成。
 
-## 5. 生成图片
+## 6. 生成图片
 
-这个仓库先生成可审核的配图 prompt。你可以把 `image-prompts.md` 里的每条 prompt 复制到自己的生图工具里，也可以让支持图片生成的 agent 读取 `image-prompts.jsonl` 后逐张生成。
+对话模式下，如果 agent 有生图工具，它应该直接逐张生成。CLI 模式下，这个仓库会先生成可审核的配图 prompt；你可以把 `image-prompts.md` 里的每条 prompt 复制到自己的生图工具里，也可以让支持图片生成的 agent 读取 `image-prompts.jsonl` 后逐张生成。
 
 建议每次只生成一张图并检查：
 
@@ -143,11 +173,11 @@ Get-ChildItem -Recurse -File | Unblock-File
 
 ### 我必须使用阿鑫吗？
 
-不必须。默认角色是阿鑫 / Axin，方便你直接跑通流程。传入 `-CharacterImagePath` 和 `-CharacterName` 后，脚本会把你的 IP 形象作为角色锚点。
+不必须。默认角色是阿鑫 / Axin，方便你直接跑通流程。对话模式下，把你的 IP 形象图直接传给 agent，并说明“用这张图作为角色参考”。CLI 模式下，传入 `-CharacterImagePath` 和 `-CharacterName` 后，脚本会把你的 IP 形象作为角色锚点。
 
 ### 这个工具会直接生成 PNG 吗？
 
-不会。`new-content-package.ps1` 负责文章诊断、文章分析和 prompt 包生成。图片生成留给你自己的生图工具或 agent，这样你可以先审查诊断、shot list 和 prompt，再花生成成本。
+看你在哪里用。对话模式下，如果当前 agent 有生图工具，就应该直接生成 PNG；如果没有，就输出 prompts。CLI 脚本本身不直接生成 PNG，`new-content-package.ps1` 负责文章诊断、文章分析和 prompt 包生成。
 
 ### 中文和英文是不是互相翻译？
 

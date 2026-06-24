@@ -1,10 +1,18 @@
 # Quick Start
 
-This guide is for open-source users who are opening the repository for the first time. You do not need to install the agent skill first, and you do not need your own IP character image yet. Run the sample article once, then replace it with your own article.
+This guide is for open-source users who are opening the repository for the first time. The recommended path is conversational: reference the skill in an agent chat and paste your article. If the agent has image generation, it should generate the images. If not, it should return complete prompts. The CLI is an optional batch and file-output path.
 
 ## What You Get
 
-The script reads a Markdown or TXT article and creates a content package:
+In conversation mode, you get:
+
+- Recommended image count.
+- Where each image belongs in the article.
+- What each image expresses.
+- Generated images when an image tool is available.
+- Complete prompts when no image tool is available.
+
+In CLI mode, the script reads a Markdown or TXT article and creates a content package:
 
 ```text
 content-packages/<slug>/
@@ -20,11 +28,35 @@ content-packages/<slug>/
 └── images/
 ```
 
-The repository does not try to hide everything behind a magic button. It diagnoses whether the article is ready to become assets, then produces reviewable prompts, shot lists, and publishing notes before you spend image generation credits.
+The repository does not try to hide everything behind a magic button. It diagnoses whether the article is ready to become assets, then produces reviewable, generatable, reusable illustration plans.
 
-## 1. Run The Sample
+## 1. Use It In Conversation
 
-From the repository root:
+In an agent that supports skills, type:
+
+```text
+Use $axin-personal-ip-illustrations
+Here is my article. First decide how many illustrations it deserves.
+If you have image generation, generate the images directly.
+If not, return complete prompts for each image.
+
+<paste article>
+```
+
+If you have your own IP character image, attach it with the article:
+
+```text
+Use $axin-personal-ip-illustrations
+Use my attached IP character as the reference instead of default Axin.
+Analyze the article and create 4 article illustrations.
+If image generation is available, generate them. Otherwise return prompts.
+
+<paste article>
+```
+
+## 2. Optional CLI Sample
+
+If you want a saved content package or batch workflow, run this from the repository root:
 
 ```powershell
 .\scripts\new-content-package.ps1 `
@@ -62,7 +94,7 @@ $env:OPENAI_API_KEY = "<your key>"
   -Semantic
 ```
 
-## 2. Use Your Own Article
+## 3. Use Your Own Article With CLI
 
 Save your article as Markdown or TXT, then run:
 
@@ -85,7 +117,7 @@ If you want `content-diagnosis.md` to include the LLM semantic review, add `-Sem
   -Semantic
 ```
 
-## 3. Use Your Own IP Character
+## 4. Use Your Own IP Character With CLI
 
 If you already have a personal IP character image, avatar, concept image, or visual reference, pass it as the character anchor:
 
@@ -100,7 +132,7 @@ If you already have a personal IP character image, avatar, concept image, or vis
 
 The script copies the character reference into `character-reference/` and tells every image prompt to preserve the same identity, hairstyle, face shape, clothing, attitude, and line-art style.
 
-## 4. Read The Output
+## 5. Read The CLI Output
 
 - `content-diagnosis.md`: asset-readiness diagnosis with score, verdict, gaps, rewrite actions, and recommended image count. With `-Semantic`, it also includes the LLM semantic review.
 - `analysis.md`: title, paragraphs, language signal, and cognitive anchors.
@@ -110,9 +142,9 @@ The script copies the character reference into `character-reference/` and tells 
 - `distribution-plan.md`: how Chinese and English audiences can consume the same project experience differently.
 - `publish-checklist.md`: checks before publishing, especially around evidence and finished-vs-placeholder claims.
 
-## 5. Generate Images
+## 6. Generate Images
 
-This repository creates reviewable illustration prompts first. Copy each prompt from `image-prompts.md` into your image generation tool, or let an image-capable agent read `image-prompts.jsonl` and generate one image per job.
+In conversation mode, an image-capable agent should generate images directly. In CLI mode, this repository creates reviewable illustration prompts first. Copy each prompt from `image-prompts.md` into your image generation tool, or let an image-capable agent read `image-prompts.jsonl` and generate one image per job.
 
 Check each image before using it:
 
@@ -143,11 +175,11 @@ First check whether raw files are reachable, then download the minimum files if 
 
 ### Do I Have To Use Axin?
 
-No. Axin is the default character so the workflow works immediately. Pass `-CharacterImagePath` and `-CharacterName` to use your own IP character.
+No. Axin is the default character so the workflow works immediately. In conversation mode, attach your IP character image and tell the agent to use it as the reference. In CLI mode, pass `-CharacterImagePath` and `-CharacterName` to use your own IP character.
 
 ### Does The Script Generate PNG Files?
 
-No. `new-content-package.ps1` creates article diagnosis, analysis, and prompt packages. Use your own image generation tool after reviewing the diagnosis, shot list, and prompts.
+It depends on where you use it. In conversation mode, if the agent has image generation, it should generate PNG files directly. The CLI script itself does not generate PNG files; `new-content-package.ps1` creates article diagnosis, analysis, and prompt packages.
 
 ### Is The English Output Just Translation?
 

@@ -38,7 +38,7 @@ Color use:
 Black for main line art, hair, objects, and labels. Orange for main flow/path/cables/arrows. Red only for key warnings, unverified items, problems, or results. Blue only for secondary notes, AI assistance, or system state.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not turn Axin into a non-human mascot, robot, stamp, toolbox, animal, monster, anime character, or abstract icon. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. It should be clear but not instructional, interesting but not childish, strange but clean. No watermark, no logo, no extra characters.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Keep Axin as a human content operator, not a generic mascot, robot, prop, logo, anime character, or abstract icon. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. It should be clear but not instructional, interesting but not childish, strange but clean. No watermark, no logo, no extra characters.
 ```
 
 ## 图像编辑提示
