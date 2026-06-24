@@ -19,6 +19,8 @@ metadata:
 
 默认视觉 IP 是“阿鑫”：一个黑发、眼镜、hoodie 的真人手绘内容操作员。阿鑫安静、认真、冷静，有一点轻微荒诞感，负责把真实项目、运行证据、复盘和输出接到中文内容、英文 README、`llms.txt` 和多平台 agent 入口。阿鑫不是非人类吉祥物、工具箱角色、印章角色或抽象怪物。
 
+用户也可以传入自己的 IP 形象图或角色设定。此时把用户 IP 作为角色锚点，仍然沿用“白底、黑色手绘线稿、少量红橙蓝批注、角色参与核心动作”的方法；不要把用户 IP 只贴在画面边缘当装饰。
+
 ## 先读这些参考
 
 按任务需要读取：
@@ -43,10 +45,11 @@ metadata:
 - 哪些地方体现“真实做过”，而不是包装出来的口号。
 - 哪些地方适合画成流程、状态、证据链或隐喻。
 - 哪些地方只适合文字，不需要配图。
+- 如果用户传入 IP 形象图，哪些画面最适合让这个 IP 亲自做动作，而不是当头像。
 
 不要平均配图。优先选择“认知锚点”：核心判断、输入输出闭环、前后对比、常见坑、资产沉淀、发布承接、复利飞轮、证据质检。
 
-### 2. 先出 shot list
+### 2. 先出 shot list 或内容包
 
 如果用户只是要求“分析怎么配图 / 做配图策略 / 规划”，先给 shot list。每张图写清楚：
 
@@ -59,6 +62,14 @@ metadata:
 - 建议中英文标注词。
 
 默认 4-8 张。短文 1-3 张，长文也不要轻易超过 9 张。
+
+如果用户在本仓库内工作，并要求“输入文章 / 自动分析文章 / 生成提示词 / 传入自己的 IP 形象”，优先使用：
+
+```powershell
+.\scripts\new-content-package.ps1 -ArticlePath <article.md> -CharacterImagePath <ip.png> -CharacterName "<IP名>" -ImageCount 4
+```
+
+它会生成 `analysis.md`、`illustration-shot-list.md`、`image-prompts.md`、`image-prompts.jsonl`、`distribution-plan.md` 和 `publish-checklist.md`。
 
 ### 3. 单张生成
 
@@ -82,6 +93,7 @@ metadata:
 - 英文 README、GitHub Pages、海外受众：优先英文短标注。
 - 双语图：只保留极少双语标签，不要把一张图写成翻译对照表。
 - 角色名中文使用“阿鑫”，英文使用“Axin”。
+- 中文分发面向公众号、知乎、即刻、小红书；英文分发面向 GitHub、README、Hacker News、X、Medium。价值不是翻译，而是同一份经验被两个语境分别消费。
 
 ### 5. 检查与迭代
 

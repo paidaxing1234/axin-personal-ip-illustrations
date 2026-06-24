@@ -184,8 +184,15 @@ if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
+}
+
+$contentPackageScript = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "scripts/new-content-package.ps1")
+foreach ($needle in @("ArticlePath", "CharacterImagePath", "ImageCount", "LanguageMode", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+  if ($contentPackageScript -notmatch [Regex]::Escape($needle)) {
+    throw "new-content-package.ps1 missing article-to-prompt pipeline feature: $needle"
+  }
 }
 
 $indexHtml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/index.html")

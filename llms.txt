@@ -11,6 +11,7 @@ This repository contains a reusable illustration workflow for turning personal-b
 - [Style DNA](axin-personal-ip-illustrations/references/style-dna.md): white background, black hand-drawn line art, sparse red/orange/blue notes.
 - [Prompt template](axin-personal-ip-illustrations/references/prompt-template.md): reusable image generation prompt with Chinese, English, and sparse bilingual modes.
 - [QA checklist](axin-personal-ip-illustrations/references/qa-checklist.md): validation rules.
+- [Article package CLI](scripts/new-content-package.ps1): read an article and optional IP character image, then produce analysis, shot list, image prompts, JSONL prompt jobs, and bilingual distribution notes.
 - [Platform guide](docs/MULTI_PLATFORM.md): keep platform product names untranslated; supports `Codex`, `Hermes`, `Claude Code`, `Cursor`, `Windsurf`, `Cline`, `OpenCode`, generic agents.
 - [GEO guide](docs/GEO.md): search and generative engine optimization strategy.
 - [Repository review](docs/REPOSITORY_REVIEW.md): deep self-review and cleanup rationale.

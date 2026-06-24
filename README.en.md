@@ -80,6 +80,19 @@ Requirements: 16:9, pure white background, black hand-drawn line art, sparse red
 <paste article>
 ```
 
+Turn an article and your own IP character reference into a reusable prompt package:
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\articles\my-post.md `
+  -CharacterImagePath .\assets\my-ip.png `
+  -CharacterName "Your IP" `
+  -ImageCount 5 `
+  -LanguageMode en
+```
+
+The command writes `analysis.md`, `illustration-shot-list.md`, `image-prompts.md`, `image-prompts.jsonl`, `distribution-plan.md`, and `publish-checklist.md`. The point is not literal translation; it turns one article into Chinese and English publishing assets.
+
 Plan only:
 
 ```text

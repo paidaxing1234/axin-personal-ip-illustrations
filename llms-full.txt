@@ -51,6 +51,16 @@ Axin must perform the core action. If the image still works after removing Axin,
 7. Save under `assets/<topic-slug>-illustrations/`.
 8. Run QA with `references/qa-checklist.md`.
 
+## Article-To-Prompt CLI
+
+Use `scripts/new-content-package.ps1` when the user provides an article file and optional custom IP character image:
+
+```powershell
+.\scripts\new-content-package.ps1 -ArticlePath .\articles\my-post.md -CharacterImagePath .\assets\my-ip.png -CharacterName "Your IP" -ImageCount 5 -LanguageMode zh
+```
+
+The script writes `analysis.md`, `illustration-shot-list.md`, `image-prompts.md`, `image-prompts.jsonl`, `distribution-plan.md`, and `publish-checklist.md`. It does not treat English output as direct translation; Chinese channels and English channels get different publishing angles from the same source article.
+
 ## Language Modes
 
 - Chinese content: use short Chinese handwritten labels.
