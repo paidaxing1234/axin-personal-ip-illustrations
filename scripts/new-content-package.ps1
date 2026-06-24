@@ -22,11 +22,50 @@ param(
 
   [string]$CharacterImagePath = "",
 
-  [string]$OutRoot = "content-packages"
+  [string]$OutRoot = "content-packages",
+
+  [switch]$Help
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
+
+function Show-Help {
+@'
+new-content-package.ps1 - Create an article-to-illustration prompt package.
+
+Quick start:
+  .\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -ImageCount 4 -LanguageMode zh
+
+With a custom IP character reference:
+  .\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -CharacterImagePath .\assets\my-ip.png -CharacterName "Your IP" -ImageCount 4
+
+Key outputs:
+  content-packages\<slug>\analysis.md
+  content-packages\<slug>\illustration-shot-list.md
+  content-packages\<slug>\image-prompts.md
+  content-packages\<slug>\image-prompts.jsonl
+  content-packages\<slug>\distribution-plan.md
+  content-packages\<slug>\publish-checklist.md
+
+Important parameters:
+  -ArticlePath          Markdown or TXT article to analyze.
+  -ArticleText          Inline article text, useful for automation.
+  -CharacterImagePath   Optional custom IP reference image.
+  -CharacterName        Optional custom IP display name.
+  -ImageCount           Number of image prompts, clamped to 1-8.
+  -LanguageMode         auto, zh, en, or bilingual.
+  -Slug                 Output folder name under content-packages.
+  -OutRoot              Output root, relative to the repo or absolute.
+
+This script generates reviewable prompts. It does not generate PNG files.
+'@ | Write-Host
+}
+
+if ($Help) {
+  Show-Help
+  return
+}
 
 function New-UString {
   param([int[]]$CodePoints)

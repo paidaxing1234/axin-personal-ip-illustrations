@@ -34,6 +34,8 @@ $required = @(
   "docs/MULTI_PLATFORM.md",
   "docs/GEO.md",
   "docs/REPOSITORY_REVIEW.md",
+  "docs/QUICK_START.md",
+  "docs/QUICK_START.en.md",
   "docs/index.html",
   ".claude-plugin/plugin.json",
   ".claude-plugin/marketplace.json",
@@ -49,6 +51,8 @@ $required = @(
   "skill-package.json",
   "prompts/axin-example-prompts.jsonl",
   "examples/prompts.md",
+  "examples/sample-article.md",
+  "content-packages/.gitkeep",
   "scripts/install-local-skill.ps1",
   "scripts/install-hermes-skill.ps1",
   "scripts/install-all-platforms.ps1",
@@ -168,36 +172,57 @@ if ($skill -notmatch "references/axin-ip.md") {
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
-  throw "README.md is missing bilingual link or Axin example assets."
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "image-prompts\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
+  throw "README.md is missing first-run guide, bilingual link, sample article path, prompt output, or Axin example assets."
 }
 if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -or $readme -match "\|\s*`Claude Code`\s*\|") {
   throw "README.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
 }
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
-if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md") {
-  throw "README.en.md is missing core English overview or Chinese link."
+if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "image-prompts\.md") {
+  throw "README.en.md is missing core English overview, Chinese link, first-run guide, sample article path, or prompt output."
 }
 if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\|" -or $readmeEn -match "\|\s*`Claude Code`\s*\|") {
   throw "README.en.md must not expose a front-page platform matrix; keep platform names in docs/MULTI_PLATFORM.md with notranslate markup."
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
 }
 
 $contentPackageScript = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "scripts/new-content-package.ps1")
-foreach ($needle in @("ArticlePath", "CharacterImagePath", "ImageCount", "LanguageMode", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+foreach ($needle in @("Help", "ArticlePath", "CharacterImagePath", "ImageCount", "LanguageMode", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
   if ($contentPackageScript -notmatch [Regex]::Escape($needle)) {
     throw "new-content-package.ps1 missing article-to-prompt pipeline feature: $needle"
   }
 }
 
+$quickStart = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.md")
+foreach ($needle in @("new-content-package.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+  if ($quickStart -notmatch [Regex]::Escape($needle)) {
+    throw "docs/QUICK_START.md is missing public onboarding content: $needle"
+  }
+}
+
+$quickStartEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.en.md")
+foreach ($needle in @("new-content-package.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md")) {
+  if ($quickStartEn -notmatch [Regex]::Escape($needle)) {
+    throw "docs/QUICK_START.en.md is missing public onboarding content: $needle"
+  }
+}
+
+$sampleArticle = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "examples/sample-article.md")
+foreach ($needle in @("image-prompts.md", "analysis.md", "illustration-shot-list.md", "README", "JSONL")) {
+  if ($sampleArticle -notmatch [Regex]::Escape($needle)) {
+    throw "examples/sample-article.md is missing expected article-to-prompt concepts: $needle"
+  }
+}
+
 $indexHtml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/index.html")
-if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch 'class="notranslate"' -or $indexHtml -notmatch '<meta name="google" content="notranslate">' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png") {
-  throw "docs/index.html must prevent product-name auto-translation and show the Axin IP asset board."
+if ($indexHtml -notmatch 'translate="no"' -or $indexHtml -notmatch 'class="notranslate"' -or $indexHtml -notmatch '<meta name="google" content="notranslate">' -or $indexHtml -notmatch "06-axin-ip-asset-board\.png" -or $indexHtml -notmatch "examples\\sample-article\.md" -or $indexHtml -notmatch "image-prompts\.md") {
+  throw "docs/index.html must prevent product-name auto-translation and show the sample article workflow plus Axin IP asset board."
 }
 
 $multiPlatform = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/MULTI_PLATFORM.md")

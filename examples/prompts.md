@@ -1,6 +1,24 @@
 ﻿# Prompt Examples
 
-下面这些 prompt 可以直接复制到 Codex 里使用。
+下面这些 prompt 可以直接复制到 agent 里使用。第一次使用建议先跑脚本示例，不要一上来就安装 skill。
+
+## CLI：三分钟跑通
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Slug sample-article `
+  -ImageCount 4 `
+  -LanguageMode zh
+```
+
+生成后打开：
+
+```text
+content-packages/sample-article/image-prompts.md
+```
+
+完整说明见 `docs/QUICK_START.md`。
 
 ## 只做配图规划
 

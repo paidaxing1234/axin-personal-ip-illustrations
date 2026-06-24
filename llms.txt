@@ -6,6 +6,9 @@ This repository contains a reusable illustration workflow for turning personal-b
 
 ## Primary Entry Points
 
+- [Quick start](docs/QUICK_START.md): first-run guide for open-source users; run the sample article before installing anything.
+- [English quick start](docs/QUICK_START.en.md): English first-run guide for GitHub users.
+- [Sample article](examples/sample-article.md): ready-to-run article for testing the article-to-prompt pipeline.
 - [Skill source](axin-personal-ip-illustrations/SKILL.md): main cross-platform skill instructions.
 - [Axin character](axin-personal-ip-illustrations/references/axin-ip.md): default recurring IP and action rules.
 - [Style DNA](axin-personal-ip-illustrations/references/style-dna.md): white background, black hand-drawn line art, sparse red/orange/blue notes.

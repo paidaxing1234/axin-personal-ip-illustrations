@@ -1,44 +1,80 @@
 # 阿鑫个人 IP 配图流程
 
-> 面向主流 agent 工具的个人 IP 手绘配图流程：把真实经验、项目复盘和内容资产化动作变成统一风格的阿鑫配图。
+> 输入一篇文章，输出可审核的配图策略、图片提示词和双语分发计划。
 
-[中文](README.md) · [English](README.en.md) · [LLM 入口](llms.txt) · [平台支持](docs/MULTI_PLATFORM.md) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
+[中文](README.md) · [English](README.en.md) · [快速上手](docs/QUICK_START.md) · [English Quick Start](docs/QUICK_START.en.md) · [LLM 入口](llms.txt) · [内容操作系统](docs/AXIN_CONTENT_OS.md) · [角色资产库](docs/CHARACTER_LIBRARY.md) · [案例库](cases/README.md)
 
-这不是通用头像包，也不是 PPT 模板。它是一套可安装、可复用、可校验的 agent skill：先理解你要表达的个人 IP 观点，再把其中一个判断、流程、状态或隐喻，转成一张白底手绘正文配图。
+这不是通用头像包，也不是 PPT 模板。它是一套面向开源开发者和内容创作者的 article-to-illustration workflow：先理解一篇文章里的判断、证据、流程和常见坑，再生成可复制到生图工具的 `image-prompts.md`。
 
-默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。他必须参与画面的核心动作：接线、分流、核验、贴警示、整理文件、把真实项目转换成中英文内容资产。
+默认视觉 IP 叫 **阿鑫**。阿鑫是一个黑发、眼镜、hoodie、安静但很能干的真人手绘内容操作员，不是吉祥物、抽象怪物或工具箱角色。你也可以传入自己的 IP 形象图，让自己的角色参与画面的核心动作。
+
+## 3 分钟跑通
+
+不需要先安装 skill。克隆仓库后，在仓库根目录执行：
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Slug sample-article `
+  -ImageCount 4 `
+  -LanguageMode zh
+```
+
+然后打开：
+
+```text
+content-packages/sample-article/image-prompts.md
+```
+
+你会看到 4 条完整配图 prompt，以及对应的 `analysis.md`、`illustration-shot-list.md`、`distribution-plan.md` 和 `publish-checklist.md`。更完整的首次使用说明见 [docs/QUICK_START.md](docs/QUICK_START.md)。
+
+## 换成自己的文章和 IP
+
+```powershell
+.\scripts\new-content-package.ps1 `
+  -ArticlePath .\path\to\your-article.md `
+  -CharacterImagePath .\path\to\your-ip.png `
+  -CharacterName "你的IP名" `
+  -ImageCount 5 `
+  -LanguageMode auto
+```
+
+脚本会把你的 IP 参考图复制到内容包的 `character-reference/`，并在每条图片 prompt 里要求角色保持身份一致、参与核心动作，而不是贴在画面角落当装饰。
+
+查看帮助：
+
+```powershell
+.\scripts\new-content-package.ps1 -Help
+```
+
+## 输出文件怎么看
+
+- `analysis.md`：文章标题、段落、语言判断和认知锚点。
+- `illustration-shot-list.md`：每张图的主题、结构、角色动作和建议元素。
+- `image-prompts.md`：适合复制到生图工具的完整 prompt。
+- `image-prompts.jsonl`：适合接入 CLI 或批处理的结构化任务。
+- `distribution-plan.md`：中文和英文渠道如何消费同一份项目经验。
+- `publish-checklist.md`：发布前检查，避免把计划、mock 或占位写成完成。
 
 ## 阿鑫 IP 资产
 
 ### 阿鑫主视觉
 
-用于展示同一套个人 IP 资产如何同时服务中文内容、英文 README 和多平台 agent 入口。
-
 ![阿鑫中英文内容分流主视觉](axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png)
 
 ### 阿鑫 IP 资产板
-
-用于固定阿鑫的专属 IP 识别：正面、侧面接线、背影工位、审稿、警示、agent 协作。
 
 ![阿鑫 IP 资产板](axin-personal-ip-illustrations/assets/examples/06-axin-ip-asset-board.png)
 
 ### 阿鑫角色锚点
 
-角色锚点图用于固定 IP 外形：黑发、眼镜、hoodie、真人手绘、白底线稿。
-
 ![阿鑫真人角色锚点](axin-personal-ip-illustrations/assets/examples/02-axin-human-character-anchor.png)
 
 ## 工作流示例图
 
-### 仓库自审
-
 ![阿鑫仓库自审](axin-personal-ip-illustrations/assets/examples/03-axin-human-repo-review-desk.png)
 
-### Agent 可发现
-
 ![阿鑫 agent 可发现流程](axin-personal-ip-illustrations/assets/examples/04-axin-human-geo-agent-discovery.png)
-
-### 内容复用工位
 
 ![阿鑫内容复用工位](axin-personal-ip-illustrations/assets/examples/05-axin-human-content-reuse-workbench.png)
 
@@ -57,18 +93,12 @@
 - 大段文字型课程页。
 - 严格可编辑矢量图。
 
-## 快速使用
+## 安装成 agent skill
 
-安装本机 skill：
+先用脚本跑通示例，再按需要安装：
 
 ```powershell
 .\scripts\install-local-skill.ps1
-```
-
-安装外部 skill 目录：
-
-```powershell
-.\scripts\install-hermes-skill.ps1
 ```
 
 同步插件快照：
@@ -77,67 +107,15 @@
 .\scripts\sync-platform-packages.ps1
 ```
 
-一键安装/同步本机可用平台：
-
-```powershell
-.\scripts\install-all-platforms.ps1
-```
-
-在 agent 会话里使用：
-
-```text
-Use $axin-personal-ip-illustrations 为这篇中文文章设计并生成 4 张阿鑫个人 IP 正文配图。
-要求：16:9 横版、纯白背景、黑色手绘线稿、少量红橙蓝中文手写批注。
-
-<粘贴文章>
-```
-
-把文章和自己的 IP 形象打成可复用内容包：
-
-```powershell
-.\scripts\new-content-package.ps1 `
-  -ArticlePath .\articles\my-post.md `
-  -CharacterImagePath .\assets\my-ip.png `
-  -CharacterName "你的IP名" `
-  -ImageCount 5 `
-  -LanguageMode zh
-```
-
-这个命令会生成 `analysis.md`、`illustration-shot-list.md`、`image-prompts.md`、`image-prompts.jsonl`、`distribution-plan.md` 和 `publish-checklist.md`。它的重点不是翻译文章，而是把同一篇文章拆成中文和英文两个分发语境可消费的内容资产。
-
-只做配图策略，不生成图：
-
-```text
-Use $axin-personal-ip-illustrations 先不要生图。
-请分析这篇文章哪里值得配图，输出 5 张左右的 shot list。
-每张写清楚主题、核心意思、结构类型、阿鑫在做什么、建议中文标注。
-```
-
-## 工具入口
-
-仓库已经保留主流 agent 工具入口、安装脚本、规则文件和插件快照。首页不再铺平台名矩阵，避免浏览器自动翻译把产品名改成奇怪的中文词；完整入口见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。
+完整平台入口见 [docs/MULTI_PLATFORM.md](docs/MULTI_PLATFORM.md)。首页不铺平台名矩阵，避免浏览器自动翻译把产品名改成奇怪的中文词。
 
 ## GEO / LLM 可发现
-
-仓库提供：
 
 - `llms.txt`：给 LLM/agent 的短入口。
 - `llms-full.txt`：给长上下文 agent 的完整项目摘要。
 - `docs/index.html`：可用于 GitHub Pages 的文本落地页。
 - `docs/GEO.md`：GEO 策略、关键词和后续发布建议。
 - `README.en.md`：英文入口，便于 GitHub、LLM 和海外开发者理解。
-
-## 工作流
-
-1. 读文章、项目复盘、脚本、README 或用户给的主题。
-2. 提炼个人 IP 的认知锚点：判断、断点、流程、前后对比、常见坑、资产沉淀。
-3. 先输出 shot list，每张图只讲一个核心意思。
-4. 如果传入自己的 IP 形象图，把它作为角色锚点，不让角色沦为装饰。
-5. 为每张图选择结构类型：内容工坊、证据质检、发布路径、复利飞轮、角色状态、方法分层、小漫画分镜。
-6. 让阿鑫或自定义 IP 承担核心动作：接线、分流、核验、贴警示、整理文件、打包、发布、回收。
-7. 使用 `imagegen` 逐张生成 bitmap 图片。
-8. 按 QA 清单检查白底、留白、角色参与、少字、非 PPT、非可爱化。
-9. 保存到 `assets/<topic-slug>-illustrations/` 或 skill 的 `assets/examples/`。
 
 ## 目录结构
 
@@ -159,6 +137,12 @@ Use $axin-personal-ip-illustrations 先不要生图。
 ├── cases/
 ├── content-packages/
 ├── docs/
+│   ├── QUICK_START.md
+│   ├── QUICK_START.en.md
+│   ├── AXIN_CONTENT_OS.md
+│   ├── CHARACTER_LIBRARY.md
+│   ├── GEO.md
+│   └── index.html
 ├── prompts/
 ├── axin-personal-ip-illustrations/
 │   ├── SKILL.md
@@ -175,6 +159,7 @@ Use $axin-personal-ip-illustrations 先不要生图。
 │       ├── qa-checklist.md
 │       └── workflow.md
 ├── examples/
+│   ├── sample-article.md
 │   └── prompts.md
 ├── platforms/
 └── scripts/
@@ -188,7 +173,7 @@ Use $axin-personal-ip-illustrations 先不要生图。
     └── validate-repo.ps1
 ```
 
-真正需要安装到 Codex 的是子目录：
+真正需要安装到本机 skill 目录的是子目录：
 
 ```text
 axin-personal-ip-illustrations/
@@ -201,7 +186,7 @@ axin-personal-ip-illustrations/
 - 黑色手绘线稿为主，少量橙色表达路径，红色表达风险或结果，蓝色表达系统反馈。
 - 一张图只讲一个判断、流程或状态。
 - 中文标注最多 5-8 处，每处尽量 2-8 个字。
-- 阿鑫必须是黑发、眼镜、hoodie 的真人手绘角色，并参与核心动作。如果去掉阿鑫，图仍然完全成立，说明这张图不合格。
+- 阿鑫或自定义 IP 必须参与核心动作。如果去掉角色，图仍然完全成立，说明这张图不合格。
 
 ## 验证
 
@@ -209,7 +194,7 @@ axin-personal-ip-illustrations/
 .\scripts\validate-repo.ps1
 ```
 
-验证会检查必需文件、示例图片、skill 元数据、平台快照、README 双语入口和本地安装脚本是否存在。
+验证会检查必需文件、示例图片、skill 元数据、平台快照、README 双语入口、快速上手文档和示例文章是否存在。
 
 ## License
 

@@ -1,10 +1,10 @@
 # 阿鑫个人 IP 配图流程 - Full LLM Context
 
-This repository packages a multi-platform personal IP illustration workflow.
+This repository packages an article-to-illustration personal IP workflow.
 
 ## What It Does
 
-It helps agents generate article illustrations for:
+It helps open-source users and agents turn one article into reviewable illustration assets:
 
 - Personal brand content.
 - Public build logs.
@@ -16,6 +16,16 @@ It helps agents generate article illustrations for:
 - English-facing README, GitHub Pages, and LLM discovery entries.
 
 The output style is a clean, strange, white-background hand-drawn image. Each image explains one judgement, workflow, state, evidence chain, or metaphor.
+
+## First-Run Path
+
+Do not require a new user to install the skill before trying the workflow. Start with:
+
+```powershell
+.\scripts\new-content-package.ps1 -ArticlePath .\examples\sample-article.md -Slug sample-article -ImageCount 4 -LanguageMode zh
+```
+
+Then inspect `content-packages/sample-article/image-prompts.md`, `analysis.md`, and `illustration-shot-list.md`. The public guides are `docs/QUICK_START.md` and `docs/QUICK_START.en.md`.
 
 ## Default Character
 

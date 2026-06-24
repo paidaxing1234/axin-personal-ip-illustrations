@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google" content="notranslate">
-  <title>阿鑫个人 IP 配图流程 - Axin Personal IP Illustrations</title>
-  <meta name="description" content="阿鑫个人 IP 配图流程是一个支持 Codex、Hermes、Claude Code 和通用 agent 的中英文手绘正文配图 Skill，用于把真实经验、项目复盘和 AI 工作流内容生成可复用视觉资产。">
+  <title>阿鑫个人 IP 配图流程 - Article To Illustration Prompts</title>
+  <meta name="description" content="输入一篇文章和可选个人 IP 形象图，生成文章分析、配图 shot list、image-prompts.md、JSONL 生图任务和双语分发计划。">
   <meta property="og:title" content="阿鑫个人 IP 配图流程">
-  <meta property="og:description" content="多平台个人 IP 手绘配图 Skill：Codex、Hermes、Claude Code、Cursor、Windsurf、Cline 和通用 agent 均可使用。">
+  <meta property="og:description" content="Article-to-illustration workflow: turn one post into reviewable image prompts, shot lists, and bilingual distribution assets.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="../axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png">
   <script type="application/ld+json">
@@ -16,7 +16,7 @@
     "@type": "SoftwareSourceCode",
     "name": "Axin Personal IP Illustrations",
     "alternateName": "阿鑫个人 IP 配图流程",
-    "description": "Multi-platform Codex and Hermes skill for Chinese and English personal IP hand-drawn article illustrations.",
+    "description": "Article-to-illustration prompt workflow for Chinese and English personal IP hand-drawn article images.",
     "programmingLanguage": "Markdown, PowerShell, Python",
     "codeRepository": "https://github.com/paidaxing1234/axin-personal-ip-illustrations",
     "license": "https://opensource.org/license/mit"
@@ -29,6 +29,7 @@
     h2 { margin-top: 36px; }
     a { color: #0969da; }
     img { max-width: 100%; border: 1px solid #eee; }
+    pre { background: #f6f8fa; padding: 14px 16px; overflow-x: auto; border-radius: 6px; }
     code { background: #f6f8fa; padding: 2px 5px; border-radius: 4px; }
     .lead { font-size: 18px; color: #444; }
     .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 28px; }
@@ -37,22 +38,33 @@
 <body>
   <main>
     <h1>阿鑫个人 IP 配图流程</h1>
-    <p class="lead">一个支持 <code translate="no" class="notranslate">Codex</code>、<code translate="no" class="notranslate">Hermes</code>、<code translate="no" class="notranslate">Claude Code</code> 和通用 agent 的中英文手绘正文配图 Skill，把真实经验、项目复盘和 AI 工作流内容变成可复用视觉资产。</p>
+    <p class="lead">输入一篇文章和可选个人 IP 形象图，输出文章分析、配图 shot list、<code>image-prompts.md</code>、JSONL 生图任务和双语分发计划。</p>
 
     <p class="links">
       <a href="../README.md">中文 README</a>
       <a href="../README.en.md">English README</a>
+      <a href="QUICK_START.md">快速上手</a>
+      <a href="QUICK_START.en.md">English Quick Start</a>
       <a href="../llms.txt">llms.txt</a>
       <a href="GEO.md">GEO</a>
       <a href="AXIN_CONTENT_OS.md">内容操作系统</a>
       <a href="CHARACTER_LIBRARY.md">角色资产库</a>
     </p>
 
-    <h2>核心能力</h2>
-    <p>仓库提供 <code>SKILL.md</code>、阿鑫角色设定、风格 DNA、prompt 模板、QA 清单、内容包脚本、案例库、GEO 文档、CLI 生图脚本和示例图片。</p>
+    <h2>3 分钟跑通</h2>
+    <p>第一次使用不需要先安装 skill。克隆仓库后，在根目录执行：</p>
+    <pre><code>.\scripts\new-content-package.ps1 `
+  -ArticlePath .\examples\sample-article.md `
+  -Slug sample-article `
+  -ImageCount 4 `
+  -LanguageMode zh</code></pre>
+    <p>然后打开 <code>content-packages/sample-article/image-prompts.md</code>，把其中一条 prompt 复制到你的生图工具里。</p>
 
-    <h2>平台支持</h2>
-    <p>当前支持 <code translate="no" class="notranslate">Codex</code>、<code translate="no" class="notranslate">Hermes</code>、<code translate="no" class="notranslate">Claude Code</code>、<code translate="no" class="notranslate">Cursor</code>、<code translate="no" class="notranslate">Windsurf</code>、<code translate="no" class="notranslate">Cline</code>、<code translate="no" class="notranslate">OpenCode</code> 和通用 agents。LLM 可以先读取 <a href="../llms.txt">llms.txt</a>。</p>
+    <h2>核心能力</h2>
+    <p>仓库提供 <code>new-content-package.ps1</code>、示例文章、阿鑫角色设定、风格 DNA、prompt 模板、QA 清单、内容包脚本、案例库、GEO 文档和示例图片。LLM 可以先读取 <a href="../llms.txt">llms.txt</a>。</p>
+
+    <h2>可选 agent 入口</h2>
+    <p>跑通脚本后，可以再把它安装成 <code translate="no" class="notranslate">Codex</code>、<code translate="no" class="notranslate">Hermes</code>、<code translate="no" class="notranslate">Claude Code</code> 或通用 agent 使用的 skill。完整入口见 <a href="MULTI_PLATFORM.md">平台支持</a>。</p>
 
     <h2>示例</h2>
     <img src="../axin-personal-ip-illustrations/assets/examples/01-axin-human-bilingual-workflow.png" alt="阿鑫真人手绘中英文内容分流示例">
