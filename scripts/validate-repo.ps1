@@ -180,18 +180,21 @@ if ($skill -notmatch "references/axin-ip.md") {
 
 $conversationFirst = -join @([char]23545, [char]35805, [char]20248, [char]20808)
 $imageToolAvailable = "imagegen"
+$imageGenTool = "image_gen"
+$verticalCarousel = "9:16"
+$douyinZh = -join @([char]25238, [char]38899)
 $noImageTool = -join @([char]27809, [char]26377, [char]22270, [char]29255, [char]29983, [char]25104, [char]24037, [char]20855)
 $copyablePromptZh = -join @([char]36880, [char]24352, [char]32, [char]112, [char]114, [char]111, [char]109, [char]112, [char]116)
 $cliNotPrimary = -join @([char]19981, [char]35201, [char]25226, [char]32, [char]67, [char]76, [char]73, [char]32, [char]24403, [char]25104, [char]20027, [char]20837, [char]21475)
 
-foreach ($needle in @($conversationFirst, $imageToolAvailable, $noImageTool, $copyablePromptZh, $cliNotPrimary)) {
+foreach ($needle in @($conversationFirst, $imageToolAvailable, $imageGenTool, $verticalCarousel, $douyinZh, $noImageTool, $copyablePromptZh, $cliNotPrimary)) {
   if ($skill -notmatch [Regex]::Escape($needle)) {
     throw "SKILL.md must describe the conversation-first image-or-prompt workflow: $needle"
   }
 }
 
 $readme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.md")
-if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or -not $readme.Contains('Use $axin-personal-ip-illustrations') -or $readme -notmatch [Regex]::Escape("image-prompts.md") -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "Semantic" -or $readme -notmatch "OPENAI_API_KEY" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
+if ($readme -notmatch "README\.en\.md" -or $readme -notmatch "docs/QUICK_START\.md" -or $readme -notmatch "docs/QUICK_START\.en\.md" -or -not $readme.Contains('Use $axin-personal-ip-illustrations') -or -not $readme.Contains('image_gen') -or -not $readme.Contains('9:16') -or $readme -notmatch [Regex]::Escape("image-prompts.md") -or $readme -notmatch "examples\\sample-article\.md" -or $readme -notmatch "analyze-article\.ps1" -or $readme -notmatch "Semantic" -or $readme -notmatch "OPENAI_API_KEY" -or $readme -notmatch "content-diagnosis\.md" -or $readme -notmatch "01-axin-human-bilingual-workflow\.png" -or $readme -notmatch "02-axin-human-character-anchor\.png" -or $readme -notmatch "06-axin-ip-asset-board\.png") {
   throw "README.md is missing first-run guide, bilingual link, sample article path, prompt output, or Axin example assets."
 }
 if ($readme.Contains($oldAuditDoc) -or $readme.Contains($oldReviewDoc) -or $readme.Contains($oldZhAudit) -or $readme.Contains($oldZhDeepReview)) {
@@ -202,7 +205,7 @@ if ($readme -match "\|\s*`Codex`\s*\|" -or $readme -match "\|\s*`Hermes`\s*\|" -
 }
 
 $readmeEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "README.en.md")
-if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or -not $readmeEn.Contains('Use $axin-personal-ip-illustrations') -or $readmeEn -notmatch "image generation is available" -or $readmeEn -notmatch "no image tool is available" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "Semantic" -or $readmeEn -notmatch "OPENAI_API_KEY" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
+if ($readmeEn -notmatch "Axin Personal IP" -or $readmeEn -notmatch "README\.md" -or $readmeEn -notmatch "docs/QUICK_START\.en\.md" -or -not $readmeEn.Contains('Use $axin-personal-ip-illustrations') -or -not $readmeEn.Contains('image_gen') -or -not $readmeEn.Contains('9:16') -or $readmeEn -notmatch "image generation is available" -or $readmeEn -notmatch "no image tool is available" -or $readmeEn -notmatch "examples\\sample-article\.md" -or $readmeEn -notmatch "analyze-article\.ps1" -or $readmeEn -notmatch "Semantic" -or $readmeEn -notmatch "OPENAI_API_KEY" -or $readmeEn -notmatch "content-diagnosis\.md" -or $readmeEn -notmatch "image-prompts\.md") {
   throw "README.en.md is missing core English overview, Chinese link, first-run guide, sample article path, or prompt output."
 }
 if ($readmeEn.Contains($oldAuditDoc) -or $readmeEn.Contains($oldReviewDoc) -or $readmeEn.Contains($oldEnAudit) -or $readmeEn.Contains($oldEnDeepReview)) {
@@ -213,7 +216,7 @@ if ($readmeEn -match "\|\s*`Codex`\s*\|" -or $readmeEn -match "\|\s*`Hermes`\s*\
 }
 
 $llms = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "llms.txt")
-if ($llms -notmatch "Default agent behavior" -or $llms -notmatch "image generation" -or $llms -notmatch "complete copyable prompt" -or $llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Optional semantic review" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
+if ($llms -notmatch "Default agent behavior" -or $llms -notmatch "image generation" -or -not $llms.Contains('image_gen') -or -not $llms.Contains('9:16') -or $llms -notmatch "complete copyable prompt" -or $llms -notmatch "Quick start" -or $llms -notmatch "English quick start" -or $llms -notmatch "Sample article" -or $llms -notmatch "Article diagnosis CLI" -or $llms -notmatch "Optional semantic review" -or $llms -notmatch "Skill source" -or $llms -notmatch "Platform guide" -or $llms -notmatch "Character library" -or $llms -notmatch "Article package CLI" -or $llms -notmatch "Axin") {
   throw "llms.txt is missing key LLM discovery content."
 }
 if ($llms.Contains($oldAuditDoc) -or $llms.Contains($oldReviewDoc) -or $llms.Contains($oldEnAuditLower) -or $llms.Contains($oldEnRepoReview)) {
@@ -228,16 +231,33 @@ foreach ($needle in @("Help", "ArticlePath", "CharacterImagePath", "ImageCount",
 }
 
 $quickStart = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.md")
-foreach ($needle in @('Use $axin-personal-ip-illustrations', "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @('Use $axin-personal-ip-illustrations', "image_gen", "9:16", "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStart -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.md is missing public onboarding content: $needle"
   }
 }
 
 $quickStartEn = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "docs/QUICK_START.en.md")
-foreach ($needle in @('Use $axin-personal-ip-illustrations', "image generation", "no image tool", "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
+foreach ($needle in @('Use $axin-personal-ip-illustrations', "image_gen", "9:16", "image generation", "no image tool", "new-content-package.ps1", "analyze-article.ps1", "examples\sample-article.md", "ArticlePath", "CharacterImagePath", "Semantic", "OPENAI_API_KEY", "content-diagnosis.md", "image-prompts.md", "image-prompts.jsonl", "distribution-plan.md", "ExecutionPolicy", "Unblock-File")) {
   if ($quickStartEn -notmatch [Regex]::Escape($needle)) {
     throw "docs/QUICK_START.en.md is missing public onboarding content: $needle"
+  }
+}
+
+$promptExamples = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "examples/prompts.md")
+$douyinImageText = Join-AxinCodePoints @(25238, 38899, 22270, 25991)
+$verticalCarouselZh = Join-AxinCodePoints @(31446, 23631, 36718, 25773)
+foreach ($needle in @($douyinImageText, "9:16", "image_gen", $verticalCarouselZh)) {
+  if ($promptExamples -notmatch [Regex]::Escape($needle)) {
+    throw "examples/prompts.md is missing vertical carousel prompt example: $needle"
+  }
+}
+
+$promptTemplate = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot "axin-personal-ip-illustrations/references/prompt-template.md")
+$verticalTemplateZh = "9:16 " + (Join-AxinCodePoints @(31446, 23631, 22270, 25991, 21345, 29255, 27169, 26495))
+foreach ($needle in @($verticalTemplateZh, "image_gen", "vertical short-form carousel card", "35% blank white space")) {
+  if ($promptTemplate -notmatch [Regex]::Escape($needle)) {
+    throw "prompt-template.md is missing vertical carousel template content: $needle"
   }
 }
 

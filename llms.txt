@@ -11,6 +11,7 @@ Default agent behavior:
 3. If no image generation tool is available, return one complete copyable prompt per selected scene.
 4. If the user attaches a custom IP character image, use it as the character reference instead of default Axin.
 5. Use the CLI only when the user asks for saved files, batch prompts, or an article package.
+6. For Douyin, Xiaohongshu, or short-form carousel posts, use 9:16 vertical cards and call `image_gen` once per card when available.
 
 ## Primary Entry Points
 

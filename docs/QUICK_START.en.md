@@ -54,6 +54,16 @@ If image generation is available, generate them. Otherwise return prompts.
 <paste article>
 ```
 
+For Douyin, Xiaohongshu, or other short-form carousel posts, use:
+
+```text
+Use $axin-personal-ip-illustrations
+Here is my article. Turn it into a 9:16 vertical carousel.
+If you have image_gen, call image_gen once per card. If not, return prompts.
+
+<paste article>
+```
+
 ## 2. Optional CLI Sample
 
 If you want a saved content package or batch workflow, run this from the repository root:
