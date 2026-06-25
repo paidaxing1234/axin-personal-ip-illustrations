@@ -52,16 +52,6 @@ Use $axin-personal-ip-illustrations
 <粘贴文章>
 ```
 
-做抖音图文或小红书图文时，把要求改成：
-
-```text
-Use $axin-personal-ip-illustrations
-下面是我的文章。请做成 9:16 竖屏图文轮播。
-如果你有 image_gen，就直接逐张调用 image_gen 生成；如果没有，才输出逐张 prompt。
-
-<粘贴文章>
-```
-
 ## 2. 可选：CLI 跑通示例
 
 如果你想保存完整内容包，或把流程接进批处理，在仓库根目录执行：

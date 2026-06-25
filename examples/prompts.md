@@ -31,17 +31,6 @@ Use $axin-personal-ip-illustrations
 <粘贴文章>
 ```
 
-## 对话：抖音图文 9:16 竖屏轮播
-
-```text
-Use $axin-personal-ip-illustrations
-下面是我的文章。请做成抖音图文，9:16 竖屏轮播，默认 7 张。
-如果你有 image_gen，就直接逐张调用 image_gen 生成图片，不要只给 prompt。
-如果当前环境没有可调用的 image_gen，才输出每张图的完整 prompt。
-
-<粘贴文章>
-```
-
 ## CLI：三分钟跑通
 
 ```powershell

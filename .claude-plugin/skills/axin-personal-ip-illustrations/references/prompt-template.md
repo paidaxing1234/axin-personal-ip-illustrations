@@ -41,43 +41,6 @@ Constraints:
 One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Keep Axin as a human content operator, not a generic mascot, robot, prop, logo, anime character, or abstract icon. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. It should be clear but not instructional, interesting but not childish, strange but clean. No watermark, no logo, no extra characters.
 ```
 
-## 9:16 竖屏图文卡片模板
-
-用于抖音图文、小红书图文、竖屏轮播和短内容卡片。每张卡片单独调用 `image_gen`，不要把多张图拼在一张里。
-
-```text
-Use case: illustration-story
-Asset type: 9:16 vertical short-form carousel card
-Primary request: Generate one standalone 9:16 vertical carousel card for the Axin personal IP workflow.
-
-Visual DNA:
-Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten annotations. Clean absurd content-workbench sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial poster style, no PPT infographic look, no cute mascot poster.
-
-Recurring IP character required:
-阿鑫 / Axin, a hand-drawn human content operator with messy black hair, round glasses, and a light hoodie. 阿鑫 must perform the core conceptual action, not decorate the corner. Preserve the human identity: black hair, glasses, hoodie, clean sketch lines, practical posture.
-
-Card role:
-{封面 / 痛点 / 流程 / 判断 / 分支 / 复用 / 行动}
-
-Core idea:
-{这一页只表达一个核心意思}
-
-Composition:
-{竖屏构图：上方留标题区，中部是阿鑫动作和主物件，下方留短标注或行动提示}
-
-Suggested visual elements:
-{元素1} / {元素2} / {元素3} / {元素4}
-
-Optional short text:
-{最多 6-14 个中文字；如果不确定文字准确性，就留空白标题区，不要生成长段中文}
-
-Color use:
-Black for main line art, hair, objects, and labels. Orange for main flow/path/cables/arrows. Red only for warnings or problems. Blue only for AI assistance or system state.
-
-Constraints:
-9:16 vertical composition. One card explains only one idea. Keep at least 35% blank white space for platform text overlay. Do not create a dense poster. Do not make a collage. Do not include logos, QR codes, watermarks, fake UI, tiny unreadable text, or long paragraphs. Keep Axin as a human content operator, not a generic mascot, robot, prop, logo, anime character, or abstract icon.
-```
-
 ## 图像编辑提示
 
 去掉左上角标题：

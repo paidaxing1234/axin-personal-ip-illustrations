@@ -30,8 +30,6 @@ The default use case is not CLI-first. When a user references `$axin-personal-ip
 
 Do not force the user to run scripts unless they ask for saved files, batch prompt jobs, or a content package.
 
-For Douyin, Xiaohongshu, or short-form image-text carousel posts, switch from 16:9 article illustration to 9:16 vertical carousel mode. Use 5-8 cards by default: cover, pain point, workflow, judgement, image-or-prompt branch, reuse, and final call to action. If `image_gen` is available, call it once per card. Return prompts only when no callable image generation tool is available.
-
 ## First-Run Path
 
 For saved files and automation, use the CLI:

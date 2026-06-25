@@ -40,8 +40,6 @@ Expected output:
 - Generated image files when an image tool is available.
 - Copyable prompts when no image tool is available.
 
-For Douyin, Xiaohongshu, or short-form carousel posts, ask for a `9:16 vertical carousel`. Agents with `image_gen` should call `image_gen` once per card. Return prompts only when no callable image generation tool is available.
-
 ## Optional CLI Trial
 
 The CLI is for batch production, saved content packages, and automation. From the repository root, run:
